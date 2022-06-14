@@ -19,6 +19,8 @@
 
 <body>
     <form id="formLogin">
+    {{ csrf_field()}}
+
         <div class="d-flex align-items-center justify-content-center bg-br-primary ht-100v">
 
             <div class="login-wrapper wd-300 wd-xs-350 pd-25 pd-xs-40 bg-white rounded shadow-base">
@@ -26,10 +28,10 @@
                 <div class="tx-center mg-b-60">Sistema Contable Comercial</div>
 
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Codigo de Usuario" required>
+                    <input type="text" class="form-control" name="usu_ci" placeholder="Codigo de Usuario" required>
                 </div><!-- form-group -->
                 <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Contraseña" required>
+                    <input type="password" class="form-control" name="password" placeholder="Contraseña" required>
                     <a href="" class="tx-info tx-12 d-block mg-t-10">Olvido la contraseña?</a>
                 </div><!-- form-group -->
                 <button type="submit" class="btn btn-info btn-block">Ingresar</button>
@@ -41,16 +43,27 @@
     <script src="{{ asset('template/lib/popper.js/popper.js')}}"></script>
     <script src="{{ asset('template/lib/bootstrap/bootstrap.js')}}"></script>
     <script>
+        
         $("#formLogin").submit(function(event) {
+            event.preventDefault();
             $.ajax({
-                url: "login",
+                url: "log1",
                 data: $(this).serializeArray(),
                 type: "POST",
-                dataType: 'json',
+                // dataType: 'json',
                 success: function(e) {
-                    console.log(typeof(e));
+                    console.log(e);
+                    if (e=='success') {
+                        window.location.href = 'index';
+                        
+                    } else {
+                        console.log('Error en login');
+                    }
+
                 }
-            });
+            }).fail(
+                console.log('Error de inicio de seción')
+            );
 
         });
     </script>
