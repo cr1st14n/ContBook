@@ -15,11 +15,14 @@
 
     <!-- Bracket CSS -->
     <link rel="stylesheet" href="{{ asset('template/css/bracket.css')}}">
+    <!-- norific8 -->
+
+    <link rel="stylesheet" href="{{ asset('template/lib2/notific8/src/css/jquery.notific8.css')}}" media="screen">
 </head>
 
 <body>
     <form id="formLogin">
-    {{ csrf_field()}}
+        {{ csrf_field()}}
 
         <div class="d-flex align-items-center justify-content-center bg-br-primary ht-100v">
 
@@ -28,7 +31,7 @@
                 <div class="tx-center mg-b-60">Sistema Contable Comercial</div>
 
                 <div class="form-group">
-                    <input type="text" class="form-control" name="usu_ci" placeholder="Codigo de Usuario" required>
+                    <input type="text" class="form-control" name="usu_ci" placeholder="Codigo de Usuario" required autocomplete="off">
                 </div><!-- form-group -->
                 <div class="form-group">
                     <input type="password" class="form-control" name="password" placeholder="Contraseña" required>
@@ -42,8 +45,9 @@
     <script src="{{ asset('template/lib/jquery/jquery.js')}}"></script>
     <script src="{{ asset('template/lib/popper.js/popper.js')}}"></script>
     <script src="{{ asset('template/lib/bootstrap/bootstrap.js')}}"></script>
+    <!-- notific8 -->
+    <script src="{{ asset('template/lib2/notific8/dist/jquery.notific8.min.js')}}"></script>
     <script>
-        
         $("#formLogin").submit(function(event) {
             event.preventDefault();
             $.ajax({
@@ -53,17 +57,39 @@
                 // dataType: 'json',
                 success: function(e) {
                     console.log(e);
-                    if (e=='success') {
+                    if (e == 'success') {
                         window.location.href = 'index';
-                        
-                    } else {
-                        console.log('Error en login');
+
+                    } else if (e == 0) {
+                        $.notific8('Usuario no registrado.', {
+                            life: 3000,
+                            heading: 'Advertencia.',
+                            icon: 'info-circled',
+                            theme: 'mustard',
+                            family: 'atomic',
+                            // sticky: true,
+                            horizontalEdge: 'top',
+                            // horizontalEdge: 'bottom',
+                            verticalEdge: 'rigth',
+                            zindex: 1500,
+                        })
+                    }else if (e == 1) {
+                        $.notific8('Contraseña incorrecta.', {
+                            life: 3000,
+                            heading: 'Advertencia.',
+                            icon: 'info-circled',
+                            theme: 'tomato',
+                            family: 'atomic',
+                            // sticky: true,
+                            horizontalEdge: 'top',
+                            // horizontalEdge: 'bottom',
+                            verticalEdge: 'rigth',
+                            zindex: 1500,
+                        })
                     }
 
                 }
-            }).fail(
-                console.log('Error de inicio de seción')
-            );
+            }).fail();
 
         });
     </script>

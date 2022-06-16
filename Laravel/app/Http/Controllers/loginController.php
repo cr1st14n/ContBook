@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\User;
+use Illuminate\Support\Facades\Crypt;
 
 class loginController extends Controller
 {
@@ -15,18 +16,15 @@ class loginController extends Controller
     }
     public function login(Request $request)
     {
-        // return 'hola mudno';
-        // return User::where('usu_ci','1001')->first();
-        // return $request;
-        // $credenciales=$this->validate(request(),[
-        //     'usu_ci' => 'required|string',
-        //     'password' => 'required|string'
-        // ]);
-        $credenciales=request()->only('usu_ci','password');
-
-        // return $credenciales;
-        // return Auth::attempt($credenciales);  
-
+        $credenciales = request()->only('usu_ci', 'password');
+        $u = User::where('usu_ci', $request->input('usu_ci'))->first();
+        if ($u == null) {
+            return '0';
+        } else if (Auth::attempt($credenciales)) {
+            return 'success';
+        } else {
+            return '1';
+        }
         if (Auth::attempt($credenciales)) {
             return 'success';
         }
