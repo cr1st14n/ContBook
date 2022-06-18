@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 
 class homeController extends Controller
 {
-    public function _construct()
+    public function __construct()
     {
-        $this->middleware('Auth');
+        $this->middleware('auth');
     }
     public function Index()
     {
