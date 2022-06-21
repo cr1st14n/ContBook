@@ -23,3 +23,8 @@ Route::any('log1',[loginController::class,'login']);
 Route::post('logout',[loginController::class,'logout'])->name('logout');
 
 Route::get('index',[homeController::class,'index']);
+
+Route::group(['prefix'=>'usuario'],function ()
+{
+    Route::get('')
+});

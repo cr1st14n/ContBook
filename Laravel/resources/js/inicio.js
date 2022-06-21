@@ -100,3 +100,9 @@ function notif(tipo, texto) {
             break;
     }
 }
+
+$('#btn_menu_users').click(function (e) { 
+    e.preventDefault();
+    
+   $('#sec_mailPanel').html(htmlString); 
+});
