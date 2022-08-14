@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\homeController;
+use App\Http\Controllers\loginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +16,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('login.login');
+})->name('login')->middleware('guest');
+Route::any('log1', [loginController::class, 'login']);
+Route::post('logout', [loginController::class, 'logout'])->name('logout');
+
+Route::get('index', [homeController::class, 'index']);
+
+Route::group(['prefix' => 'usuario'], function () {
+    Route::get('/');
 });
