@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-    <title>OneUI - Bootstrap 4 Admin Template &amp; UI Framework</title>
+    <title>Cont &amp;Book</title>
 
 
 
@@ -555,661 +555,33 @@
             <div class="content-side content-side-full">
                 <ul class="nav-main">
                     <li class="nav-main-item">
-                        <a class="nav-main-link active" href="be_pages_dashboard.html">
+                        <a class="nav-main-link active" href="/ContBook" id="btn_menu_inicio">
                             <i class="nav-main-link-icon si si-speedometer"></i>
-                            <span class="nav-main-link-name">Dashboard</span>
+                            <span class="nav-main-link-name">Inicio</span>
                         </a>
                     </li>
-                    <li class="nav-main-heading">User Interface</li>
-                    <li class="nav-main-item">
-                        <a class="nav-main-link active" href="#" id="btn_menu_users">
+                    <li class="nav-main-heading">Interfaz</li>
+                    <li class="nav-main-item" id="menu_1" >
+                        <!-- <a class="nav-main-link active" href="#" id="btn_menu_users">
                             <i class="nav-main-link-icon si si-users"></i>
                             <span class="nav-main-link-name">Usuarios</span>
                         </a>
-                        <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                            <i class="nav-main-link-icon si si-energy"></i>
-                            <span class="nav-main-link-name">Blocks</span>
+                        <a class="nav-main-link active" href="#" id="">
+                            <i class="nav-main-link-icon si si-users"></i>
+                            <span class="nav-main-link-name">Inventaio</span>
                         </a>
-
-                        <ul class="nav-main-submenu">
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_blocks_styles.html">
-                                    <span class="nav-main-link-name">Styles</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_blocks_options.html">
-                                    <span class="nav-main-link-name">Options</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_blocks_forms.html">
-                                    <span class="nav-main-link-name">Forms</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_blocks_themed.html">
-                                    <span class="nav-main-link-name">Themed</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_blocks_api.html">
-                                    <span class="nav-main-link-name">API</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-main-item">
-                        <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                            <i class="nav-main-link-icon si si-badge"></i>
-                            <span class="nav-main-link-name">Elements</span>
+                        <a class="nav-main-link active" href="#" id="">
+                            <i class="nav-main-link-icon si si-users"></i>
+                            <span class="nav-main-link-name">Clientes</span>
                         </a>
-                        <ul class="nav-main-submenu">
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_ui_grid.html">
-                                    <span class="nav-main-link-name">Grid</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_ui_typography.html">
-                                    <span class="nav-main-link-name">Typography</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_ui_icons.html">
-                                    <span class="nav-main-link-name">Icons</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_ui_buttons.html">
-                                    <span class="nav-main-link-name">Buttons</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_ui_buttons_groups.html">
-                                    <span class="nav-main-link-name">Button Groups</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_ui_dropdowns.html">
-                                    <span class="nav-main-link-name">Dropdowns</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_ui_tabs.html">
-                                    <span class="nav-main-link-name">Tabs</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_ui_navigation.html">
-                                    <span class="nav-main-link-name">Navigation</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_ui_progress.html">
-                                    <span class="nav-main-link-name">Progress</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_ui_alerts.html">
-                                    <span class="nav-main-link-name">Alerts</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_ui_tooltips.html">
-                                    <span class="nav-main-link-name">Tooltips</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_ui_popovers.html">
-                                    <span class="nav-main-link-name">Popovers</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_ui_modals.html">
-                                    <span class="nav-main-link-name">Modals</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_ui_images.html">
-                                    <span class="nav-main-link-name">Images Overlay</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_ui_timeline.html">
-                                    <span class="nav-main-link-name">Timeline</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_ui_animations.html">
-                                    <span class="nav-main-link-name">Animations</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_ui_color_themes.html">
-                                    <span class="nav-main-link-name">Color Themes</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-main-item">
-                        <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                            <i class="nav-main-link-icon si si-grid"></i>
-                            <span class="nav-main-link-name">Tables</span>
+                        <a class="nav-main-link active" href="#" id="">
+                            <i class="nav-main-link-icon si si-users"></i>
+                            <span class="nav-main-link-name">Pedidos</span>
                         </a>
-                        <ul class="nav-main-submenu">
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_tables_styles.html">
-                                    <span class="nav-main-link-name">Styles</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_tables_responsive.html">
-                                    <span class="nav-main-link-name">Responsive</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_tables_helpers.html">
-                                    <span class="nav-main-link-name">Helpers</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_tables_pricing.html">
-                                    <span class="nav-main-link-name">Pricing</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_tables_datatables.html">
-                                    <span class="nav-main-link-name">DataTables</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-main-item">
-                        <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                            <i class="nav-main-link-icon si si-note"></i>
-                            <span class="nav-main-link-name">Forms</span>
-                        </a>
-                        <ul class="nav-main-submenu">
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_forms_elements.html">
-                                    <span class="nav-main-link-name">Elements</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_forms_custom_controls.html">
-                                    <span class="nav-main-link-name">Custom Controls</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_forms_layouts.html">
-                                    <span class="nav-main-link-name">Layouts</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_forms_input_groups.html">
-                                    <span class="nav-main-link-name">Input Groups</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_forms_plugins.html">
-                                    <span class="nav-main-link-name">Plugins</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_forms_editors.html">
-                                    <span class="nav-main-link-name">Editors</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_forms_validation.html">
-                                    <span class="nav-main-link-name">Validation</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_forms_wizard.html">
-                                    <span class="nav-main-link-name">Wizard</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-main-heading">Develop</li>
-                    <li class="nav-main-item">
-                        <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                            <i class="nav-main-link-icon si si-wrench"></i>
-                            <span class="nav-main-link-name">Components</span>
-                        </a>
-                        <ul class="nav-main-submenu">
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_comp_loaders.html">
-                                    <span class="nav-main-link-name">Loaders</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_comp_image_cropper.html">
-                                    <span class="nav-main-link-name">Image Cropper</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_comp_appear.html">
-                                    <span class="nav-main-link-name">Appear</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_comp_charts.html">
-                                    <span class="nav-main-link-name">Charts</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_comp_calendar.html">
-                                    <span class="nav-main-link-name">Calendar</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_comp_sliders.html">
-                                    <span class="nav-main-link-name">Sliders</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_comp_syntax_highlighting.html">
-                                    <span class="nav-main-link-name">Syntax Highlighting</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_comp_rating.html">
-                                    <span class="nav-main-link-name">Rating</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_comp_maps_google.html">
-                                    <span class="nav-main-link-name">Google Maps</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_comp_maps_vector.html">
-                                    <span class="nav-main-link-name">Vector Maps</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_comp_dialogs.html">
-                                    <span class="nav-main-link-name">Dialogs</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_comp_notifications.html">
-                                    <span class="nav-main-link-name">Notifications</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_comp_gallery.html">
-                                    <span class="nav-main-link-name">Gallery</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-main-item">
-                        <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                            <i class="nav-main-link-icon si si-magic-wand"></i>
-                            <span class="nav-main-link-name">Layout</span>
-                        </a>
-                        <ul class="nav-main-submenu">
-                            <li class="nav-main-item">
-                                <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                                    <span class="nav-main-link-name">Page</span>
-                                </a>
-                                <ul class="nav-main-submenu">
-                                    <li class="nav-main-item">
-                                        <a class="nav-main-link" href="be_layout_page_default.html">
-                                            <span class="nav-main-link-name">Default</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-main-item">
-                                        <a class="nav-main-link" href="be_layout_page_flipped.html">
-                                            <span class="nav-main-link-name">Flipped</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-main-item">
-                                        <a class="nav-main-link" href="be_layout_page_native_scrolling.html">
-                                            <span class="nav-main-link-name">Native Scrolling</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                                    <span class="nav-main-link-name">Main Content</span>
-                                </a>
-                                <ul class="nav-main-submenu">
-                                    <li class="nav-main-item">
-                                        <a class="nav-main-link" href="be_layout_content_main_full_width.html">
-                                            <span class="nav-main-link-name">Full Width</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-main-item">
-                                        <a class="nav-main-link" href="be_layout_content_main_narrow.html">
-                                            <span class="nav-main-link-name">Narrow</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-main-item">
-                                        <a class="nav-main-link" href="be_layout_content_main_boxed.html">
-                                            <span class="nav-main-link-name">Boxed</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                                    <span class="nav-main-link-name">Header</span>
-                                </a>
-                                <ul class="nav-main-submenu">
-                                    <li class="nav-main-heading">Fixed</li>
-                                    <li class="nav-main-item">
-                                        <a class="nav-main-link" href="be_layout_header_fixed_light.html">
-                                            <span class="nav-main-link-name">Light</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-main-item">
-                                        <a class="nav-main-link" href="be_layout_header_fixed_dark.html">
-                                            <span class="nav-main-link-name">Dark</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-main-heading">Static</li>
-                                    <li class="nav-main-item">
-                                        <a class="nav-main-link" href="be_layout_header_static_light.html">
-                                            <span class="nav-main-link-name">Light</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-main-item">
-                                        <a class="nav-main-link" href="be_layout_header_static_dark.html">
-                                            <span class="nav-main-link-name">Dark</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                                    <span class="nav-main-link-name">Sidebar</span>
-                                </a>
-                                <ul class="nav-main-submenu">
-                                    <li class="nav-main-item">
-                                        <a class="nav-main-link" href="be_layout_sidebar_mini.html">
-                                            <span class="nav-main-link-name">Mini</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-main-item">
-                                        <a class="nav-main-link" href="be_layout_sidebar_light.html">
-                                            <span class="nav-main-link-name">Light</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-main-item">
-                                        <a class="nav-main-link" href="be_layout_sidebar_dark.html">
-                                            <span class="nav-main-link-name">Dark</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-main-item">
-                                        <a class="nav-main-link" href="be_layout_sidebar_hidden.html">
-                                            <span class="nav-main-link-name">Hidden</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                                    <span class="nav-main-link-name">Side Overlay</span>
-                                </a>
-                                <ul class="nav-main-submenu">
-                                    <li class="nav-main-item">
-                                        <a class="nav-main-link" href="be_layout_side_overlay_visible.html">
-                                            <span class="nav-main-link-name">Visible</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-main-item">
-                                        <a class="nav-main-link" href="be_layout_side_overlay_mode_hover.html">
-                                            <span class="nav-main-link-name">Hover Mode</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-main-item">
-                                        <a class="nav-main-link" href="be_layout_side_overlay_no_page_overlay.html">
-                                            <span class="nav-main-link-name">No Page Overlay</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_layout_api.html">
-                                    <span class="nav-main-link-name">API</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-main-item">
-                        <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                            <i class="nav-main-link-icon si si-puzzle"></i>
-                            <span class="nav-main-link-name">Multi Level Menu</span>
-                        </a>
-                        <ul class="nav-main-submenu">
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="#">
-                                    <span class="nav-main-link-name">Link 1-1</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="#">
-                                    <span class="nav-main-link-name">Link 1-2</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                                    <span class="nav-main-link-name">Sub Level 2</span>
-                                </a>
-                                <ul class="nav-main-submenu">
-                                    <li class="nav-main-item">
-                                        <a class="nav-main-link" href="#">
-                                            <span class="nav-main-link-name">Link 2-1</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-main-item">
-                                        <a class="nav-main-link" href="#">
-                                            <span class="nav-main-link-name">Link 2-2</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-main-item">
-                                        <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                                            <span class="nav-main-link-name">Sub Level 3</span>
-                                        </a>
-                                        <ul class="nav-main-submenu">
-                                            <li class="nav-main-item">
-                                                <a class="nav-main-link" href="#">
-                                                    <span class="nav-main-link-name">Link 3-1</span>
-                                                </a>
-                                            </li>
-                                            <li class="nav-main-item">
-                                                <a class="nav-main-link" href="#">
-                                                    <span class="nav-main-link-name">Link 3-2</span>
-                                                </a>
-                                            </li>
-                                            <li class="nav-main-item">
-                                                <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                                                    <span class="nav-main-link-name">Sub Level 4</span>
-                                                </a>
-                                                <ul class="nav-main-submenu">
-                                                    <li class="nav-main-item">
-                                                        <a class="nav-main-link" href="#">
-                                                            <span class="nav-main-link-name">Link 4-1</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="nav-main-item">
-                                                        <a class="nav-main-link" href="#">
-                                                            <span class="nav-main-link-name">Link 4-2</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="nav-main-item">
-                                                        <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                                                            <span class="nav-main-link-name">Sub Level 5</span>
-                                                        </a>
-                                                        <ul class="nav-main-submenu">
-                                                            <li class="nav-main-item">
-                                                                <a class="nav-main-link" href="#">
-                                                                    <span class="nav-main-link-name">Link 5-1</span>
-                                                                </a>
-                                                            </li>
-                                                            <li class="nav-main-item">
-                                                                <a class="nav-main-link" href="#">
-                                                                    <span class="nav-main-link-name">Link 5-2</span>
-                                                                </a>
-                                                            </li>
-                                                            <li class="nav-main-item">
-                                                                <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                                                                    <span class="nav-main-link-name">Sub Level 6</span>
-                                                                </a>
-                                                                <ul class="nav-main-submenu">
-                                                                    <li class="nav-main-item">
-                                                                        <a class="nav-main-link" href="#">
-                                                                            <span class="nav-main-link-name">Link 6-1</span>
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="nav-main-item">
-                                                                        <a class="nav-main-link" href="#">
-                                                                            <span class="nav-main-link-name">Link 6-2</span>
-                                                                        </a>
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-main-heading">Pages</li>
-                    <li class="nav-main-item">
-                        <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                            <i class="nav-main-link-icon si si-layers"></i>
-                            <span class="nav-main-link-name">Generic</span>
-                        </a>
-                        <ul class="nav-main-submenu">
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_pages_generic_blank.html">
-                                    <span class="nav-main-link-name">Blank</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_pages_generic_blank_block.html">
-                                    <span class="nav-main-link-name">Blank (Block)</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_pages_generic_search.html">
-                                    <span class="nav-main-link-name">Search</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_pages_generic_profile.html">
-                                    <span class="nav-main-link-name">Profile</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_pages_generic_inbox.html">
-                                    <span class="nav-main-link-name">Inbox</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_pages_generic_invoice.html">
-                                    <span class="nav-main-link-name">Invoice</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_pages_generic_faq.html">
-                                    <span class="nav-main-link-name">FAQ</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="op_coming_soon.html">
-                                    <span class="nav-main-link-name">Coming Soon</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-main-item">
-                        <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                            <i class="nav-main-link-icon si si-lock"></i>
-                            <span class="nav-main-link-name">Authentication</span>
-                        </a>
-                        <ul class="nav-main-submenu">
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_pages_auth_all.html">
-                                    <span class="nav-main-link-name">All</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="op_auth_signin.html">
-                                    <span class="nav-main-link-name">Sign In</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="op_auth_signup.html">
-                                    <span class="nav-main-link-name">Sign Up</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="op_auth_lock.html">
-                                    <span class="nav-main-link-name">Lock Screen</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="op_auth_reminder.html">
-                                    <span class="nav-main-link-name">Pass Reminder</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-main-item">
-                        <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                            <i class="nav-main-link-icon si si-fire"></i>
-                            <span class="nav-main-link-name">Error Pages</span>
-                        </a>
-                        <ul class="nav-main-submenu">
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_pages_error_all.html">
-                                    <span class="nav-main-link-name">All</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="op_error_400.html">
-                                    <span class="nav-main-link-name">400</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="op_error_401.html">
-                                    <span class="nav-main-link-name">401</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="op_error_403.html">
-                                    <span class="nav-main-link-name">403</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="op_error_404.html">
-                                    <span class="nav-main-link-name">404</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="op_error_500.html">
-                                    <span class="nav-main-link-name">500</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="op_error_503.html">
-                                    <span class="nav-main-link-name">503</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
+                        <a class="nav-main-link active" href="#" id="">
+                            <i class="nav-main-link-icon si si-users"></i>
+                            <span class="nav-main-link-name">Hubicaciones</span>
+                        </a> -->
                 </ul>
             </div>
             <!-- END Side Navigation -->
@@ -1447,7 +819,7 @@
         <!-- END Header -->
 
         <!-- Main Container -->
-        <main id="main-container" id="">
+        <main id="main-container">
             <!-- Hero -->
             <div class="bg-image overflow-hidden" style="background-image: url('resources/plantilla/assets/media/photos/photo29@2x.jpg');">
                 <div class="bg-primary-dark-op">
@@ -1465,7 +837,7 @@
             <!-- END Hero -->
 
             <!-- Page Content -->
-            <div class="content content-narrow" >
+            <div class="content content-narrow">
                 <!-- Stats -->
                 <div class="row">
                     <div class="col-6 col-md-3 col-lg-6 col-xl-3">
@@ -1476,7 +848,7 @@
                             </div>
                         </a>
                     </div>
-                    <div class="col-6 col-md-3 col-lg-6 col-xl-3">
+                    <!-- <div class="col-6 col-md-3 col-lg-6 col-xl-3">
                         <a class="block block-rounded block-link-pop border-left border-primary border-4x" href="javascript:void(0)">
                             <div class="block-content block-content-full">
                                 <div class="font-size-sm font-w600 text-uppercase text-muted">Contabilidad</div>
@@ -1484,9 +856,9 @@
 
                             </div>
                         </a>
-                    </div>
+                    </div> -->
                     <div class="col-6 col-md-3 col-lg-6 col-xl-3">
-                        <a class="block block-rounded block-link-pop border-left border-primary border-4x" href="javascript:void(0)">
+                        <a class="block block-rounded block-link-pop border-left border-primary border-4x" href="#" id="btn_home_invetario">
                             <div class="block-content block-content-full">
                                 <div class="font-size-sm font-w600 text-uppercase text-muted">Inventario</div>
                                 <i class="fa fa-file-archive fa-2x text-muted"></i>
@@ -1506,8 +878,17 @@
                     <div class="col-6 col-md-3 col-lg-6 col-xl-3">
                         <a class="block block-rounded block-link-pop border-left border-primary border-4x" href="javascript:void(0)">
                             <div class="block-content block-content-full">
-                                <div class="font-size-sm font-w600 text-uppercase text-muted">Venta y Facturacion</div>
+                                <div class="font-size-sm font-w600 text-uppercase text-muted">Pedidos</div>
                                 <i class="fa fa-shopping-cart fa-2x text-muted"></i>
+
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-3 col-lg-6 col-xl-3">
+                        <a class="block block-rounded block-link-pop border-left border-primary border-4x" href="javascript:void(0)">
+                            <div class="block-content block-content-full">
+                                <div class="font-size-sm font-w600 text-uppercase text-muted">Hubicaciones</div>
+                                <i class="fa fa-location-arrow fa-2x text-muted"></i>
 
                             </div>
                         </a>
@@ -1610,7 +991,6 @@
     <!-- END Page Container -->
 
     <script src="{{ asset('resources/plantilla/assets/js/oneui.core.min.js')}}"></script>
-    <script src="{{ asset('resources/js/inicio.js')}}"></script>
 
     <!--
             OneUI JS
@@ -1640,7 +1020,12 @@
     <script src="{{ asset('resources/plantilla/noty/demo/demo.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/velocity/1.5/velocity.min.js"></script>
     <script src="https://cdn.jsdelivr.net/mojs/latest/mo.min.js"></script>
+
+
     <!-- JS del sistema -->
+
+    <script src="{{ asset('resources/js/inicio.js')}}"></script>
+
 </body>
 
 </html>
