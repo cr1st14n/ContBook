@@ -28,6 +28,11 @@
     <link rel="stylesheet" href=" {{ asset('resources/plantilla/noty/lib/noty.css')}}" />
     <link rel="stylesheet" href="{{ asset('resources/plantilla/noty/lib/themes/relax.css')}}" />
     <link rel="stylesheet" href="{{ asset('resources/plantilla/noty/demo/animate.css')}}" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <?php
+    $token = csrf_token();
+    ?>
 </head>
 
 <body>
@@ -561,7 +566,7 @@
                         </a>
                     </li>
                     <li class="nav-main-heading">Interfaz</li>
-                    <li class="nav-main-item" id="menu_1" >
+                    <li class="nav-main-item" id="menu_1">
                         <!-- <a class="nav-main-link active" href="#" id="btn_menu_users">
                             <i class="nav-main-link-icon si si-users"></i>
                             <span class="nav-main-link-name">Usuarios</span>
@@ -643,7 +648,7 @@
                     <div class="dropdown d-inline-block ml-2">
                         <button type="button" class="btn btn-sm btn-dual" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img class="rounded" src="{{ asset('resources/plantilla/assets/media/avatars/avatar10.jpg')}}" alt="Header Avatar" style="width: 18px;">
-                            <span class="d-none d-sm-inline-block ml-1">Adam</span>
+                            <span class="d-none d-sm-inline-block ml-1">{{Auth::User()->usu_cod}}</span>
                             <i class="fa fa-fw fa-angle-down d-none d-sm-inline-block"></i>
                         </button>
                         <div class="dropdown-menu dropdown-menu-right p-0 border-0 font-size-sm" aria-labelledby="page-header-user-dropdown">
@@ -841,9 +846,9 @@
                 <!-- Stats -->
                 <div class="row">
                     <div class="col-6 col-md-3 col-lg-6 col-xl-3">
-                        <a class="block block-rounded block-link-pop border-left border-primary border-4x" href="#" id="btn_menu_home_user">
+                        <a class="block block-rounded block-link-pop border-left border-primary border-4x" href="#" id="btn_menu_users">
                             <div class="block-content block-content-full">
-                                <div class="font-size-sm font-w600 text-uppercase text-muted">Usuarios</div>
+                                <div class="font-size-sm font-w600 text-uppercase text-muted">Administración</div>
                                 <i class="fa fa-users fa-2x text-muted"></i>
                             </div>
                         </a>

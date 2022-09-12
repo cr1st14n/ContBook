@@ -104,7 +104,24 @@ function notif(tipo, texto) {
 $("#btn_menu_users").click(function (e) {
     e.preventDefault();
     console.log("printjj");
-    $("#main-container").html("");
+    $.get("adm", function (data, textStatus, jqXHR) {
+        html1 = `
+            <a class="nav-main-link active" href="#" onclick='view_usu()'>
+                <i class="nav-main-link-icon si si-users"></i>
+                <span class="nav-main-link-name">Usuarios</span>
+            </a>
+            <a class="nav-main-link active" href="#" id="btn_menu_inv_inve">
+                <i class="nav-main-link-icon si si-users"></i>
+                <span class="nav-main-link-name">Datos de la Empresa</span>
+            </a>
+            <a class="nav-main-link active" href="#" id="btn_menu_inv_Pedi">
+                <i class="nav-main-link-icon si si-users"></i>
+                <span class="nav-main-link-name">Reportes</span>
+            </a>
+            `;
+        $("#menu_1").html(html1);
+        $("#main-container").html(data);
+    });
 });
 
 $("#btn_home_invetario").click(function (e) {
@@ -138,4 +155,3 @@ $("#btn_home_invetario").click(function (e) {
         },
     });
 });
-

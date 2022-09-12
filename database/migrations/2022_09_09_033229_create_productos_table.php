@@ -16,6 +16,20 @@ return new class extends Migration
         Schema::create('productos', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+
+            $table->string('pdo_cod')->nullable();
+            $table->string('pdo_cod2')->nullable();
+            $table->string('pdo_desc')->nullable();
+            $table->string('pdo_concentracion')->nullable();
+            $table->string('pdo_uMedica')->nullable();
+            $table->string('pdo_formFarm')->nullable();
+            $table->string('pdo_nomGen')->nullable();
+            $table->string('pdo_cant')->nullable();
+           
+            //campos de auditoria 
+            $table->integer('ca_usu_cod')->nullable();
+            $table->string('ca_tipo', 10)->nullable();
+            $table->integer('ca_estado')->nullable();
         });
     }
 

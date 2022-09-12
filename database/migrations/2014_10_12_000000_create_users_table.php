@@ -24,7 +24,7 @@ return new class extends Migration
 
             $table->string('usu_cod')->nullable();
             $table->integer('usu_ci')->nullable();
-            $table->string('usu_nombre',30)->nullable();
+            $table->string('usu_nombre')->nullable();
             $table->string('usu_appaterno',30)->nullable();
             $table->string('usu_apmaterno',30)->nullable();
             $table->string('usu_sexo',10)->nullable();
@@ -36,7 +36,7 @@ return new class extends Migration
             $table->integer('usu_telf')->nullable();
             // $table->integer('usu_telfref')->nullable();
             // $table->string('usu_zona',50)->nullable();
-            // $table->string('usu_domicilio',200)->nullable();
+            $table->string('usu_domicilio',200)->nullable();
 
             //datos de area
             // $table->string('usu_tipo',20)->nullable();
@@ -44,12 +44,13 @@ return new class extends Migration
             // $table->string('usu_cargo',20)->nullable();
             // $table->string('usu_contrato',20)->nullable();
             // $table->string('usu_especialidad',50)->nullable();
-            $table->string('usu_acceso',5)->nullable();
+            $table->string('usu_grupoPermiso',5)->nullable();
+            $table->string('usu_estado',5)->nullable();
             
              //campos de auditoria 
             $table->integer('ca_usu_cod')->nullable();
             $table->string('ca_tipo',10)->nullable();
-            $table->dateTime('ca_fecha')->nullable();
+            // $table->dateTime('ca_fecha')->nullable();
             $table->integer('ca_estado')->nullable();
         });
     }

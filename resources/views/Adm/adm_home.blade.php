@@ -1,0 +1,1 @@
+<script src="{{ asset('resources/js/adm/usu.js')}}"></script>

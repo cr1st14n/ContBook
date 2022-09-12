@@ -1,227 +1,247 @@
-<div class="br-mainpanel br-profile-page">
-    <div class="ht-70 bg-gray-100 pd-x-20 d-flex align-items-center justify-content-center shadow-base">
-        <ul class="nav nav-outline active-info align-items-center flex-row" role="tablist">
-            <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#posts" role="tab">Lista </a></li>
-            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#photos" role="tab">Actividad</a></li>
-            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#" role="tab">Favorites</a></li>
-            <li class="nav-item hidden-xs-down"><a class="nav-link" data-toggle="tab" href="#" role="tab">Settings</a></li>
-        </ul>
-    </div>
+<div class="content row">
 
-    <div class="tab-content br-profile-body">
-        <div class="tab-pane fade active show" id="posts">
-            <div class="row">
-                <div class="col-lg-8">
-
-                    <div class="bg-white pd-y-12 tx-center mg-t-15 mg-xs-t-30 shadow-base rounded">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <h6 class="tx-gray-800 tx-uppercase tx-bold tx-14 mg-b-10">Usuarios registrados</h6>
-                            </div>
-                            <div class="col-lg-6">
-                                <button class="btn btn-outline-primary btn-sm" id='btn_add_usuario'><i class="fa fa-plus-circle"></i> Agregar usuario</button>
-                            </div>
-                        </div><br>
-                        <div class="bd bd-gray-300 rounded table-responsive">
-                            <table class="table mg-b-0">
-                                <thead>
-                                    <tr>
-                                        <th>Cod</th>
-                                        <th>Nombre</th>
-                                        <th>Cargo</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th>1</th>
-                                        <td align="left">Tiger Nixon</td>
-                                        <td align="left">System Architect</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div><!-- bd -->
+    <div class="col-xl-12">
+        <!-- Small Table -->
+        <div class="block">
+            <div class="block-header">
+                <h3 class="block-title">Registro de Usuarios</h3>
+                <div class="block-options">
+                    <div class="block-options-item">
+                        <code></code>
                     </div>
-                </div><!-- col-lg-8 -->
-                <div class="col-lg-4 mg-t-30 mg-lg-t-0">
-                    <div class="card pd-20 pd-xs-30 shadow-base bd-0">
-                        <h6 class="tx-gray-800 tx-uppercase tx-semibold tx-13 mg-b-25">Contact Information</h6>
-
-                        <label class="tx-10 tx-uppercase tx-mont tx-medium tx-spacing-1 mg-b-2">Phone Number</label>
-                        <p class="tx-info mg-b-25">+1 234 567 8910</p>
-
-                        <label class="tx-10 tx-uppercase tx-mont tx-medium tx-spacing-1 mg-b-2">Email Address</label>
-                        <p class="tx-inverse mg-b-25">katherine.pechon@themepixels.me</p>
-
-                        <label class="tx-10 tx-uppercase tx-mont tx-medium tx-spacing-1 mg-b-2">Home Address</label>
-                        <p class="tx-inverse mg-b-25">1352 Science Center Drive Terreton, ID 83450 </p>
-
-                        <label class="tx-10 tx-uppercase tx-mont tx-medium tx-spacing-1 mg-b-2">Office Address</label>
-                        <p class="tx-inverse mg-b-50">1352 Science Center Drive Terreton, ID 83450 </p>
-
-                        <h6 class="tx-gray-800 tx-uppercase tx-semibold tx-13 mg-b-25">Other Information</h6>
-
-                        <label class="tx-10 tx-uppercase tx-mont tx-medium tx-spacing-1 mg-b-2">Degree</label>
-                        <p class="tx-inverse mg-b-25">Bachelor of Science in Computer Science</p>
-
-                        <label class="tx-10 tx-uppercase tx-mont tx-medium tx-spacing-1 mg-b-5">Skills</label>
-                        <ul class="list-unstyled profile-skills">
-                            <li><span>html</span></li>
-                            <li><span>css</span></li>
-                            <li><span>javascript</span></li>
-                            <li><span>php</span></li>
-                            <li><span>photoshop</span></li>
-                            <li><span>java</span></li>
-                            <li><span>angular</span></li>
-                            <li><span>wordpress</span></li>
-                        </ul>
-                    </div><!-- card -->
-
-                    <div class="card pd-20 pd-xs-30 shadow-base bd-0 mg-t-30">
-                        <h6 class="tx-gray-800 tx-uppercase tx-semibold tx-13 mg-b-30">People You May Know</h6>
-                        <div class="media-list">
-                            <div class="media align-items-center pd-b-10">
-                                <img src="http://via.placeholder.com/280x280" class="wd-45 rounded-circle" alt="">
-                                <div class="media-body mg-x-15 mg-xs-x-20">
-                                    <h6 class="mg-b-2 tx-inverse tx-14">Marilyn Tarter</h6>
-                                    <p class="mg-b-0 tx-12">@marilyntarter</p>
-                                </div><!-- media-body -->
-                                <a href="#" class="btn btn-outline-secondary btn-icon rounded-circle mg-r-5">
-                                    <div><i class="icon ion-android-person-add tx-16"></i></div>
-                                </a>
-                            </div><!-- media -->
-                            <div class="media align-items-center pd-y-10">
-                                <img src="http://via.placeholder.com/280x280" class="wd-45 rounded-circle" alt="">
-                                <div class="media-body mg-x-15 mg-xs-x-20">
-                                    <h6 class="mg-b-2 tx-inverse tx-14">Belinda Connor</h6>
-                                    <p class="mg-b-0 tx-12">@bconnor</p>
-                                </div><!-- media-body -->
-                                <a href="#" class="btn btn-outline-secondary btn-icon rounded-circle mg-r-5">
-                                    <div><i class="icon ion-android-person-add tx-16"></i></div>
-                                </a>
-                            </div><!-- media -->
-                            <div class="media align-items-center pd-y-10">
-                                <img src="http://via.placeholder.com/280x280" class="wd-45 rounded-circle" alt="">
-                                <div class="media-body mg-x-15 mg-xs-x-20">
-                                    <h6 class="mg-b-2 tx-inverse tx-14">Deborah Miner</h6>
-                                    <p class="mg-b-0 tx-12">@dminer</p>
-                                </div><!-- media-body -->
-                                <a href="#" class="btn btn-outline-secondary btn-icon rounded-circle mg-r-5">
-                                    <div><i class="icon ion-android-person-add tx-16"></i></div>
-                                </a>
-                            </div><!-- media -->
-                            <div class="media align-items-center pd-y-10">
-                                <img src="http://via.placeholder.com/280x280" class="wd-45 rounded-circle" alt="">
-                                <div class="media-body mg-x-15 mg-xs-x-20">
-                                    <h6 class="mg-b-2 tx-inverse tx-14">Theodore Grestin</h6>
-                                    <p class="mg-b-0 tx-12">@theodore</p>
-                                </div><!-- media-body -->
-                                <a href="#" class="btn btn-outline-secondary btn-icon rounded-circle mg-r-5">
-                                    <div><i class="icon ion-android-person-add tx-16"></i></div>
-                                </a>
-                            </div><!-- media -->
-                            <div class="media align-items-center pd-y-10">
-                                <img src="http://via.placeholder.com/280x280" class="wd-45 rounded-circle" alt="">
-                                <div class="media-body mg-x-15 mg-xs-x-20">
-                                    <h6 class="mg-b-2 tx-inverse tx-14">Andrew Wiggins</h6>
-                                    <p class="mg-b-0 tx-12">@awiggins</p>
-                                </div><!-- media-body -->
-                                <a href="#" class="btn btn-outline-secondary btn-icon rounded-circle mg-r-5">
-                                    <div><i class="icon ion-android-person-add tx-16"></i></div>
-                                </a>
-                            </div><!-- media -->
-                        </div><!-- media-list -->
-                    </div><!-- card -->
-                </div><!-- col-lg-4 -->
-            </div><!-- row -->
-        </div><!-- tab-pane -->
-        <div class="tab-pane fade" id="photos">
-            <div class="row">
-                <div class="col-lg-8">
-                    <div class="card pd-20 pd-xs-30 shadow-base bd-0 mg-t-30">
-                        <h6 class="tx-gray-800 tx-uppercase tx-semibold tx-14 mg-b-30">Recent Photos</h6>
-
-                        <div class="row row-xs">
-                            <div class="col-6 col-sm-4 col-md-3"><img src="http://via.placeholder.com/300x300" class="img-fluid" alt=""></div>
-                            <div class="col-6 col-sm-4 col-md-3"><img src="http://via.placeholder.com/300x300" class="img-fluid" alt=""></div>
-                            <div class="col-6 col-sm-4 col-md-3 mg-t-10 mg-sm-t-0"><img src="http://via.placeholder.com/600x600" class="img-fluid" alt=""></div>
-                            <div class="col-6 col-sm-4 col-md-3 mg-t-10 mg-md-t-0"><img src="http://via.placeholder.com/600x600" class="img-fluid" alt=""></div>
-                            <div class="col-6 col-sm-4 col-md-3 mg-t-10"><img src="http://via.placeholder.com/1000x1000" class="img-fluid" alt=""></div>
-                            <div class="col-6 col-sm-4 col-md-3 mg-t-10"><img src="http://via.placeholder.com/1000x1000" class="img-fluid" alt=""></div>
-                            <div class="col-6 col-sm-4 col-md-3 mg-t-10"><img src="http://via.placeholder.com/1000x1000" class="img-fluid" alt=""></div>
-                            <div class="col-6 col-sm-4 col-md-3 mg-t-10"><img src="http://via.placeholder.com/1000x1000" class="img-fluid" alt=""></div>
-                            <div class="col-6 col-sm-4 col-md-3 mg-t-10"><img src="http://via.placeholder.com/300x300" class="img-fluid" alt=""></div>
-                            <div class="col-6 col-sm-4 col-md-3 mg-t-10"><img src="http://via.placeholder.com/300x300" class="img-fluid" alt=""></div>
-                            <div class="col-6 col-sm-4 col-md-3 mg-t-10"><img src="http://via.placeholder.com/300x300" class="img-fluid" alt=""></div>
-                            <div class="col-6 col-sm-4 col-md-3 mg-t-10"><img src="http://via.placeholder.com/300x300" class="img-fluid" alt=""></div>
-                        </div><!-- row -->
-
-                        <p class="mg-t-20 mg-b-0">Loading more photos...</p>
-
-                    </div><!-- card -->
-                </div><!-- col-lg-8 -->
-                <div class="col-lg-4 mg-t-30 mg-lg-t-0">
-                    <div class="card pd-20 pd-xs-30 shadow-base bd-0 mg-t-30">
-                        <h6 class="tx-gray-800 tx-uppercase tx-semibold tx-14 mg-b-30">Photo Albums</h6>
-                        <div class="row row-xs mg-b-15">
-                            <div class="col"><img src="http://via.placeholder.com/1000x1000" class="img-fluid" alt=""></div>
-                            <div class="col"><img src="http://via.placeholder.com/1000x1000" class="img-fluid" alt=""></div>
-                            <div class="col">
-                                <div class="overlay">
-                                    <img src="http://via.placeholder.com/1000x1000" class="img-fluid" alt="">
-                                    <div class="overlay-body bg-black-5 d-flex align-items-center justify-content-center">
-                                        <span class="tx-white tx-12">20+ more</span>
-                                    </div><!-- overlay-body -->
-                                </div><!-- overlay -->
+                </div>
+            </div>
+            <div class="block-content">
+                <div class="row">
+                    <div class="col-md-3 col-xs-12">
+                    </div>
+                    <div class="col-md-3 col-xs-12">
+                    </div>
+                    <div class="col-md-3 col-xs-12">
+                    </div>
+                    <div class="col-md-3 col-xs-12" style="text-align:right">
+                        <button class="btn btn-info btn-sm" id="btn_new_usu"><i class="fa fa-plus"></i> Nuevo</button>
+                    </div>
+                </div>
+                <br>
+                <table class="table table-sm table-vcenter">
+                    <thead>
+                        <tr>
+                            <th class="text-center" style="width: 50px;">#</th>
+                            <th>Nombre</th>
+                            <th>CI</th>
+                            <th>F.N.</th>
+                            <th>Datos</th>
+                            <th>Grupo</th>
+                            <th>Agregado</th>
+                            <th class="d-none d-sm-table-cell" style="width: 5%;">Estado</th>
+                            <th class="text-center" style="width: 10%;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="usu_table">
+                        <tr>
+                            <th class="text-center" scope="row">1</th>
+                            <td></td>
+                            <td></td>
+                            <td></td><br>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td class="font-w600 font-size-sm">
+                                <a href="be_pages_generic_profile.html">Scott Young</a>
+                            </td>
+                            <td class="d-none d-sm-table-cell">
+                                <span class="badge badge-danger">Disabled</span>
+                            </td>
+                            <td class="text-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-light" data-toggle="tooltip" title="Edit Client">
+                                        <i class="fa fa-fw fa-pencil-alt"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-light" data-toggle="tooltip" title="Remove Client">
+                                        <i class="fa fa-fw fa-times"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- END Small Table -->
+    </div>
+</div>
+<div class="modal fade" id="md_new_usu" tabindex="-1" role="dialog" aria-labelledby="modal-block-fadein" aria-hidden="true">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content">
+            <div class="block block-themed block-transparent mb-0">
+                <div class="block-header bg-primary-dark">
+                    <h3 class="block-title">Nuevo Usuario</h3>
+                    <div class="block-options">
+                        <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                            <i class="fa fa-fw fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                <form class="mb-5" id="form_new_usu">@csrf
+                    <div class="block-content font-size-sm">
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label" for="example-hf-email">Codigo Usuario</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control form-control-sm" id="u_cod" name="u_cod" placeholder="" required autocomplete="off">
                             </div>
-                        </div><!-- row -->
-                        <div class="d-flex alig-items-center justify-content-between">
-                            <h6 class="tx-inverse tx-14 mg-b-0">Profile Photos</h6>
-                            <span class="tx-12">24 Photos</span>
-                        </div><!-- d-flex -->
-
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label" for="example-hf-email">Nombre</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control form-control-sm" id="u_nombre" name="u_nombre" placeholder="" required autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label" for="example-hf-email"># de C.I.</label>
+                            <div class="col-sm-8">
+                                <input type="number" class="form-control form-control-sm" id="u_ci" name="u_ci" placeholder="" required autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label" for="example-hf-email">Fecha Nacimiento</label>
+                            <div class="col-sm-8">
+                                <input type="date" class="form-control form-control-sm" id="u_fn" name="u_fn" placeholder="" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label" for="example-hf-email">Telefono</label>
+                            <div class="col-sm-8">
+                                <input type="number" class="form-control form-control-sm" id="u_telf" name="u_telf" placeholder="" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label" for="example-hf-email">Email</label>
+                            <div class="col-sm-8">
+                                <input type="email" class="form-control form-control-sm" id="u_mail" name="u_mail" placeholder="" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label" for="example-hf-email">Domicilio</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control form-control-sm" id="u_dom" name="u_dom" placeholder="" autocomplete="off">
+                            </div>
+                        </div>
                         <hr>
-
-                        <div class="row row-xs mg-b-15">
-                            <div class="col"><img src="http://via.placeholder.com/1000x1000" class="img-fluid" alt=""></div>
-                            <div class="col"><img src="http://via.placeholder.com/600x600" class="img-fluid" alt=""></div>
-                            <div class="col">
-                                <div class="overlay">
-                                    <img src="http://via.placeholder.com/600x600" class="img-fluid" alt="">
-                                    <div class="overlay-body bg-black-5 d-flex align-items-center justify-content-center">
-                                        <span class="tx-white tx-12">20+ more</span>
-                                    </div><!-- overlay-body -->
-                                </div><!-- overlay -->
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label" for="example-hf-email">Estado</label>
+                            <div class="col-sm-8">
+                                <select class="form-contrl form-control-sm" id="u_est" name="u_est" required style="font-size: 10px;">
+                                    <option value="1">Activo</option>
+                                    <option value="0">Inactivo</option>
+                                </select>
                             </div>
-                        </div><!-- row -->
-                        <div class="d-flex alig-items-center justify-content-between">
-                            <h6 class="tx-inverse tx-14 mg-b-0">Mobile Uploads</h6>
-                            <span class="tx-12">24 Photos</span>
-                        </div><!-- d-flex -->
-
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label" for="example-hf-email">grupo</label>
+                            <div class="col-sm-8">
+                                <select class="form-contrl form-control-sm" id="u_grupo" name="u_grupo" required>
+                                    <option value="1">Administrador</option>
+                                    <option value="2">Operador</option>
+                                    <option value="3">Visitador</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="block-content block-content-full text-right border-top">
+                        <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">Cancelar</button>
+                        <button type="Submit" class="btn btn-sm btn-primary"><i class="fa fa-check mr-1"></i>Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="md_edit_usu" tabindex="-1" role="dialog" aria-labelledby="modal-block-fadein" aria-hidden="true">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content">
+            <div class="block block-themed block-transparent mb-0">
+                <div class="block-header bg-primary-dark">
+                    <h3 class="block-title">Actualizar datos</h3>
+                    <div class="block-options">
+                        <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                            <i class="fa fa-fw fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                <form class="mb-5" id="form_edit_usu">@csrf
+                    <div class="block-content font-size-sm">
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label" for="example-hf-email">Codigo Usuario</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control form-control-sm" id="u_cod_edit" name="u_cod_edit" placeholder="" required autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label" for="example-hf-email">Nombre</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control form-control-sm" id="u_nombre_edit" name="u_nombre_edit" placeholder="" required autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label" for="example-hf-email"># de C.I.</label>
+                            <div class="col-sm-8">
+                                <input type="number" class="form-control form-control-sm" id="u_ci_edit" name="u_ci_edit" placeholder="" required autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label" for="example-hf-email">Fecha Nacimiento</label>
+                            <div class="col-sm-8">
+                                <input type="date" class="form-control form-control-sm" id="u_fn_edit" name="u_fn_edit" placeholder="" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label" for="example-hf-email">Telefono</label>
+                            <div class="col-sm-8">
+                                <input type="number" class="form-control form-control-sm" id="u_telf_edit" name="u_telf_edit" placeholder="" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label" for="example-hf-email">Email</label>
+                            <div class="col-sm-8">
+                                <input type="email" class="form-control form-control-sm" id="u_mail_edit" name="u_mail_edit" placeholder="" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label" for="example-hf-email">Domicilio</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control form-control-sm" id="u_dom_edit" name="u_dom_edit" placeholder="" autocomplete="off">
+                            </div>
+                        </div>
                         <hr>
-
-                        <div class="row row-xs mg-b-15">
-                            <div class="col"><img src="http://via.placeholder.com/300x300/0866C6/FFF" class="img-fluid" alt=""></div>
-                            <div class="col"><img src="http://via.placeholder.com/300x300/DC3545/FFF" class="img-fluid" alt=""></div>
-                            <div class="col">
-                                <div class="overlay">
-                                    <img src="http://via.placeholder.com/300x300/0866C6/FFF" class="img-fluid" alt="">
-                                    <div class="overlay-body bg-black-5 d-flex align-items-center justify-content-center">
-                                        <span class="tx-white tx-12">20+ more</span>
-                                    </div><!-- overlay-body -->
-                                </div><!-- overlay -->
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label" for="example-hf-email">Estado</label>
+                            <div class="col-sm-8">
+                                <select class="form-contrl form-control-sm" id="u_est_edit" name="u_est_edit" required style="font-size: 10px;">
+                                    <option value="1">Activo</option>
+                                    <option value="0">Inactivo</option>
+                                </select>
                             </div>
-                        </div><!-- row -->
-                        <div class="d-flex alig-items-center justify-content-between">
-                            <h6 class="tx-inverse tx-14 mg-b-0">Mobile Uploads</h6>
-                            <span class="tx-12">24 Photos</span>
-                        </div><!-- d-flex -->
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label" for="example-hf-email">grupo</label>
+                            <div class="col-sm-8">
+                                <select class="form-contrl form-control-sm" id="u_grupo_edit" name="u_grupo_edit" required>
+                                    <option value="1">Administrador</option>
+                                    <option value="2">Operador</option>
+                                    <option value="3">Visitador</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="block-content block-content-full text-right border-top">
+                        <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">Cancelar</button>
+                        <button type="Submit" class="btn btn-sm btn-primary"><i class="fa fa-check mr-1"></i>Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
-                        <a href="" class="d-block mg-t-20"><i class="fa fa-angle-down mg-r-5"></i> Show 8 more albums</a>
-                    </div><!-- card -->
-                </div><!-- col-lg-4 -->
-            </div><!-- row -->
-        </div><!-- tab-pane -->
-    </div><!-- br-pagebody -->
-
-</div><!-- br-mainpanel -->
+<script src="{{ asset('resources/js/adm/usu.js')}}"></script>
