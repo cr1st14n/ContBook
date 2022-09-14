@@ -1,24 +1,16 @@
 url = "inventario/producto/list_1";
-data = {lista:'a'};
+data = { lista: "a" };
 
-showList_producto();
 function producto_home(param) {
     $.get("inventario/producto/home", function (data, textStatus, jqXHR) {
-        // console.log(data);
         $("#main-container").html(data);
+        showList_producto();
     });
 }
-
-$("#btn_pro_add_1").click(function (e) {
-    e.preventDefault();
-    $("#form_new_producto").trigger("reset");
-    $("#md_pro_add_1").modal("show");
-});
-
-function lista_est(param) { 
-    data={lista:param}
-    showList_producto()
- }
+function lista_est(param) {
+    data = { lista: param };
+    showList_producto();
+}
 function showList_producto() {
     $.ajax({
         type: "get",
@@ -84,17 +76,77 @@ $("#form_new_producto").submit(function (e) {
         },
     });
 });
-function fun_proEstado(id) { 
+function fun_proEstado(id) {
     $.ajax({
         type: "post",
         url: "inventario/producto/change_est",
-        data: {"_token": $('meta[name="csrf-token"]').attr('content'),'id':id},
+        data: { _token: $('meta[name="csrf-token"]').attr("content"), id: id },
         success: function (response) {
             if (response) {
                 showList_producto();
-                return
+                return;
             }
-            console.log('error !');
-        }
+            console.log("error !");
+        },
     });
- }
+}
+
+// *---------- KARDEX ---------
+function kardex_home(param) {
+    $.get("inventario/kardex/home", function (data, textStatus, jqXHR) {
+        // console.log(data);
+        $("#main-container").html(data);
+    });
+}
+$("#btn_pro_add_1").click(function (e) {
+    e.preventDefault();
+    $("#form_new_producto").trigger("reset");
+    $("#md_pro_add_1").modal("show");
+});
+
+function showModalMovPro(param) {
+    $.get(
+        "inventario/producto/query_list_proActivo",
+        {},
+        function (data, textStatus, jqXHR) {
+            console.log(data);
+            sel = data
+                .map(function (p) {
+                    return (h = `
+                <option value="${p.id}">${p.pdo_nomGen}</option>
+                `);
+                })
+                .join(" ");
+            if (param == "1") {
+                $("#ent_pro").html(sel);
+                $("#md_pro_entrada").modal("show");
+                $("#frm_pro_entrada").trigger("reset");
+            }
+            if (param == "2") {
+                $("#sal_pro").html(sel);
+                $("#md_pro_salida").modal("show");
+                $("#frm_pro_salida").trigger("reset");
+            }
+        }
+    );
+}
+$("#frm_pro_entrada").submit(function (e) {
+    e.preventDefault();
+    $.post(
+        "inventario/kardex/mov_1/" + "E",
+        $(this).serialize(),
+        function (data, textStatus, jqXHR) {
+            console.log(data);
+        }
+    );
+});
+$("#frm_pro_salida").submit(function (e) {
+    e.preventDefault();
+    $.post(
+        "inventario/kardex/mov_1/" + "S",
+        $(this).serialize(),
+        function (data, textStatus, jqXHR) {
+            console.log(data);
+        }
+    );
+});

@@ -101,6 +101,17 @@ function notif(tipo, texto) {
     }
 }
 
+function zeroPad(num, numZeros) {
+    var n = Math.abs(num);
+    var zeros = Math.max(0, numZeros - Math.floor(n).toString().length);
+    var zeroString = Math.pow(10, zeros).toString().substr(1);
+    if (num < 0) {
+        zeroString = "-" + zeroString;
+    }
+
+    return zeroString + n;
+}
+
 $("#btn_menu_users").click(function (e) {
     e.preventDefault();
     console.log("printjj");
@@ -138,15 +149,11 @@ $("#btn_home_invetario").click(function (e) {
                 <i class="nav-main-link-icon si si-users"></i>
                 <span class="nav-main-link-name">Productos</span>
             </a>
-            <a class="nav-main-link active" href="#" id="btn_menu_inv_inve">
+            <a class="nav-main-link active" href="#" onclick="kardex_home()">
                 <i class="nav-main-link-icon si si-users"></i>
-                <span class="nav-main-link-name">Inventario</span>
+                <span class="nav-main-link-name">Kardex</span>
             </a>
-            <a class="nav-main-link active" href="#" id="btn_menu_inv_Pedi">
-                <i class="nav-main-link-icon si si-users"></i>
-                <span class="nav-main-link-name">Pedidos</span>
-            </a>
-            <a class="nav-main-link active" href="#" id="btn_menu_inv_Pedi">
+            <a class="nav-main-link active" href="#" onclick="provedor_home()">
                 <i class="nav-main-link-icon si si-users"></i>
                 <span class="nav-main-link-name">Provedores</span>
             </a>

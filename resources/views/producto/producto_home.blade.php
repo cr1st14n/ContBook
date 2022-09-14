@@ -126,7 +126,7 @@
                     </div>
                     <div class="block-content block-content-full text-right border-top">
                         <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-sm btn-primary" ><i class="fa fa-check mr-1"></i>Guardar</button>
+                        <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-check mr-1"></i>Guardar</button>
                     </div>
                 </form>
             </div>
@@ -135,3 +135,5 @@
 </div>
 
 <script src="{{ asset('resources/js/inventario/producto.js')}}"></script>
+<script>
+</script>

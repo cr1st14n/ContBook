@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\promov;
 use App\Http\Requests\StorepromovRequest;
 use App\Http\Requests\UpdatepromovRequest;
+use illuminate\http\Request;
 
 class PromovController extends Controller
 {
@@ -15,72 +16,15 @@ class PromovController extends Controller
      */
     public function index()
     {
-        //
+        return view('producto.inv_kardex');
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function mov_1($tipo, Request $request)
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StorepromovRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StorepromovRequest $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\promov  $promov
-     * @return \Illuminate\Http\Response
-     */
-    public function show(promov $promov)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\promov  $promov
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(promov $promov)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdatepromovRequest  $request
-     * @param  \App\Models\promov  $promov
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdatepromovRequest $request, promov $promov)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\promov  $promov
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(promov $promov)
-    {
-        //
+        if ($tipo == 'E') {
+            return 'entrada';
+        }
+        if ($tipo == 'S') {
+            return 'salida';
+        }
     }
 }

@@ -45,6 +45,11 @@ class ProductoController extends Controller
         return producto::where('ca_estado',$listAct)->orderBy('created_at','desc')->get();
     }
 
+    public function list_proActivo()
+    {
+        return producto::where('ca_estado','1')->select('id','pdo_nomGen','ca_estado',)->orderBy('created_at','desc')->get();
+    }
+
 
     public function store_1(Request $request)
     {
