@@ -37,19 +37,20 @@
                             <tr>
                                 <th class="text-center" style="width: 10%;">Cod.</th>
                                 <th>Provedor</th>
-                                <th>RUC</th>
-                                <th>Telef.</th>
-                                <th class="d-none d-sm-table-cell" style="width: 15%;">Access</th>
+                                <th>NIT</th>
+                                <th>Referencia</th>
+                                <th>Contacto</th>
+                                <th class="d-none d-sm-table-cell text-center" style="width: 8%;">Access</th>
                                 <th class="text-center" style="width: 100px;">Actions</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="tbody_list">
                             <tr>
                                 <th class="text-center" scope="row">1</th>
                                 <td class="font-w600 font-size-sm">
                                     <a href="be_pages_generic_profile.html">Scott Young</a> <br> <p style="font-size: 12px;">DNI:</p>
                                 </td>
-                                <td></td>
+                                <td> </td>
                                 <td></td>
                                 <td class="d-none d-sm-table-cell">
                                     <span class="badge badge-danger">Disabled</span>
@@ -61,7 +62,7 @@
                                         </button>
                                         <button type="button" class="btn btn-sm btn-light" data-toggle="tooltip" title="Remove Client">
                                             <i class="fa fa-fw fa-times"></i>
-                                        </button>
+                                        </button> <i class="fa fa-band-aid"></i>
                                     </div>
                                 </td>
                             </tr>
@@ -235,33 +236,28 @@
                 <form id="form_new_provedor">@csrf
                     <div class="block-content font-size-sm">
                         <div class="form-group row">
-                            <label class="col-sm-4 col-form-label" for="example-hf-email">Codigo:</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control form-control-sm" id="prov_cod" name="prov_cod" disabled placeholder="Generado Automaticamente" >
-                            </div>
-                        </div>
-                        <div class="form-group row">
                             <label class="col-sm-4 col-form-label" for="example-hf-email">Provedor:</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control form-control-sm" id="prov_nombredni" name="prov_nombredni" placeholder="Nombre Completo">
+                                <input type="text" class="form-control form-control-sm" id="prov_nombre" name="prov_nombre" placeholder="Nombre Completo" required>
                             </div>
                         </div>
+                       
                         <div class="form-group row">
-                            <label class="col-sm-4 col-form-label" for="example-hf-email">DNI:</label>
+                            <label class="col-sm-4 col-form-label" for="example-hf-email">NIT: </label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control form-control-sm" id="prov_dni" name="prov_dni" placeholder="" required>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-4 col-form-label" for="example-hf-email">RUC: </label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control form-control-sm" id="prov_ruc" name="prov_ruc" placeholder="" required>
+                                <input type="text" class="form-control form-control-sm" id="prov_nit" name="prov_nit" placeholder="" required>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label" for="example-hf-email">Telefono: </label>
                             <div class="col-sm-8">
-                                <input type="number" class="form-control form-control-sm" id="prov_telf" name="prov_telf" placeholder="" required>
+                                <input type="text" class="form-control form-control-sm" id="prov_telf" name="prov_telf" placeholder="" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label" for="example-hf-email">Correo Electronico: </label>
+                            <div class="col-sm-8">
+                                <input type="email" class="form-control form-control-sm" id="prov_mail" name="prov_mail" placeholder="" >
                             </div>
                         </div>
                         <hr>

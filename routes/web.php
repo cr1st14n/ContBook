@@ -57,6 +57,9 @@ Route::group(['prefix' => 'inventario', 'middleware' => ['auth']], function () {
     });
     Route::group(['prefix' => 'provedor',], function () {
         Route::get('home', [ProvedorController::class, 'index']);
+        Route::post('query_store', [ProvedorController::class, 'query_store']);
+        Route::get('query_list', [ProvedorController::class, 'query_list']);
+        Route::get('query_upd_estado', [ProvedorController::class, 'query_upd_estado']);
         // Route::post('mov_1/{tipo}', [ProvedorController::class, 'mov_1']);
     });
 });

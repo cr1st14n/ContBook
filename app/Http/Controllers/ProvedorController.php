@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\provedor;
 use App\Http\Requests\StoreprovedorRequest;
 use App\Http\Requests\UpdateprovedorRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProvedorController extends Controller
 {
@@ -23,22 +25,35 @@ class ProvedorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function query_list()
     {
-        //
+        return provedor::orderBy('created_at', 'desc')->get();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreprovedorRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreprovedorRequest $request)
+    public function query_store(Request $request)
     {
-        //
+        $new = new provedor();
+        $new->prov_nombre = $request->input('prov_nombre');
+        $new->prov_nit = $request->input('prov_nit');
+        $new->prov_telf = $request->input('prov_telf');
+        $new->prov_mail = $request->input('prov_mail');
+        $new->prov_contacto = $request->input('prov_contacto');
+        $new->prov_telfContacto = $request->input('prov_telfContacto');
+
+        $new->ca_usu_cod = Auth::user()->id;
+        $new->ca_tipo = 'create';
+        $new->ca_estado = 1;
+        return $r = $new->save();
     }
 
+    public function query_upd_estado(Request $request)
+    {
+        $upd = provedor::find($request->input('id'));
+        $es = ($upd->ca_estado == '0') ? "1" : "0";
+
+        $upd->ca_estado = $es;
+        return $h = $upd->save();
+    }
     /**
      * Display the specified resource.
      *

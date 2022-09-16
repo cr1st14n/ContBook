@@ -16,6 +16,18 @@ return new class extends Migration
         Schema::create('provedors', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+
+            $table->string('prov_nombre')->nullable();
+            $table->string('prov_nit')->nullable();
+            $table->string('prov_telf')->nullable();
+            $table->string('prov_mail')->nullable();
+            $table->string('prov_contacto')->nullable();
+            $table->string('prov_telfContacto')->nullable();
+
+             //campos de auditoria 
+             $table->integer('ca_usu_cod')->nullable();
+             $table->string('ca_tipo', 10)->nullable();
+             $table->integer('ca_estado')->nullable();
         });
     }
 
