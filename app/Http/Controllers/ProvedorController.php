@@ -54,48 +54,37 @@ class ProvedorController extends Controller
         $upd->ca_estado = $es;
         return $h = $upd->save();
     }
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\provedor  $provedor
-     * @return \Illuminate\Http\Response
-     */
-    public function show(provedor $provedor)
+
+    public function query_edit_prov(Request $request)
     {
-        //
+        return provedor::where('id',$request->input('id'))->first();
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\provedor  $provedor
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(provedor $provedor)
+    public function query_update_prov($id,Request $request)
     {
-        //
+        $up=provedor::find($id);
+
+        $up->prov_nombre =$request->input('prov_nombre_edit');
+        $up->prov_nit =$request->input('prov_nit_edit');
+        $up->prov_telf =$request->input('prov_telf_edit');
+        $up->prov_mail =$request->input('prov_mail_edit');
+        $up->prov_contacto =$request->input('prov_contacto_edit');
+        $up->prov_telfContacto =$request->input('prov_telfContacto_edit');
+        $res=$up->save();
+       return $retVal = (!$res) ? 0 : $up ;
+        
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateprovedorRequest  $request
-     * @param  \App\Models\provedor  $provedor
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateprovedorRequest $request, provedor $provedor)
+    public function query_prov_search(Request $request)
     {
-        //
+        return  provedor::select("*")
+                        ->where('prov_nombre', 'LIKE', '%'.$request->input('data').'%')
+                        ->orWhere('prov_nit', 'LIKE', '%'.$request->input('data').'%')
+                        ->orWhere('prov_telf', 'LIKE', '%'.$request->input('data').'%')
+                        ->orWhere('prov_contacto', 'LIKE', '%'.$request->input('data').'%')
+                        ->orWhere('prov_telfContacto', 'LIKE', '%'.$request->input('data').'%')
+                        ->orWhere('prov_mail', 'LIKE', '%'.$request->input('data').'%')
+                        ->orderBy('created_at', 'desc')->get();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\provedor  $provedor
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(provedor $provedor)
-    {
-        //
-    }
 }

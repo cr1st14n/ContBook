@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdmController;
 use App\Http\Controllers\homeController;
 use App\Http\Controllers\inventarioController;
+use App\Http\Controllers\KardexController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\PromovController;
@@ -52,14 +53,19 @@ Route::group(['prefix' => 'inventario', 'middleware' => ['auth']], function () {
         Route::get('query_list_proActivo', [ProductoController::class, 'list_proActivo']);
     });
     Route::group(['prefix' => 'kardex',], function () {
-        Route::get('home', [PromovController::class, 'index']);
-        Route::post('mov_1/{tipo}', [PromovController::class, 'mov_1']);
+        Route::get('home', [KardexController::class, 'index']);
+        Route::get('query_list_1', [KardexController::class, 'query_list_1']);
+        Route::post('mov_E', [KardexController::class, 'mov_E']);
+        Route::post('mov_S', [KardexController::class, 'mov_S']);
     });
     Route::group(['prefix' => 'provedor',], function () {
         Route::get('home', [ProvedorController::class, 'index']);
         Route::post('query_store', [ProvedorController::class, 'query_store']);
         Route::get('query_list', [ProvedorController::class, 'query_list']);
         Route::get('query_upd_estado', [ProvedorController::class, 'query_upd_estado']);
+        Route::get('query_prov_search', [ProvedorController::class, 'query_prov_search']);
+        Route::get('query_edit_prov', [ProvedorController::class, 'query_edit_prov']);
+        Route::post('query_update_prov/{id}', [ProvedorController::class, 'query_update_prov']);
         // Route::post('mov_1/{tipo}', [ProvedorController::class, 'mov_1']);
     });
 });

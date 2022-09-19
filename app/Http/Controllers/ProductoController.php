@@ -47,6 +47,7 @@ class ProductoController extends Controller
 
     public function list_proActivo()
     {
+
         return producto::where('ca_estado','1')->select('id','pdo_nomGen','ca_estado',)->orderBy('created_at','desc')->get();
     }
 
@@ -82,50 +83,5 @@ class ProductoController extends Controller
         $retVal = ($up->ca_estado=='0') ? "1" : "0" ;
         $up->ca_estado = $retVal;
         return $r=$up->save();
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\producto  $producto
-     * @return \Illuminate\Http\Response
-     */
-    public function show(producto $producto)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\producto  $producto
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(producto $producto)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateproductoRequest  $request
-     * @param  \App\Models\producto  $producto
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateproductoRequest $request, producto $producto)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\producto  $producto
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(producto $producto)
-    {
-        //
     }
 }

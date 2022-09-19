@@ -54,14 +54,14 @@
             </div>
             <br>
             <div class="table-responsive">
-                <table class="table table-bordered table-striped table-vcenter table-sm">
+                <table class="table table-bordered table-striped table-vcenter table-hover table-sm">
                     <thead>
                         <tr>
                             <th class="text-center" colspan="4">Detalle</th>
                             <th class="text-center" colspan="3" style="background-color: #5BD648;">Fisico</th>
-                            <th class="text-center" rowspan="2" width="6%">Costo <br> Unitario</th>
+                            <th class="text-center" rowspan="2" width="6%">Costo <br> Unitario </i> </th>
                             <th class="text-center" colspan="3" style="background-color:#DEF233;">Valorado</th>
-                            
+
                         </tr>
                         <tr>
                             <th class="text-center">No</th>
@@ -69,15 +69,15 @@
                             <th class="text-center">Marca</th>
                             <th class="text-center"># Factura</th>
 
-                            <th class="text-center" width="6%" >Entrada</th>
-                            <th class="text-center" width="6%" >Salida</th>
-                            <th class="text-center" width="6%" >Saldo</th>
-                            <th class="text-center" width="6%" >Debe</th>
-                            <th class="text-center" width="6%" >Haber</th>
-                            <th class="text-center" width="6%" >Saldo</th>
+                            <th class="text-center" width="6%">Entrada</th>
+                            <th class="text-center" width="6%">Salida</th>
+                            <th class="text-center" width="6%">Saldo</th>
+                            <th class="text-center" width="6%">Debe</th>
+                            <th class="text-center" width="6%">Haber</th>
+                            <th class="text-center" width="6%">Saldo</th>
                         </tr>
                     </thead>
-                    <tbody id="tbody_producto">
+                    <tbody id="tbody_kardex">
                         <tr>
                             <td class="text-center"></td>
                             <td class="text-center"></td>
@@ -122,23 +122,39 @@
                         <hr>
                         <div class="row">
                             <div class="col-md-12">
-                                <label for="">Producto</label>
+                                <label for="ent_pro">Producto</label>
                                 <select class="form-control form-control-sm" name="ent_pro" id="ent_pro">
                                     <option value=""></option>
                                 </select>
                             </div>
                             <br>
-                            <div class="col-md-6"> <br>
-                                <label for="">Motivo</label>
-                                <select name="ent_motivo" id="ent_motivo" class="form-control ">
-                                    <option value="">Por Inventario Inicial</option>
-                                    <option value="">Por Ajuste de inventario</option>
-                                    <option value="">Por promocional de provedor</option>
-                                    <option value="">Por canje de provedor</option>
+                            <div class="col-md-6">
+                                <label for="ent_motivo">Motivo</label>
+                                <select name="ent_motivo" id="ent_motivo" class="form-control form-control-sm">
+                                    <option value="invInicial">Por Inventario Inicial</option>
+                                    <option value="compra">Por Compra</option>
+                                    <option value="ajuste">Por Ajuste de inventario</option>
+                                    <option value="promocion">Por promocional de provedor</option>
+                                    <option value="canje">Por canje de provedor</option>
                                 </select>
                             </div>
+                            <div class="col-md-6">
+                                <label for="ent_respaldo">Doc. Respaldo</label>
+                                <input type="text" class="form-control form-control-sm" id="ent_respaldo" name="ent_respaldo" placeholder="# Factura / Recibo">
+                            </div>
                             <div class="col-md-6"> <br>
-                                <label for="">Cantidad</label>
+                                <div class="form-group ">
+                                    <div class="input-group ">
+                                        <input type="number" class="form-control" id="ent_cost" name="ent_cost" min="1" required>
+                                        <div class="input-group-append ">
+                                            <span class="input-group-text">
+                                                * Costo
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6"> <br>
                                 <div class="form-group ">
                                     <div class="input-group ">
                                         <input type="number" class="form-control" id="ent_cant" name="ent_cant" min="1" required>
@@ -192,12 +208,19 @@
                                 </select>
                             </div>
                             <br>
-                            <div class="col-md-6"> <br>
-                                <select name="sal_motivo" id="sal_motivo" class="form-control ">
-                                    <option value="">Por Ajuste de inventario</option>
-                                    <option value="">Por Averia de producto</option>
-                                    <option value="">Por canje de provedor</option>
+                            <div class="col-md-6">
+                                <label for="ent_motivo">Motivo</label>
+                                <select name="sal_motivo" id="sal_motivo" class="form-control form-control-sm ">
+                                    <option value="ajuste">Por Ajuste de inventario</option>
+                                    <option value="averia">Por Averia de producto</option>
+                                    <option value="canje">Por canje de provedor</option>
                                 </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="ent_respaldo">Doc. Respaldo</label>
+                                <input type="text" class="form-control form-control-sm" id="sal_respaldo" name="sal_respaldo" placeholder="# Factura / Recibo">
+                            </div>
+                            <div class="col-md-6">
                             </div>
                             <div class="col-md-6"> <br>
                                 <div class="form-group ">
@@ -285,3 +308,4 @@
 </div>
 
 <script src="{{ asset('resources/js/inventario/producto.js')}}"></script>
+<script src="{{ asset('resources/js/inventario/kardex.js')}}"></script>

@@ -91,62 +91,12 @@ function fun_proEstado(id) {
     });
 }
 
-// *---------- KARDEX ---------
-function kardex_home(param) {
-    $.get("inventario/kardex/home", function (data, textStatus, jqXHR) {
-        // console.log(data);
-        $("#main-container").html(data);
-    });
-}
+
 $("#btn_pro_add_1").click(function (e) {
     e.preventDefault();
     $("#form_new_producto").trigger("reset");
     $("#md_pro_add_1").modal("show");
 });
 
-function showModalMovPro(param) {
-    $.get(
-        "inventario/producto/query_list_proActivo",
-        {},
-        function (data, textStatus, jqXHR) {
-            console.log(data);
-            sel = data
-                .map(function (p) {
-                    return (h = `
-                <option value="${p.id}">${p.pdo_nomGen}</option>
-                `);
-                })
-                .join(" ");
-            if (param == "1") {
-                $("#ent_pro").html(sel);
-                $("#md_pro_entrada").modal("show");
-                $("#frm_pro_entrada").trigger("reset");
-            }
-            if (param == "2") {
-                $("#sal_pro").html(sel);
-                $("#md_pro_salida").modal("show");
-                $("#frm_pro_salida").trigger("reset");
-            }
-        }
-    );
-}
-$("#frm_pro_entrada").submit(function (e) {
-    e.preventDefault();
-    $.post(
-        "inventario/kardex/mov_1/" + "E",
-        $(this).serialize(),
-        function (data, textStatus, jqXHR) {
-            console.log(data);
-        }
-    );
-});
-$("#frm_pro_salida").submit(function (e) {
-    e.preventDefault();
-    $.post(
-        "inventario/kardex/mov_1/" + "S",
-        $(this).serialize(),
-        function (data, textStatus, jqXHR) {
-            console.log(data);
-        }
-    );
-});
+
+
