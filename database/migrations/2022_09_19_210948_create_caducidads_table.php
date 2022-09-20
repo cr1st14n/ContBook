@@ -13,21 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('kardexes', function (Blueprint $table) {
+        Schema::create('caducidads', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
 
-            $table->integer('id_pro')->nullable();
-            $table->string('kd_detalle')->nullable();
-            $table->string('kd_respaldo')->nullable();
-            $table->string('kd_ent')->nullable();
-            $table->string('kd_sal')->nullable();
-            $table->string('kd_sdo_fis')->nullable();
-            $table->string('kd_costo')->nullable();
-            $table->string('kd_deb')->nullable();
-            $table->string('kd_hab')->nullable();
-            $table->string('kd_sdo_val')->nullable();
+            $table->integer('id_pro');
+            $table->string('cad_lote');
+            $table->string('cad_cantidad');
+            $table->date('cad_fecha');
 
+            
             // *campos de auditoria 
             $table->integer('ca_usu_cod')->nullable();
             $table->string('ca_tipo', 10)->nullable();
@@ -42,6 +37,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kardexes');
+        Schema::dropIfExists('caducidads');
     }
 };

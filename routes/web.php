@@ -55,6 +55,7 @@ Route::group(['prefix' => 'inventario', 'middleware' => ['auth']], function () {
     Route::group(['prefix' => 'kardex',], function () {
         Route::get('home', [KardexController::class, 'index']);
         Route::get('query_list_1', [KardexController::class, 'query_list_1']);
+        Route::get('query_list_2', [KardexController::class, 'query_list_2']);
         Route::post('mov_E', [KardexController::class, 'mov_E']);
         Route::post('mov_S', [KardexController::class, 'mov_S']);
     });

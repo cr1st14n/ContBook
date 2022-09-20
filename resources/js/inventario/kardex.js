@@ -11,6 +11,18 @@ function queryList() {
         const_tbody(data);
     });
 }
+$('#bus_pro').change(function (e) { 
+    e.preventDefault();
+    console.log($(this).val());
+    if ($(this).val()=='all') {
+        queryList()
+        return
+    }
+    $.get("inventario/kardex/query_list_2",{id:$(this).val()}, function (data, textStatus, jqXHR) {
+        const_tbody(data);
+    });
+});
+
 function const_tbody(data) {
     html = data
         .map(function (param) {
@@ -21,7 +33,7 @@ function const_tbody(data) {
             return (h = `
         <tr>
             <td class="text-center">${param.id}</td>
-            <td class="text-center">${param.id_pro}</td>
+            <td class="text-center">${param.pdo_nomGen}</td>
             <td class="text-center">${param.kd_detalle}</td>
             <td class="text-center">${param.kd_respaldo}</td>
             <td class="text-center">${param.kd_ent}</td>

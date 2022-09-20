@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\kardex;
 use App\Http\Requests\StorekardexRequest;
 use App\Http\Requests\UpdatekardexRequest;
+use App\Models\caducidad;
 use App\Models\producto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,11 +14,27 @@ class KardexController extends Controller
 {
     public function index()
     {
-        return view('inventario.inv_kardex');
+        $producto= producto::where('ca_estado','1')->select('id','pdo_nomGen','ca_estado',)->orderBy('created_at','desc')->get();
+        return view('inventario.inv_kardex')->with('productos',$producto);
     }
     public function query_list_1()
     {
-        return kardex::orderBy('id', 'desc')->get();
+        return kardex::join('productos','kardexes.id_pro','=','productos.id')
+        ->orderBy('kardexes.id', 'desc') 
+        ->select('kardexes.*') 
+        ->addSelect('productos.pdo_nomGen') 
+        ->get();
+
+    }
+    public function query_list_2(Request $request)
+    {
+        return kardex::join('productos','kardexes.id_pro','=','productos.id')
+        ->where('kardexes.id_pro',$request->input('id'))
+        ->orderBy('kardexes.id', 'desc') 
+        ->select('kardexes.*') 
+        ->addSelect('productos.pdo_nomGen') 
+        ->get();
+
     }
     public function mov_E(Request $request)
     {
@@ -65,6 +82,16 @@ class KardexController extends Controller
         $n->ca_estado = 1;
         // return $n;
         $res1 = $n->save();
+
+        $cad=new caducidad();
+        $cad->id_pro=$request->input('ent_pro');
+        $cad->cad_lote=$request->input('cad_lote');
+        $cad->cad_cantidad=$fis_entrado;
+        $cad->cad_fecha=$request->input('cad_fecha');
+        $cad->ca_usu_cod = Auth::user()->id;
+        $cad->ca_tipo = 'create';
+        $cad->ca_estado = 1;
+        $cad->save();
 
         $p = producto::find($request->input('ent_pro'));
         $p->pdo_cant = $n->kd_sdo_fis;

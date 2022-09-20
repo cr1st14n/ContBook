@@ -22,7 +22,12 @@
                     </div>
                 </div>
                 <div class="col-md-3 col-xs-12">
-                    <input type="text" class="form-control form-control-sm" placeholder="Buscar por Detalle" onkeyup="load(2);">
+                    <select name="bus_pro" id="bus_pro" class="form-control form-control-sm">
+                        <option value="all">Ultimos 100 Movimientos</option>
+                        @foreach($productos as $pro)
+                        <option value="{{ $pro->id}}">{{ $pro->pdo_nomGen}}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="col-md-2 col-xs-12">
                 </div>
@@ -66,8 +71,8 @@
                         <tr>
                             <th class="text-center">No</th>
                             <th class="text-center">Producto</th>
-                            <th class="text-center">Marca</th>
-                            <th class="text-center"># Factura</th>
+                            <th class="text-center">Detalle</th>
+                            <th class="text-center">Respaldo</th>
 
                             <th class="text-center" width="6%">Entrada</th>
                             <th class="text-center" width="6%">Salida</th>
@@ -165,6 +170,18 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <p>Datos Complementarios</p>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="ent_respaldo">Lote</label>
+                                <input type="text" class="form-control form-control-sm" id="cad_lote" name="cad_lote" placeholder="Codigo...">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="ent_respaldo">Fecha de Vencimiento</label>
+                                <input type="date" class="form-control" id="cad_fecha" name="cad_fecha" min="1" >
                             </div>
                         </div>
 
