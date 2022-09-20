@@ -66,6 +66,7 @@ class KardexController extends Controller
 
         $n = new kardex();
         $n->id_pro = $request->input('ent_pro');
+        $n->id_provedor = $request->input('ent_provedor');
         $n->kd_detalle = $request->input('ent_motivo');
         $n->kd_respaldo = $request->input('ent_respaldo');
 
@@ -85,6 +86,7 @@ class KardexController extends Controller
 
         $cad=new caducidad();
         $cad->id_pro=$request->input('ent_pro');
+        $cad->id_provedor = $request->input('ent_provedor');
         $cad->cad_lote=$request->input('cad_lote');
         $cad->cad_cantidad=$fis_entrado;
         $cad->cad_fecha=$request->input('cad_fecha');

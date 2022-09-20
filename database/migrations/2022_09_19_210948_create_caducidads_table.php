@@ -18,6 +18,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->integer('id_pro');
+            $table->integer('id_provedor');
             $table->string('cad_lote');
             $table->string('cad_cantidad');
             $table->date('cad_fecha');

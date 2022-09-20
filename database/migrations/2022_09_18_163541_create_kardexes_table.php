@@ -18,6 +18,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->integer('id_pro')->nullable();
+            $table->integer('id_provedor')->nullable();
             $table->string('kd_detalle')->nullable();
             $table->string('kd_respaldo')->nullable();
             $table->string('kd_ent')->nullable();

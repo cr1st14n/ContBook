@@ -54,16 +54,24 @@ function showModalMovPro(param) {
         "inventario/producto/query_list_proActivo",
         {},
         function (data, textStatus, jqXHR) {
-            console.log(data);
-            sel = data
+            console.log(data.producto);
+            sel = data.producto
                 .map(function (p) {
                     return (h = `
                 <option value="${p.id}">${p.pdo_nomGen}</option>
                 `);
                 })
                 .join(" ");
+            provedor = data.provedor
+                .map(function (p) {
+                    return (h = `
+                <option value="${p.id}">${p.prov_contacto}/${p.prov_nombre}</option>
+                `);
+                })
+                .join(" ");
             if (param == "1") {
                 $("#ent_pro").html(sel);
+                $("#ent_provedor").html(provedor);
                 $("#md_pro_entrada").modal("show");
                 $("#frm_pro_entrada").trigger("reset");
             }

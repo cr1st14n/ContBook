@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\producto;
 use App\Http\Requests\StoreproductoRequest;
 use App\Http\Requests\UpdateproductoRequest;
+use App\Models\provedor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -47,8 +48,9 @@ class ProductoController extends Controller
 
     public function list_proActivo()
     {
-
-        return producto::where('ca_estado','1')->select('id','pdo_nomGen','ca_estado',)->orderBy('created_at','desc')->get();
+        $provedor=provedor::where('ca_estado','1')->get();
+        $producto= producto::where('ca_estado','1')->select('id','pdo_nomGen','ca_estado',)->orderBy('created_at','desc')->get();
+        return ['producto'=>$producto,'provedor'=>$provedor];
     }
 
 

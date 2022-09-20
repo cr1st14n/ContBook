@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdmController;
+use App\Http\Controllers\CaducidadController;
 use App\Http\Controllers\homeController;
 use App\Http\Controllers\inventarioController;
 use App\Http\Controllers\KardexController;
@@ -68,5 +69,8 @@ Route::group(['prefix' => 'inventario', 'middleware' => ['auth']], function () {
         Route::get('query_edit_prov', [ProvedorController::class, 'query_edit_prov']);
         Route::post('query_update_prov/{id}', [ProvedorController::class, 'query_update_prov']);
         // Route::post('mov_1/{tipo}', [ProvedorController::class, 'mov_1']);
+    });
+    Route::group(['prefix' => 'caducidad'], function () {
+        Route::get('query_list_1', [CaducidadController::class, 'query_list1']);
     });
 });

@@ -126,9 +126,15 @@
                         </div>
                         <hr>
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <label for="ent_pro">Producto</label>
                                 <select class="form-control form-control-sm" name="ent_pro" id="ent_pro">
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="ent_pro">Provedor</label>
+                                <select class="form-control form-control-sm" name="ent_provedor" id="ent_provedor">
                                     <option value=""></option>
                                 </select>
                             </div>

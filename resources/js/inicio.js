@@ -145,6 +145,10 @@ $("#btn_home_invetario").click(function (e) {
         success: function (response) {
             $("#main-container").html(response);
             html1 = `
+            <a class="nav-main-link active" href="#" onclick='caducidad_home()'>
+                <i class="nav-main-link-icon si si-users"></i>
+                <span class="nav-main-link-name">Caducidad</span>
+            </a>
             <a class="nav-main-link active" href="#" onclick='producto_home()'>
                 <i class="nav-main-link-icon si si-users"></i>
                 <span class="nav-main-link-name">Productos</span>
