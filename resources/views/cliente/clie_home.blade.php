@@ -15,15 +15,16 @@
                     <table class="table table-hover table-vcenter">
                         <thead>
                             <tr>
-                                <th class="text-center" style="width: 30%;">Producto</th>
-                                <th>Provedor</th>
-                                <th>Lote</th>
-                                <th>Cantidad</th>
-                                <th class="d-none d-sm-table-cell" style="width: 20%;"></th>
+                                <th class="text-center" style="width: 10%;">cod</th>
+                                <th>CI</th>
+                                <th>Nombre</th>
+                                <th>Razon Social</th>
+                                <th>Record Monetario</th>
+                                <!-- <th class="d-none d-sm-table-cell" style="width: 20%;"></th> -->
                                 <th class="text-center" style="width: 10%;"></th>
                             </tr>
                         </thead>
-                        <tbody id="tbody_caducidad">
+                        <tbody>
                         </tbody>
                     </table>
                 </div>
@@ -32,7 +33,4 @@
         </div>
     </div>
 </div>
-<script src="{{ asset('resources/js/inventario/producto.js')}}"></script>
-<script src="{{ asset('resources/js/inventario/provedor.js')}}"></script>
-<script src="{{ asset('resources/js/inventario/kardex.js')}}"></script>
-<script src="{{ asset('resources/js/inventario/caducidad.js')}}"></script>
+<script src="{{ asset('resources/js/cliente/cliente.js')}}"></script>

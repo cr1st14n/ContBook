@@ -6,6 +6,8 @@ use App\Models\caducidad;
 use App\Http\Requests\StorecaducidadRequest;
 use App\Http\Requests\UpdatecaducidadRequest;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
+
 
 class CaducidadController extends Controller
 {
@@ -20,6 +22,7 @@ class CaducidadController extends Controller
             ->join('provedors', 'provedors.id', 'caducidads.id_provedor')
             ->select('caducidads.*')
             ->addSelect('productos.pdo_nomGen', 'productos.pdo_uMedica', 'provedors.prov_contacto', 'provedors.prov_nombre')
+            ->where('caducidads.ca_estado','1')
             ->get();
 
         $lista = [];
@@ -28,13 +31,21 @@ class CaducidadController extends Controller
             $fecha2 = date_create($value->cad_fecha);
             // $fecha2 = date_create($this->canceled_at);
             $dias = date_diff($fecha1, $fecha2)->format('%R%a');
-            array_push($lista, ['dias'=>$dias, 
-            'nombre'=>$value->pdo_nomGen, 
-            'cantidad'=>$value->cad_cantidad, 
-            'id'=>$value->id, 
-            'lote'=>$value->cad_lote, 
-            'prov'=>$value->prov_nombre]);
+            array_push($lista, [
+                'dias' => $dias,
+                'nombre' => $value->pdo_nomGen,
+                'cantidad' => $value->cad_cantidad,
+                'id' => $value->id,
+                'lote' => $value->cad_lote,
+                'prov' => $value->prov_nombre
+            ]);
         }
         return $lista;
+    }
+    public function check_est_cad(Request $request)
+    {
+        $n = caducidad::find($request->input('id'));
+        $n->ca_estado = '0';
+        return $s = $n->save();
     }
 }

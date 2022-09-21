@@ -163,6 +163,35 @@ $("#btn_home_invetario").click(function (e) {
             </a>
             `;
             $("#menu_1").html(html1);
+            setTimeout(() => {
+                show_list_tbody_caducidad();
+            }, 900);
+        },
+    });
+});
+$("#btn_home_cliente").click(function (e) {
+    e.preventDefault();
+    $.ajax({
+        type: "get",
+        url: "cliente/",
+        data: {},
+        // dataType: "dataType",
+        success: function (response) {
+            $("#main-container").html(response);
+            html1 = `
+            <a class="nav-main-link active" href="#" onclick='clientes_home()'>
+                <i class="nav-main-link-icon si si-users"></i>
+                <span class="nav-main-link-name">Registro de Clientes</span>
+            </a>
+            <a class="nav-main-link active" href="#" >
+                <i class="nav-main-link-icon si si-users"></i>
+                <span class="nav-main-link-name"></span>
+            </a>
+            `;
+            $("#menu_1").html(html1);
+            setTimeout(() => {
+                
+            }, 900);
         },
     });
 });

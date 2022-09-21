@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdmController;
 use App\Http\Controllers\CaducidadController;
+use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\homeController;
 use App\Http\Controllers\inventarioController;
 use App\Http\Controllers\KardexController;
@@ -72,5 +73,10 @@ Route::group(['prefix' => 'inventario', 'middleware' => ['auth']], function () {
     });
     Route::group(['prefix' => 'caducidad'], function () {
         Route::get('query_list_1', [CaducidadController::class, 'query_list1']);
+        Route::post('check_est_cad', [CaducidadController::class, 'check_est_cad']);
     });
+});
+Route::group(['prefix'=>'cliente','middleware'=>['auth']],function ()
+{
+    Route::get('/',[ClienteController::class,'home']);
 });

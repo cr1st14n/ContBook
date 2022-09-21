@@ -872,7 +872,7 @@
                         </a>
                     </div>
                     <div class="col-6 col-md-3 col-lg-6 col-xl-3">
-                        <a class="block block-rounded block-link-pop border-left border-primary border-4x" href="javascript:void(0)">
+                        <a class="block block-rounded block-link-pop border-left border-primary border-4x" href="javascript:void(0)" id="btn_home_cliente">
                             <div class="block-content block-content-full">
                                 <div class="font-size-sm font-w600 text-uppercase text-muted">Clientes</div>
                                 <i class=" fa fa-address-book  fa-2x text-muted"></i>
