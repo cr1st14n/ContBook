@@ -28,7 +28,12 @@ class CaducidadController extends Controller
             $fecha2 = date_create($value->cad_fecha);
             // $fecha2 = date_create($this->canceled_at);
             $dias = date_diff($fecha1, $fecha2)->format('%R%a');
-            array_push($lista, [$dias, $value->pdo_nomGen]);
+            array_push($lista, ['dias'=>$dias, 
+            'nombre'=>$value->pdo_nomGen, 
+            'cantidad'=>$value->cad_cantidad, 
+            'id'=>$value->id, 
+            'lote'=>$value->cad_lote, 
+            'prov'=>$value->prov_nombre]);
         }
         return $lista;
     }
