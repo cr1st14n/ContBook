@@ -50,4 +50,36 @@ class ClienteController extends Controller
         $clie->ca_estado = 1;
         return $res=$clie->save();
     }
+    public function query_edit(Request $request)
+    {
+        $cli=Cliente::find($request->input('id'));
+        return $cli;
+    }
+    public function query_update($id,Request $request)
+    {
+        $cl=Cliente::find($id);
+        if ($request->input('edit_cli_ci') != $cl->cli_ci) {
+            if ($request->input('edit_cli_ci') == Cliente::where('cli_ci', $request->input('edit_cli_ci'))->value('cli_ci')) {
+                return 'Er_ci';
+            }
+        }
+        if ($request->input('edit_cli_razonSocialNit') != $cl->cli_razonSocialNit) {
+            if ($request->input('edit_cli_razonSocialNit') == Cliente::where('cli_razonSocialNit', $request->input('edit_cli_razonSocialNit'))->value('cli_razonSocialNit')) {
+                return 'Er_nit';
+            }
+        }
+        if ($request->input('edit_cli_mail') != $cl->cli_mail) {
+            if ($request->input('edit_cli_mail') == Cliente::where('cli_mail', $request->input('edit_cli_mail'))->value('cli_mail')) {
+                return 'Er_mail';
+            }
+        }
+        $cl->cli_ci = $request->input('edit_cli_ci');
+        $cl->cli_nombre = $request->input('edit_cli_nombre');
+        $cl->cli_razonSocialNit = $request->input('edit_cli_razonSocialNit');
+        $cl->cli_razonSocial = $request->input('edit_cli_razonSocial');
+        $cl->cli_mail = $request->input('edit_cli_mail');
+        $cl->cli_telf = $request->input('edit_cli_telf');
+        $cl->cli_direccion = $request->input('edit_cli_direccion');
+        return $re= $cl->save();
+    }
 }

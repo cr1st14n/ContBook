@@ -106,4 +106,72 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="md_edit_cliente" tabindex="-1" role="dialog" aria-labelledby="modal-block-fadein" aria-hidden="true">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content">
+            <div class="block block-themed block-transparent mb-0">
+                <div class="block-header bg-primary-dark">
+                    <h3 class="block-title">Actualizar Datos de CLiente</h3>
+                    <div class="block-options">
+                        <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                            <i class="fa fa-fw fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                <form id="form_edit_cliente1">@csrf
+                    <div class="block-content font-size-sm">
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label" for="example-hf-email">CI:</label>
+                            <div class="col-sm-8">
+                                <input type="number" minlength="7" class="form-control form-control-sm" id="edit_cli_ci" name="edit_cli_ci" placeholder="Nombre Completo" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label" for="example-hf-email">Nombre: </label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control form-control-sm" id="edit_cli_nombre" name="edit_cli_nombre" placeholder="" required>
+                            </div>
+                        </div><hr>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label" for="example-hf-email">NIT: </label>
+                            <div class="col-sm-8">
+                                <input type="text" minlength="7" class="form-control form-control-sm" id="edit_cli_razonSocialNit" name="edit_cli_razonSocialNit" placeholder="" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label" for="example-hf-email">Razon Social: </label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control form-control-sm" id="edit_cli_razonSocial" name="edit_cli_razonSocial" placeholder="" required>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label" for="example-hf-email">Correo electronico</label>
+                            <div class="col-sm-8">
+                                <input type="mail" class="form-control form-control-sm" id="edit_cli_mail" name="edit_cli_mail" placeholder="Nombre del Contacto" >
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label" for="example-hf-email">Telefono Contacto</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control form-control-sm" id="edit_cli_telf" name="edit_cli_telf" placeholder="" >
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label" for="example-hf-email">Dirección</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control form-control-sm" id="edit_cli_direccion" name="edit_cli_direccion" placeholder="" >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="block-content block-content-full text-right border-top">
+                        <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-check mr-1"></i>Actualizar datos</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 <script src="{{ asset('resources/js/cliente/cliente.js')}}"></script>

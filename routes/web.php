@@ -81,4 +81,6 @@ Route::group(['prefix'=>'cliente','middleware'=>['auth']],function ()
     Route::get('/',[ClienteController::class,'home']);
     Route::get('list_1',[ClienteController::class,'list_1']);
     Route::post('query_create',[ClienteController::class,'store']);
+    Route::get('query_edit',[ClienteController::class,'query_edit']);
+    Route::get('query_update/{id}',[ClienteController::class,'query_update']);
 });

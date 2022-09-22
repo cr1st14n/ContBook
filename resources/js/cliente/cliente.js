@@ -1,3 +1,4 @@
+id_cliente_select = "";
 function clientes_home() {
     $.get("cliente", function (data, textStatus, jqXHR) {
         $("#main-container").html(data);
@@ -29,10 +30,10 @@ function showCliente_body(param) {
                 <td class="text-center">${p.cli_direccion}</td>
                 <td class="text-center">
                     <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-light" data-toggle="tooltip" title="Remove Client" onClick="clie_edit(${p.id})">
-                            <i class="fa fa-fw fa-times"></i>
+                        <button type="button" class="btn btn-sm btn-light" data-toggle="tooltip" title="Remove Client" onClick="clie_editar(${p.id})">
+                            <i class="fa fa-edit"></i>
                         </button>
-                        <button type="button" class="btn btn-sm btn-light" data-toggle="tooltip" title="Remove Client" onClick="(clie_delete${p.id})">
+                        <button type="button" class="btn btn-sm btn-light" data-toggle="tooltip" title="Remove Client" onClick="clie_delete${p.id})">
                             <i class="fa fa-fw fa-times"></i>
                         </button>
                     </div>
@@ -43,12 +44,12 @@ function showCliente_body(param) {
             .join(" ")
     );
 }
-$('#btn_create_cliente').click(function (e) { 
+$("#btn_create_cliente").click(function (e) {
     e.preventDefault();
-    $('#md_create_cliente').modal('show');
-    $('#form_new_cliente1').trigger('reset');
- });
- $('#form_new_cliente1').submit(function (e) { 
+    $("#md_create_cliente").modal("show");
+    $("#form_new_cliente1").trigger("reset");
+});
+$("#form_new_cliente1").submit(function (e) {
     e.preventDefault();
     $.ajax({
         type: "post",
@@ -56,18 +57,61 @@ $('#btn_create_cliente').click(function (e) {
         data: $(this).serialize(),
         success: function (response) {
             console.log(response);
-            if (response=='error_1') {
-                console.log('error_ci');
-            }            
-            if (response=='error_2') {
-                console.log('error_nit');
-            }            
-            if (response=='error_3') {
-                console.log('error_RZ');
-            }            
-            if (response=='error_4') {
-                console.log('error_mail');
-            }                      
-        }
+            if (response == "error_1") {
+                console.log("error_ci");
+                return;
+            }
+            if (response == "error_2") {
+                console.log("error_nit");
+                return;
+            }
+            if (response == "error_3") {
+                console.log("error_RZ");
+                return;
+            }
+            if (response == "error_4") {
+                console.log("error_mail");
+                return;
+            }
+            $("#md_create_cliente").modal("hide");
+            queryListCliente();
+        },
     });
- });
+});
+function clie_editar(id) {
+    $.get("cliente/query_edit", { id: id }, function (data, textStatus, jqXHR) {
+        console.log(data);
+        id_cliente_select = data.id;
+        $("#edit_cli_ci").val(data.cli_ci);
+        $("#edit_cli_nombre").val(data.cli_nombre);
+        $("#edit_cli_razonSocialNit").val(data.cli_razonSocialNit);
+        $("#edit_cli_razonSocial").val(data.cli_razonSocial);
+        $("#edit_cli_mail").val(data.cli_mail);
+        $("#edit_cli_telf").val(data.cli_telf);
+        $("#edit_cli_direccion").val(data.cli_direccion);
+        $("#md_edit_cliente").modal("show");
+    });
+}
+
+$('#form_edit_cliente1').submit(function (e) { 
+    e.preventDefault();
+    $.ajax({
+        type: "post",
+        url: "cliente/query_update"+id_cliente_select,
+        data: $(this).serialize(),
+        success: function (response) {
+            console.log(
+                response
+            );
+            if (response == "error_1") {
+                console.log("error_ci");
+            }
+            if (response == "error_2") {
+                console.log("error_nit");
+            }
+            if (response == "error_3") {
+                console.log("error_RZ");
+            }
+        },
+    });
+});
