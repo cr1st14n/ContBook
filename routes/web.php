@@ -79,4 +79,6 @@ Route::group(['prefix' => 'inventario', 'middleware' => ['auth']], function () {
 Route::group(['prefix'=>'cliente','middleware'=>['auth']],function ()
 {
     Route::get('/',[ClienteController::class,'home']);
+    Route::get('list_1',[ClienteController::class,'list_1']);
+    Route::post('query_create',[ClienteController::class,'store']);
 });

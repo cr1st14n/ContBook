@@ -6,8 +6,8 @@
                 <div class="block-header">
                     <h3 class="block-title">Lista de productos a caducar </h3>
                     <div class="block-options">
-                        <div class="block-options-item">
-                            <code></code>
+                        <div class="block-options-item">volvo
+                            <code></code>toyota
                         </div>
                     </div>
                 </div>
