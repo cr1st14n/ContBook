@@ -6,6 +6,7 @@ function producto_home(param) {
         $("#main-container").html(data);
         showList_producto();
     });
+    One.layout("sidebar_toggle");
 }
 function lista_est(param) {
     data = { lista: param };
@@ -91,12 +92,8 @@ function fun_proEstado(id) {
     });
 }
 
-
 $("#btn_pro_add_1").click(function (e) {
     e.preventDefault();
     $("#form_new_producto").trigger("reset");
     $("#md_pro_add_1").modal("show");
 });
-
-
-

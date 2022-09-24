@@ -4,6 +4,7 @@ usu_s = "";
 function view_usu() {
     $.get("adm/usu", function (data, textStatus, jqXHR) {
         $("#main-container").html(data);
+        One.layout('sidebar_toggle');
     });
 }
 $("#btn_new_usu").click(function (e) {

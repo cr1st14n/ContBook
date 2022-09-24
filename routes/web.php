@@ -7,6 +7,7 @@ use App\Http\Controllers\homeController;
 use App\Http\Controllers\inventarioController;
 use App\Http\Controllers\KardexController;
 use App\Http\Controllers\loginController;
+use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\PromovController;
 use App\Http\Controllers\ProvedorController;
@@ -53,6 +54,7 @@ Route::group(['prefix' => 'inventario', 'middleware' => ['auth']], function () {
         Route::post('change_est', [ProductoController::class, 'change_est']);
         // * QUERY
         Route::get('query_list_proActivo', [ProductoController::class, 'list_proActivo']);
+        Route::get('query_buscarPro', [ProductoController::class, 'query_buscarPro']);
     });
     Route::group(['prefix' => 'kardex',], function () {
         Route::get('home', [KardexController::class, 'index']);
@@ -82,5 +84,14 @@ Route::group(['prefix'=>'cliente','middleware'=>['auth']],function ()
     Route::get('list_1',[ClienteController::class,'list_1']);
     Route::post('query_create',[ClienteController::class,'store']);
     Route::get('query_edit',[ClienteController::class,'query_edit']);
-    Route::get('query_update/{id}',[ClienteController::class,'query_update']);
+    Route::post('query_update/{id}',[ClienteController::class,'query_update']);
+    Route::post('query_edit_estado',[ClienteController::class,'query_edit_estado']);
+    Route::get('query_search_1',[ClienteController::class,'query_search_1']);
+});
+Route::group(['prefix'=>'Pedido','middleware'=>['auth']],function ()
+{
+    Route::get('/',[PedidoController::class,'home']);
+    Route::get('list_1',[PedidoController::class,'list_1']);
+    Route::get('create_1',[PedidoController::class,'create_1']);
+    
 });

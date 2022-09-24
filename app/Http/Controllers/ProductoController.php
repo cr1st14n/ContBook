@@ -86,4 +86,13 @@ class ProductoController extends Controller
         $up->ca_estado = $retVal;
         return $r=$up->save();
     }
+
+    public function query_buscarPro(Request $request)
+    {
+        return producto::
+            Where('pdo_cod', 'LIKE', '%' . $request->input('data') . '%')
+            ->orWhere('pdo_desc', 'LIKE', '%' . $request->input('data') . '%')
+            ->orWhere('pdo_nomGen', 'LIKE', '%' . $request->input('data') . '%')
+            ->get();
+    }
 }

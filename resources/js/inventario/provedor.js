@@ -6,6 +6,7 @@ function provedor_home() {
         $("#main-container").html(data);
         show_list_1();
     });
+    One.layout('sidebar_toggle');
 }
 
 // *--------crear provedor -----------

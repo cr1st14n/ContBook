@@ -11,6 +11,7 @@ function caducidad_home() {
             }, 900);
         },
     });
+    One.layout("sidebar_toggle");
 }
 
 function show_list_tbody_caducidad() {
@@ -22,14 +23,22 @@ function show_list_tbody_caducidad() {
                 .map(function (p) {
                     // console.log(p['dias']);
                     if (p.dias > 61) {
-                        h = '<span class="badge badge-success">Valido '+p.dias+' Dias</span>';
+                        h =
+                            '<span class="badge badge-success">Valido ' +
+                            p.dias +
+                            " Dias</span>";
                     }
                     if (p.dias < 61) {
-                        h = '<span class="badge badge-info">Observacion '+p.dias+' Dias</span>';
+                        h =
+                            '<span class="badge badge-info">Observacion ' +
+                            p.dias +
+                            " Dias</span>";
                     }
                     if (p.dias < 31) {
                         h =
-                            '<span class="badge badge-warning">Por Vencer '+p.dias+' Dias</span>';
+                            '<span class="badge badge-warning">Por Vencer ' +
+                            p.dias +
+                            " Dias</span>";
                     }
                     if (p.dias < 1) {
                         h = '<span class="badge badge-danger">Vencido</span>';
@@ -57,16 +66,18 @@ function show_list_tbody_caducidad() {
         }
     );
 }
-function check_estado_cad (id) { 
-    $.post("inventario/caducidad/check_est_cad", {"_token": $('meta[name="csrf-token"]').attr('content'),'id':id},
-    function (data, textStatus, jqXHR) {
+function check_estado_cad(id) {
+    $.post(
+        "inventario/caducidad/check_est_cad",
+        { _token: $('meta[name="csrf-token"]').attr("content"), id: id },
+        function (data, textStatus, jqXHR) {
             console.log(data);
             if (data) {
-                $('#tr_tbody_'+id).remove();
+                $("#tr_tbody_" + id).remove();
                 show_list_tbody_caducidad();
-            } else  {
-                console.log('Error');
-            }           
-        },
+            } else {
+                console.log("Error");
+            }
+        }
     );
- }
+}

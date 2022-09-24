@@ -17,7 +17,7 @@ class ClienteController extends Controller
     }
     public function list_1()
     {
-        return Cliente::where('ca_estado','1')->get();
+        return Cliente::where('ca_estado', '1')->get();
     }
     public function store(Request $request)
     {
@@ -36,28 +36,28 @@ class ClienteController extends Controller
             }
         }
 
-        $clie=new Cliente();
+        $clie = new Cliente();
         $clie->cli_ci = $request->input('clie_ci');
         $clie->cli_nombre = $request->input('clie_nombre');
         $clie->cli_razonSocialNit = $request->input('cli_razonSocialNit');
-        $clie->cli_razonSocial  = ($request->input('cli_razonSocial')!= null) ? $request->input('cli_razonSocial') : '-' ; 
-        $clie->cli_mail  = ($request->input('cli_mail')!= null) ? $request->input('cli_mail') : '-' ; 
-        $clie->cli_telf  = ($request->input('cli_telf')!= null) ? $request->input('cli_telf') : '-' ; 
-        $clie->cli_direccion  = ($request->input('cli_direccion')!= null) ? $request->input('cli_direccion') : '-' ; 
+        $clie->cli_razonSocial  = ($request->input('cli_razonSocial') != null) ? $request->input('cli_razonSocial') : '-';
+        $clie->cli_mail  = ($request->input('cli_mail') != null) ? $request->input('cli_mail') : '-';
+        $clie->cli_telf  = ($request->input('cli_telf') != null) ? $request->input('cli_telf') : '-';
+        $clie->cli_direccion  = ($request->input('cli_direccion') != null) ? $request->input('cli_direccion') : '-';
 
         $clie->ca_usu_cod = Auth::user()->id;
         $clie->ca_tipo = 'create';
         $clie->ca_estado = 1;
-        return $res=$clie->save();
+        return $res = $clie->save();
     }
     public function query_edit(Request $request)
     {
-        $cli=Cliente::find($request->input('id'));
+        $cli = Cliente::find($request->input('id'));
         return $cli;
     }
-    public function query_update($id,Request $request)
+    public function query_update($id, Request $request)
     {
-        $cl=Cliente::find($id);
+        $cl = Cliente::find($id);
         if ($request->input('edit_cli_ci') != $cl->cli_ci) {
             if ($request->input('edit_cli_ci') == Cliente::where('cli_ci', $request->input('edit_cli_ci'))->value('cli_ci')) {
                 return 'Er_ci';
@@ -80,6 +80,23 @@ class ClienteController extends Controller
         $cl->cli_mail = $request->input('edit_cli_mail');
         $cl->cli_telf = $request->input('edit_cli_telf');
         $cl->cli_direccion = $request->input('edit_cli_direccion');
-        return $re= $cl->save();
+        return $re = $cl->save();
+    }
+    public function query_edit_estado(Request $request)
+    {
+        $up = Cliente::find($request->input('id'));
+        $up->ca_estado = 0;
+        return $j = $up->save();
+    }
+    public function query_search_1(Request $request)
+    {
+        return  Cliente::select("*")
+            ->where('cli_ci', 'LIKE', '%' . $request->input('data') . '%')
+            ->orWhere('cli_nombre', 'LIKE', '%' . $request->input('data') . '%')
+            ->orWhere('cli_razonSocialNit', 'LIKE', '%' . $request->input('data') . '%')
+            ->orWhere('cli_razonSocial', 'LIKE', '%' . $request->input('data') . '%')
+            ->orWhere('cli_telf', 'LIKE', '%' . $request->input('data') . '%')
+            ->orWhere('cli_direccion', 'LIKE', '%' . $request->input('data') . '%')
+            ->orderBy('cli_mail', 'desc')->get();
     }
 }

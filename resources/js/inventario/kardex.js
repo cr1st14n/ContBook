@@ -5,6 +5,8 @@ function kardex_home(param) {
         $("#main-container").html(data);
         queryList();
     });
+    One.layout('sidebar_toggle');
+
 }
 function queryList() {
     $.get("inventario/kardex/query_list_1", function (data, textStatus, jqXHR) {

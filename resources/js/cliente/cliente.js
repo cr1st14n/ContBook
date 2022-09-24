@@ -6,6 +6,8 @@ function clientes_home() {
             queryListCliente();
         }, 800);
     });
+    One.layout('sidebar_toggle');
+
 }
 function queryListCliente() {
     $.get("cliente/list_1", function (data, textStatus, jqXHR) {
@@ -33,7 +35,7 @@ function showCliente_body(param) {
                         <button type="button" class="btn btn-sm btn-light" data-toggle="tooltip" title="Remove Client" onClick="clie_editar(${p.id})">
                             <i class="fa fa-edit"></i>
                         </button>
-                        <button type="button" class="btn btn-sm btn-light" data-toggle="tooltip" title="Remove Client" onClick="clie_delete${p.id})">
+                        <button type="button" class="btn btn-sm btn-light" data-toggle="tooltip" title="Remove Client" onClick="clie_edit_estado(${p.id})">
                             <i class="fa fa-fw fa-times"></i>
                         </button>
                     </div>
@@ -93,25 +95,58 @@ function clie_editar(id) {
     });
 }
 
-$('#form_edit_cliente1').submit(function (e) { 
+$("#form_edit_cliente1").submit(function (e) {
     e.preventDefault();
     $.ajax({
         type: "post",
-        url: "cliente/query_update"+id_cliente_select,
+        url: "cliente/query_update/" + id_cliente_select,
         data: $(this).serialize(),
         success: function (response) {
-            console.log(
-                response
-            );
-            if (response == "error_1") {
+            console.log(response);
+            if (response == "Er_ci") {
                 console.log("error_ci");
+                return;
             }
-            if (response == "error_2") {
+            if (response == "Er_nit") {
                 console.log("error_nit");
+                return;
             }
-            if (response == "error_3") {
+            if (response == "Er_mail") {
                 console.log("error_RZ");
+                return;
+            }
+
+            if (response == "1") {
+                $("#md_edit_cliente").modal("hide");
+                queryListCliente();
             }
         },
     });
+});
+function clie_edit_estado(id) {
+    $.post(
+        "cliente/query_edit_estado",
+        { _token: $('meta[name="csrf-token"]').attr("content"), id: id },
+        function (data, textStatus, jqXHR) {
+            if (data) {
+                $("#tr_clie_" + id).remove();
+            } else {
+                console.log("error!");
+            }
+        }
+    );
+}
+$("#inp_search_clie").keyup(function (e) {
+    console.log($(this).val());
+    if ($(this).val() != "") {
+        $.get(
+            "cliente/query_search_1",
+            { data: $(this).val() },
+            function (data, textStatus, jqXHR) {
+                showCliente_body(data);
+            }
+        );
+    } else {
+        queryListCliente();
+    }
 });

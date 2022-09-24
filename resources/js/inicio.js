@@ -183,9 +183,31 @@ $("#btn_home_cliente").click(function (e) {
                 <i class="nav-main-link-icon si si-users"></i>
                 <span class="nav-main-link-name">Registro de Clientes</span>
             </a>
-            <a class="nav-main-link active" href="#" >
+            `;
+            $("#menu_1").html(html1);
+            setTimeout(() => {
+                
+            }, 900);
+        },
+    });
+});
+$("#btn_home_pedidos").click(function (e) {
+    e.preventDefault();
+    $.ajax({
+        type: "get",
+        url: "Pedido/",
+        data: {},
+        // dataType: "dataType",
+        success: function (response) {
+            $("#main-container").html(response);
+            html1 = `
+            <a class="nav-main-link active" href="#" onclick='pedido_registro()'>
                 <i class="nav-main-link-icon si si-users"></i>
-                <span class="nav-main-link-name"></span>
+                <span class="nav-main-link-name">Pedidos Registrados</span>
+            </a>
+            <a class="nav-main-link active" href="#" onclick='pedido_new()'>
+                <i class="nav-main-link-icon si si-users"></i>
+                <span class="nav-main-link-name">Nuevo Pedido</span>
             </a>
             `;
             $("#menu_1").html(html1);

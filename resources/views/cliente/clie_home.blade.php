@@ -4,7 +4,7 @@
             <!-- Hover Table -->
             <div class="block">
                 <div class="block-header">
-                    <h3 class="block-title">Lista de productos a caducar </h3>
+                    <h3 class="block-title">Clientes Registrados </h3>
                     <div class="block-options">
                         <div class="block-options-item">
                             <button class="btn btn-info btn-sm" id="btn_create_cliente"> <i class="fa fa-plus-circle"></i> Registrar nuevo Cliente</button>
@@ -13,7 +13,7 @@
 
                 </div>
                 <div class="block-content">
-                    <input type="text" class="form-control form-control-sm col-2" placeholder="Buscar Cliente"><br>
+                    <input type="text" class="form-control form-control-sm col-2" id="inp_search_clie" placeholder="Buscar Cliente"><br>
                     <table class="table table-hover table-vcenter">
                         <thead>
                             <tr>
@@ -64,7 +64,8 @@
                             <div class="col-sm-8">
                                 <input type="text" class="form-control form-control-sm" id="clie_nombre" name="clie_nombre" placeholder="" required>
                             </div>
-                        </div><hr>
+                        </div>
+                        <hr>
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label" for="example-hf-email">NIT: </label>
                             <div class="col-sm-8">
@@ -81,19 +82,19 @@
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label" for="example-hf-email">Correo electronico</label>
                             <div class="col-sm-8">
-                                <input type="mail" class="form-control form-control-sm" id="cli_mail" name="cli_mail" placeholder="Nombre del Contacto" >
+                                <input type="mail" class="form-control form-control-sm" id="cli_mail" name="cli_mail" placeholder="Nombre del Contacto">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label" for="example-hf-email">Telefono Contacto</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control form-control-sm" id="cli_telf" name="cli_telf" placeholder="" >
+                                <input type="text" class="form-control form-control-sm" id="cli_telf" name="cli_telf" placeholder="">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label" for="example-hf-email">Dirección</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control form-control-sm" id="cli_direccion" name="cli_direccion" placeholder="" >
+                                <input type="text" class="form-control form-control-sm" id="cli_direccion" name="cli_direccion" placeholder="">
                             </div>
                         </div>
                     </div>
@@ -132,7 +133,8 @@
                             <div class="col-sm-8">
                                 <input type="text" class="form-control form-control-sm" id="edit_cli_nombre" name="edit_cli_nombre" placeholder="" required>
                             </div>
-                        </div><hr>
+                        </div>
+                        <hr>
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label" for="example-hf-email">NIT: </label>
                             <div class="col-sm-8">
@@ -149,19 +151,19 @@
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label" for="example-hf-email">Correo electronico</label>
                             <div class="col-sm-8">
-                                <input type="mail" class="form-control form-control-sm" id="edit_cli_mail" name="edit_cli_mail" placeholder="Nombre del Contacto" >
+                                <input type="mail" class="form-control form-control-sm" id="edit_cli_mail" name="edit_cli_mail" placeholder="Nombre del Contacto">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label" for="example-hf-email">Telefono Contacto</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control form-control-sm" id="edit_cli_telf" name="edit_cli_telf" placeholder="" >
+                                <input type="text" class="form-control form-control-sm" id="edit_cli_telf" name="edit_cli_telf" placeholder="">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label" for="example-hf-email">Dirección</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control form-control-sm" id="edit_cli_direccion" name="edit_cli_direccion" placeholder="" >
+                                <input type="text" class="form-control form-control-sm" id="edit_cli_direccion" name="edit_cli_direccion" placeholder="">
                             </div>
                         </div>
                     </div>
