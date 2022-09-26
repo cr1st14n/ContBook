@@ -10,4 +10,8 @@ class modAppController extends Controller
     {
         return view('AppMod.home');
     }
+    public function homeCliente()
+    {
+        return view('AppMod.cliente_index');
+    }
 }

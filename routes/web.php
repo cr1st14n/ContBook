@@ -29,7 +29,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('login.login');
 })->name('login')->middleware('guest');
-Route::any('log1', [loginController::class, 'login']);
+Route::any('log1', [loginController::class, 'login']); 
 
 
 Route::post('logout', [loginController::class, 'logout'])->name('logout');
@@ -100,4 +100,10 @@ Route::group(['prefix'=>'Pedido','middleware'=>['auth']],function ()
 Route::group(['prefix'=>'ContApp','middleware'=>['auth']],function ()
 {
     Route::get('/',[modAppController::class,'home'])->name('AppHome');
+    Route::group(['prefix'=>'cliente'],function ()
+    {
+        Route::get('/',[modAppController::class,'homeCliente']);
+    });
+    Route::get('view_Pedido',[modAppController::class,'homePedido']);
+    Route::get('view_Catalogo',[modAppController::class,'homeCatalogo']);
 });
