@@ -12,7 +12,7 @@
                     </div>
                 </div>
                 <div class="block-content">
-                    <table class="table table-hover table-vcenter">
+                    <table class="table table-hover table-vcenter table-responsive">
                         <thead>
                             <tr>
                                 <th class="text-center" style="width: 30%;">Producto</th>

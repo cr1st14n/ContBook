@@ -24,7 +24,7 @@
                     </div>
                 </div>
                 <br>
-                <table class="table table-sm table-vcenter">
+                <table class="table table-sm table-vcenter table-responsive-sm">
                     <thead>
                         <tr>
                             <th class="text-center" style="width: 50px;">#</th>

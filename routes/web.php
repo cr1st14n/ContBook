@@ -7,6 +7,7 @@ use App\Http\Controllers\homeController;
 use App\Http\Controllers\inventarioController;
 use App\Http\Controllers\KardexController;
 use App\Http\Controllers\loginController;
+use App\Http\Controllers\modAppController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\PromovController;
@@ -94,4 +95,9 @@ Route::group(['prefix'=>'Pedido','middleware'=>['auth']],function ()
     Route::get('list_1',[PedidoController::class,'list_1']);
     Route::get('create_1',[PedidoController::class,'create_1']);
     
+});
+
+Route::group(['prefix'=>'ContApp','middleware'=>['auth']],function ()
+{
+    Route::get('/',[modAppController::class,'home'])->name('AppHome');
 });

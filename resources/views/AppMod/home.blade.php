@@ -11,23 +11,26 @@
 
     <!-- Icons -->
     <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
-    <link rel="shortcut icon" href="{{ asset('resources/plantilla/assets/media/favicons/favicon.png')}}">
-    <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('resources/plantilla/assets/media/favicons/favicon-192x192.png')}}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('resources/plantilla/assets/media/favicons/apple-touch-icon-180x180.png')}}">
+    <link rel="shortcut icon" href="{{ asset('resources/plantilla/assets/media/favicons/favicon.png') }}">
+    <link rel="icon" type="image/png" sizes="192x192"
+        href="{{ asset('resources/plantilla/assets/media/favicons/favicon-192x192.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180"
+        href="{{ asset('resources/plantilla/assets/media/favicons/apple-touch-icon-180x180.png') }}">
     <!-- END Icons -->
 
     <!-- Stylesheets -->
     <!-- Fonts and OneUI framework -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
-    <link rel="stylesheet" id="css-main" href="{{ asset('resources/plantilla/assets/css/oneui.min.css')}}">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
+    <link rel="stylesheet" id="css-main" href="{{ asset('resources/plantilla/assets/css/oneui.min.css') }}">
 
     <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
-    <link rel="stylesheet" id="css-theme" href="{{ asset('resources/plantilla/assets/css/themes/flat.min.css')}}">
+    <link rel="stylesheet" id="css-theme" href="{{ asset('resources/plantilla/assets/css/themes/flat.min.css') }}">
     <!-- END Stylesheets -->
 
-    <link rel="stylesheet" href=" {{ asset('resources/plantilla/noty/lib/noty.css')}}" />
-    <link rel="stylesheet" href="{{ asset('resources/plantilla/noty/lib/themes/relax.css')}}" />
-    <link rel="stylesheet" href="{{ asset('resources/plantilla/noty/demo/animate.css')}}" />
+    <link rel="stylesheet" href=" {{ asset('resources/plantilla/noty/lib/noty.css') }}" />
+    <link rel="stylesheet" href="{{ asset('resources/plantilla/noty/lib/themes/relax.css') }}" />
+    <link rel="stylesheet" href="{{ asset('resources/plantilla/noty/demo/animate.css') }}" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
@@ -39,7 +42,8 @@
             <div class="content-header border-bottom">
                 <!-- User Avatar -->
                 <a class="img-link mr-1" href="javascript:void(0)">
-                    <img class="img-avatar img-avatar32" src="{{ asset('resources/plantilla/assets/media/avatars/avatar10.jpg')}}" alt="">
+                    <img class="img-avatar img-avatar32"
+                        src="{{ asset('resources/plantilla/assets/media/avatars/avatar10.jpg') }}" alt="">
                 </a>
                 <!-- END User Avatar -->
 
@@ -51,7 +55,8 @@
 
                 <!-- Close Side Overlay -->
                 <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-                <a class="ml-auto btn btn-sm btn-dual" href="javascript:void(0)" data-toggle="layout" data-action="side_overlay_close">
+                <a class="ml-auto btn btn-sm btn-dual" href="javascript:void(0)" data-toggle="layout"
+                    data-action="side_overlay_close">
                     <i class="fa fa-fw fa-times text-danger"></i>
                 </a>
                 <!-- END Close Side Overlay -->
@@ -82,10 +87,12 @@
                                 <div class="block-header block-header-default">
                                     <h3 class="block-title">Recent Activity</h3>
                                     <div class="block-options">
-                                        <button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">
+                                        <button type="button" class="btn-block-option" data-toggle="block-option"
+                                            data-action="state_toggle" data-action-mode="demo">
                                             <i class="si si-refresh"></i>
                                         </button>
-                                        <button type="button" class="btn-block-option" data-toggle="block-option" data-action="content_toggle"></button>
+                                        <button type="button" class="btn-block-option" data-toggle="block-option"
+                                            data-action="content_toggle"></button>
                                     </div>
                                 </div>
                                 <div class="block-content">
@@ -140,10 +147,12 @@
                                 <div class="block-header block-header-default">
                                     <h3 class="block-title">Online Friends</h3>
                                     <div class="block-options">
-                                        <button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">
+                                        <button type="button" class="btn-block-option" data-toggle="block-option"
+                                            data-action="state_toggle" data-action-mode="demo">
                                             <i class="si si-refresh"></i>
                                         </button>
-                                        <button type="button" class="btn-block-option" data-toggle="block-option" data-action="content_toggle"></button>
+                                        <button type="button" class="btn-block-option" data-toggle="block-option"
+                                            data-action="content_toggle"></button>
                                     </div>
                                 </div>
                                 <div class="block-content">
@@ -152,8 +161,11 @@
                                         <li>
                                             <a class="media py-2" href="javascript:void(0)">
                                                 <div class="mr-3 ml-2 overlay-container overlay-bottom">
-                                                    <img class="img-avatar img-avatar48" src="{{ asset('resources/plantilla/assets/media/avatars/avatar3.jpg')}}" alt="">
-                                                    <span class="overlay-item item item-tiny item-circle border border-2x border-white bg-success"></span>
+                                                    <img class="img-avatar img-avatar48"
+                                                        src="{{ asset('resources/plantilla/assets/media/avatars/avatar3.jpg') }}"
+                                                        alt="">
+                                                    <span
+                                                        class="overlay-item item item-tiny item-circle border border-2x border-white bg-success"></span>
                                                 </div>
                                                 <div class="media-body">
                                                     <div class="font-w600">Helen Jacobs</div>
@@ -164,8 +176,11 @@
                                         <li>
                                             <a class="media py-2" href="javascript:void(0)">
                                                 <div class="mr-3 ml-2 overlay-container overlay-bottom">
-                                                    <img class="img-avatar img-avatar48" src="{{ asset('resources/plantilla/assets/media/avatars/avatar10.jpg')}}" alt="">
-                                                    <span class="overlay-item item item-tiny item-circle border border-2x border-white bg-success"></span>
+                                                    <img class="img-avatar img-avatar48"
+                                                        src="{{ asset('resources/plantilla/assets/media/avatars/avatar10.jpg') }}"
+                                                        alt="">
+                                                    <span
+                                                        class="overlay-item item item-tiny item-circle border border-2x border-white bg-success"></span>
                                                 </div>
                                                 <div class="media-body">
                                                     <div class="font-w600">Ryan Flores</div>
@@ -176,8 +191,11 @@
                                         <li>
                                             <a class="media py-2" href="javascript:void(0)">
                                                 <div class="mr-3 ml-2 overlay-container overlay-bottom">
-                                                    <img class="img-avatar img-avatar48" src="{{ asset('resources/plantilla/assets/media/avatars/avatar8.jpg')}}" alt="">
-                                                    <span class="overlay-item item item-tiny item-circle border border-2x border-white bg-success"></span>
+                                                    <img class="img-avatar img-avatar48"
+                                                        src="{{ asset('resources/plantilla/assets/media/avatars/avatar8.jpg') }}"
+                                                        alt="">
+                                                    <span
+                                                        class="overlay-item item item-tiny item-circle border border-2x border-white bg-success"></span>
                                                 </div>
                                                 <div class="media-body">
                                                     <div class="font-w600">Susan Day</div>
@@ -188,8 +206,11 @@
                                         <li>
                                             <a class="media py-2" href="javascript:void(0)">
                                                 <div class="mr-3 ml-2 overlay-container overlay-bottom">
-                                                    <img class="img-avatar img-avatar48" src="{{ asset('resources/plantilla/assets/media/avatars/avatar3.jpg')}}" alt="">
-                                                    <span class="overlay-item item item-tiny item-circle border border-2x border-white bg-warning"></span>
+                                                    <img class="img-avatar img-avatar48"
+                                                        src="{{ asset('resources/plantilla/assets/media/avatars/avatar3.jpg') }}"
+                                                        alt="">
+                                                    <span
+                                                        class="overlay-item item item-tiny item-circle border border-2x border-white bg-warning"></span>
                                                 </div>
                                                 <div class="media-body">
                                                     <div class="font-w600">Sara Fields</div>
@@ -200,8 +221,11 @@
                                         <li>
                                             <a class="media py-2" href="javascript:void(0)">
                                                 <div class="mr-3 ml-2 overlay-container overlay-bottom">
-                                                    <img class="img-avatar img-avatar48" src="{{ asset('resources/plantilla/assets/media/avatars/avatar15.jpg')}}" alt="">
-                                                    <span class="overlay-item item item-tiny item-circle border border-2x border-white bg-warning"></span>
+                                                    <img class="img-avatar img-avatar48"
+                                                        src="{{ asset('resources/plantilla/assets/media/avatars/avatar15.jpg') }}"
+                                                        alt="">
+                                                    <span
+                                                        class="overlay-item item item-tiny item-circle border border-2x border-white bg-warning"></span>
                                                 </div>
                                                 <div class="media-body">
                                                     <div class="font-w600">Adam McCoy</div>
@@ -220,7 +244,8 @@
                                 <div class="block-header block-header-default">
                                     <h3 class="block-title">Quick Settings</h3>
                                     <div class="block-options">
-                                        <button type="button" class="btn-block-option" data-toggle="block-option" data-action="content_toggle"></button>
+                                        <button type="button" class="btn-block-option" data-toggle="block-option"
+                                            data-action="content_toggle"></button>
                                     </div>
                                 </div>
                                 <div class="block-content">
@@ -231,8 +256,10 @@
                                                 Online Status
                                             </p>
                                             <div class="custom-control custom-switch mb-1">
-                                                <input type="checkbox" class="custom-control-input" id="so-settings-check1" name="so-settings-check1" checked>
-                                                <label class="custom-control-label" for="so-settings-check1">Show your status to all</label>
+                                                <input type="checkbox" class="custom-control-input"
+                                                    id="so-settings-check1" name="so-settings-check1" checked>
+                                                <label class="custom-control-label" for="so-settings-check1">Show your
+                                                    status to all</label>
                                             </div>
                                         </div>
                                         <hr>
@@ -241,8 +268,10 @@
                                                 Auto Updates
                                             </p>
                                             <div class="custom-control custom-switch mb-1">
-                                                <input type="checkbox" class="custom-control-input" id="so-settings-check2" name="so-settings-check2" checked>
-                                                <label class="custom-control-label" for="so-settings-check2">Keep up to date</label>
+                                                <input type="checkbox" class="custom-control-input"
+                                                    id="so-settings-check2" name="so-settings-check2" checked>
+                                                <label class="custom-control-label" for="so-settings-check2">Keep up
+                                                    to date</label>
                                             </div>
                                         </div>
                                         <hr>
@@ -251,12 +280,16 @@
                                                 Application Alerts
                                             </p>
                                             <div class="custom-control custom-switch mb-1">
-                                                <input type="checkbox" class="custom-control-input" id="so-settings-check3" name="so-settings-check3" checked>
-                                                <label class="custom-control-label" for="so-settings-check3">Email Notifications</label>
+                                                <input type="checkbox" class="custom-control-input"
+                                                    id="so-settings-check3" name="so-settings-check3" checked>
+                                                <label class="custom-control-label" for="so-settings-check3">Email
+                                                    Notifications</label>
                                             </div>
                                             <div class="custom-control custom-switch mb-1">
-                                                <input type="checkbox" class="custom-control-input" id="so-settings-check4" name="so-settings-check4" checked>
-                                                <label class="custom-control-label" for="so-settings-check4">SMS Notifications</label>
+                                                <input type="checkbox" class="custom-control-input"
+                                                    id="so-settings-check4" name="so-settings-check4" checked>
+                                                <label class="custom-control-label" for="so-settings-check4">SMS
+                                                    Notifications</label>
                                             </div>
                                         </div>
                                         <hr>
@@ -265,8 +298,10 @@
                                                 API
                                             </p>
                                             <div class="custom-control custom-switch mb-1">
-                                                <input type="checkbox" class="custom-control-input" id="so-settings-check5" name="so-settings-check5" checked>
-                                                <label class="custom-control-label" for="so-settings-check5">Enable access</label>
+                                                <input type="checkbox" class="custom-control-input"
+                                                    id="so-settings-check5" name="so-settings-check5" checked>
+                                                <label class="custom-control-label" for="so-settings-check5">Enable
+                                                    access</label>
                                             </div>
                                         </div>
                                     </form>
@@ -285,11 +320,13 @@
                                     <div class="row items-push pull-t">
                                         <div class="col-6">
                                             <div class="font-w700 text-uppercase">Sales</div>
-                                            <a class="link-fx font-size-h3 font-w300" href="javascript:void(0)">22.030</a>
+                                            <a class="link-fx font-size-h3 font-w300"
+                                                href="javascript:void(0)">22.030</a>
                                         </div>
                                         <div class="col-6">
                                             <div class="font-w700 text-uppercase">Balance</div>
-                                            <a class="link-fx font-size-h3 font-w300" href="javascript:void(0)">$4.589,00</a>
+                                            <a class="link-fx font-size-h3 font-w300"
+                                                href="javascript:void(0)">$4.589,00</a>
                                         </div>
                                     </div>
                                 </div>
@@ -482,33 +519,51 @@
                 <div>
                     <!-- Color Variations -->
                     <div class="dropdown d-inline-block ml-3">
-                        <a class="text-dual font-size-sm" id="sidebar-themes-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
+                        <a class="text-dual font-size-sm" id="sidebar-themes-dropdown" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false" href="#">
                             <i class="si si-drop"></i>
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right font-size-sm smini-hide border-0" aria-labelledby="sidebar-themes-dropdown">
+                        <div class="dropdown-menu dropdown-menu-right font-size-sm smini-hide border-0"
+                            aria-labelledby="sidebar-themes-dropdown">
                             <!-- Color Themes -->
                             <!-- Layout API, functionality initialized in Template._uiHandleTheme() -->
-                            <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="default" href="#">
+                            <a class="dropdown-item d-flex align-items-center justify-content-between"
+                                data-toggle="theme" data-theme="default" href="#">
                                 <span>Default</span>
                                 <i class="fa fa-circle text-default"></i>
                             </a>
-                            <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="{{ asset('resources/plantilla/assets/css/themes/amethyst.min.css')}}" href="#">
+                            <a class="dropdown-item d-flex align-items-center justify-content-between"
+                                data-toggle="theme"
+                                data-theme="{{ asset('resources/plantilla/assets/css/themes/amethyst.min.css') }}"
+                                href="#">
                                 <span>Amethyst</span>
                                 <i class="fa fa-circle text-amethyst"></i>
                             </a>
-                            <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="{{ asset('resources/plantilla/assets/css/themes/city.min.css')}}" href="#">
+                            <a class="dropdown-item d-flex align-items-center justify-content-between"
+                                data-toggle="theme"
+                                data-theme="{{ asset('resources/plantilla/assets/css/themes/city.min.css') }}"
+                                href="#">
                                 <span>City</span>
                                 <i class="fa fa-circle text-city"></i>
                             </a>
-                            <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="{{ asset('resources/plantilla/assets/css/themes/flat.min.css')}}" href="#">
+                            <a class="dropdown-item d-flex align-items-center justify-content-between"
+                                data-toggle="theme"
+                                data-theme="{{ asset('resources/plantilla/assets/css/themes/flat.min.css') }}"
+                                href="#">
                                 <span>Flat</span>
                                 <i class="fa fa-circle text-flat"></i>
                             </a>
-                            <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="{{ asset('resources/plantilla/assets/css/themes/modern.min.css')}}" href="#">
+                            <a class="dropdown-item d-flex align-items-center justify-content-between"
+                                data-toggle="theme"
+                                data-theme="{{ asset('resources/plantilla/assets/css/themes/modern.min.css') }}"
+                                href="#">
                                 <span>Modern</span>
                                 <i class="fa fa-circle text-modern"></i>
                             </a>
-                            <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="{{ asset('resources/plantilla/assets/css/themes/smooth.min.css')}}" href="#">
+                            <a class="dropdown-item d-flex align-items-center justify-content-between"
+                                data-toggle="theme"
+                                data-theme="{{ asset('resources/plantilla/assets/css/themes/smooth.min.css') }}"
+                                href="#">
                                 <span>Smooth</span>
                                 <i class="fa fa-circle text-smooth"></i>
                             </a>
@@ -518,10 +573,12 @@
 
                             <!-- Sidebar Styles -->
                             <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-                            <a class="dropdown-item" data-toggle="layout" data-action="sidebar_style_light" href="#">
+                            <a class="dropdown-item" data-toggle="layout" data-action="sidebar_style_light"
+                                href="#">
                                 <span>Sidebar Light</span>
                             </a>
-                            <a class="dropdown-item" data-toggle="layout" data-action="sidebar_style_dark" href="#">
+                            <a class="dropdown-item" data-toggle="layout" data-action="sidebar_style_dark"
+                                href="#">
                                 <span>Sidebar Dark</span>
                             </a>
                             <!-- Sidebar Styles -->
@@ -530,10 +587,12 @@
 
                             <!-- Header Styles -->
                             <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-                            <a class="dropdown-item" data-toggle="layout" data-action="header_style_light" href="#">
+                            <a class="dropdown-item" data-toggle="layout" data-action="header_style_light"
+                                href="#">
                                 <span>Header Light</span>
                             </a>
-                            <a class="dropdown-item" data-toggle="layout" data-action="header_style_dark" href="#">
+                            <a class="dropdown-item" data-toggle="layout" data-action="header_style_dark"
+                                href="#">
                                 <span>Header Dark</span>
                             </a>
                             <!-- Header Styles -->
@@ -543,7 +602,8 @@
 
                     <!-- Close Sidebar, Visible only on mobile screens -->
                     <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-                    <a class="d-lg-none text-dual ml-3" data-toggle="layout" data-action="sidebar_close" href="javascript:void(0)">
+                    <a class="d-lg-none text-dual ml-3" data-toggle="layout" data-action="sidebar_close"
+                        href="javascript:void(0)">
                         <i class="fa fa-times"></i>
                     </a>
                     <!-- END Close Sidebar -->
@@ -569,38 +629,29 @@
             <div class="content-header ">
                 <!-- Left Section -->
                 <div class="d-flex align-items-center">
-                    <!-- Toggle Sidebar -->
-                    <!-- Layout API, functionality initialized in Template._uiApiLayout()-->
-                    <button type="button" class="btn btn-sm btn-dual mr-2 d-lg-none" data-toggle="layout" data-action="sidebar_toggle">
-                        <i class="fa fa-fw fa-bars"></i>
-                    </button>
-                    <!-- END Toggle Sidebar -->
-
-                    <!-- Toggle Mini Sidebar -->
-                    <!-- Layout API, functionality initialized in Template._uiApiLayout()-->
-                    <button type="button" class="btn btn-sm btn-dual mr-2 d-none d-lg-inline-block" data-toggle="layout" data-action="sidebar_mini_toggle">
-                        <i class="fa fa-fw fa-ellipsis-v"></i>
-                    </button>
+                    <a type="button" class="btn btn-sm btn-dual mr-2 d-none d-lg-inline-block"
+                        href="/ContApp" >
+                        <i class="fa fa-fw fa-ellipsis-v"></i>ff
+                    </a>
                     <!-- END Toggle Mini Sidebar -->
 
                     <!-- Apps Modal -->
                     <!-- Opens the Apps modal found at the bottom of the page, after footer’s markup -->
-                    <button type="button" class="btn btn-sm btn-dual mr-2" data-toggle="modal" data-target="#one-modal-apps">
+                    <a type="button" class="btn btn-sm btn-dual mr-2" href="{{ route('AppHome') }}">
                         <i class="si si-grid"></i>
-                    </button>
+                    </a>
                     <!-- END Apps Modal -->
 
                     <!-- Open Search Section (visible on smaller screens) -->
                     <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-                    <button type="button" class="btn btn-sm btn-dual d-sm-none" data-toggle="layout" data-action="header_search_on">
-                        <i class="si si-magnifier"></i>
-                    </button>
+                   
                     <!-- END Open Search Section -->
 
                     <!-- Search Form (visible on larger screens) -->
                     <form class="d-none d-sm-inline-block" action="be_pages_generic_search.html" method="POST">
                         <div class="input-group input-group-sm">
-                            <input type="text" class="form-control form-control-alt" placeholder="Search.." id="page-header-search-input2" name="page-header-search-input2">
+                            <input type="text" class="form-control form-control-alt" placeholder="Search.."
+                                id="page-header-search-input2" name="page-header-search-input2">
                             <div class="input-group-append">
                                 <span class="input-group-text bg-body border-0">
                                     <i class="si si-magnifier"></i>
@@ -616,46 +667,59 @@
                 <div class="d-flex align-items-center">
                     <!-- User Dropdown -->
                     <div class="dropdown d-inline-block ml-2">
-                        <button type="button" class="btn btn-sm btn-dual" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="rounded" src="{{ asset('resources/plantilla/assets/media/avatars/avatar10.jpg')}}" alt="Header Avatar" style="width: 18px;">
-                            <span class="d-none d-sm-inline-block ml-1">{{Auth::User()->usu_cod}}</span>
+                        <button type="button" class="btn btn-sm btn-dual" id="page-header-user-dropdown"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img class="rounded"
+                                src="{{ asset('resources/plantilla/assets/media/avatars/avatar10.jpg') }}"
+                                alt="Header Avatar" style="width: 18px;">
+                            <span class="d-none d-sm-inline-block ml-1">{{ Auth::User()->usu_cod }}</span>
                             <i class="fa fa-fw fa-angle-down d-none d-sm-inline-block"></i>
                         </button>
-                        <div class="dropdown-menu dropdown-menu-right p-0 border-0 font-size-sm" aria-labelledby="page-header-user-dropdown">
+                        <div class="dropdown-menu dropdown-menu-right p-0 border-0 font-size-sm"
+                            aria-labelledby="page-header-user-dropdown">
                             <div class="p-3 text-center bg-primary">
-                                <img class="img-avatar img-avatar48 img-avatar-thumb" src="{{ asset('resources/plantilla/assets/media/avatars/avatar10.jpg')}}" alt="">
+                                <img class="img-avatar img-avatar48 img-avatar-thumb"
+                                    src="{{ asset('resources/plantilla/assets/media/avatars/avatar10.jpg') }}"
+                                    alt="">
                             </div>
                             <div class="p-2">
                                 <h5 class="dropdown-header text-uppercase">User Options</h5>
-                                <a class="dropdown-item d-flex align-items-center justify-content-between" href="be_pages_generic_inbox.html">
+                                <a class="dropdown-item d-flex align-items-center justify-content-between"
+                                    href="be_pages_generic_inbox.html">
                                     <span>Inbox</span>
                                     <span>
                                         <span class="badge badge-pill badge-primary">3</span>
                                         <i class="si si-envelope-open ml-1"></i>
                                     </span>
                                 </a>
-                                <a class="dropdown-item d-flex align-items-center justify-content-between" href="be_pages_generic_profile.html">
+                                <a class="dropdown-item d-flex align-items-center justify-content-between"
+                                    href="be_pages_generic_profile.html">
                                     <span>Profile</span>
                                     <span>
                                         <span class="badge badge-pill badge-success">1</span>
                                         <i class="si si-user ml-1"></i>
                                     </span>
                                 </a>
-                                <a class="dropdown-item d-flex align-items-center justify-content-between" href="javascript:void(0)">
+                                <a class="dropdown-item d-flex align-items-center justify-content-between"
+                                    href="javascript:void(0)">
                                     <span>Settings</span>
                                     <i class="si si-settings"></i>
                                 </a>
                                 <div role="separator" class="dropdown-divider"></div>
                                 <h5 class="dropdown-header text-uppercase">Actions</h5>
-                                <a class="dropdown-item d-flex align-items-center justify-content-between" href="op_auth_lock.html">
+                                <a class="dropdown-item d-flex align-items-center justify-content-between"
+                                    href="op_auth_lock.html">
                                     <span>Lock Account</span>
                                     <i class="si si-lock ml-1"></i>
                                 </a>
-                                <a class="dropdown-item d-flex align-items-center justify-content-between" href="#" onclick="event.preventDefault();
+                                <a class="dropdown-item d-flex align-items-center justify-content-between"
+                                    href="#"
+                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     <span>Log Out</span>
                                     <i class="si si-logout ml-1"></i>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                        style="display: none;">
                                         {{ csrf_field() }}
                                     </form>
                                 </a>
@@ -666,11 +730,13 @@
 
                     <!-- Notifications Dropdown -->
                     <div class="dropdown d-inline-block ml-2">
-                        <button type="button" class="btn btn-sm btn-dual" id="page-header-notifications-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button type="button" class="btn btn-sm btn-dual" id="page-header-notifications-dropdown"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="si si-bell"></i>
                             <span class="badge badge-primary badge-pill">6</span>
                         </button>
-                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0 border-0 font-size-sm" aria-labelledby="page-header-notifications-dropdown">
+                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0 border-0 font-size-sm"
+                            aria-labelledby="page-header-notifications-dropdown">
                             <div class="p-2 bg-primary text-center">
                                 <h5 class="dropdown-header text-uppercase text-white">Notifications</h5>
                             </div>
@@ -753,7 +819,8 @@
 
                     <!-- Toggle Side Overlay -->
                     <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-                    <button type="button" class="btn btn-sm btn-dual ml-2" data-toggle="layout" data-action="side_overlay_toggle">
+                    <button type="button" class="btn btn-sm btn-dual ml-2" data-toggle="layout"
+                        data-action="side_overlay_toggle">
                         <i class="fa fa-fw fa-list-ul fa-flip-horizontal"></i>
                     </button>
                     <!-- END Toggle Side Overlay -->
@@ -769,11 +836,13 @@
                         <div class="input-group input-group-sm">
                             <div class="input-group-prepend">
                                 <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-                                <button type="button" class="btn btn-danger" data-toggle="layout" data-action="header_search_off">
+                                <button type="button" class="btn btn-danger" data-toggle="layout"
+                                    data-action="header_search_off">
                                     <i class="fa fa-fw fa-times-circle"></i>
                                 </button>
                             </div>
-                            <input type="text" class="form-control" placeholder="Search or hit ESC.." id="page-header-search-input" name="page-header-search-input">
+                            <input type="text" class="form-control" placeholder="Search or hit ESC.."
+                                id="page-header-search-input" name="page-header-search-input">
                         </div>
                     </form>
                 </div>
@@ -796,13 +865,17 @@
         <!-- Main Container -->
         <main id="main-container">
             <!-- Hero -->
-            <div class="bg-image overflow-hidden" style="background-image: url('resources/plantilla/assets/media/photos/photo29@2x.jpg');">
+            <div class="bg-image overflow-hidden"
+                style="background-image: url('resources/plantilla/assets/media/photos/photo29@2x.jpg');">
                 <div class="bg-primary-dark-op">
                     <div class="content content-narrow content-full">
-                        <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center mt-5 mb-2 text-center text-sm-left">
+                        <div
+                            class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center mt-5 mb-2 text-center text-sm-left">
                             <div class="flex-sm-fill">
-                                <h1 class="font-w600 text-white mb-0 invisible" data-toggle="appear">Usuario: Admin</h1>
-                                <h2 class="h4 font-w400 text-white-75 mb-0 invisible" data-toggle="appear" data-timeout="250">CI: xxxxxxxx LP</h2>
+                                <h1 class="font-w600 text-white mb-0 invisible" data-toggle="appear">Usuario: Admin
+                                </h1>
+                                <h2 class="h4 font-w400 text-white-75 mb-0 invisible" data-toggle="appear"
+                                    data-timeout="250">CI: xxxxxxxx LP</h2>
                                 <!-- <h2 class="h4 font-w400 text-white-75 mb-0 invisible" data-toggle="appear" data-timeout="250">Cargo: Administrador</h2> -->
                             </div>
                         </div>
@@ -816,7 +889,8 @@
                 <!-- Stats -->
                 <div class="row">
                     <div class="col-6 col-md-3 col-lg-6 col-xl-3">
-                        <a class="block block-rounded block-link-pop border-left border-primary border-4x" href="#" id="btn_menu_users">
+                        <a class="block block-rounded block-link-pop border-left border-primary border-4x"
+                            href="#" id="btn_menu_users">
                             <div class="block-content block-content-full">
                                 <div class="font-size-sm font-w600 text-uppercase text-muted">Administración</div>
                                 <i class="fa fa-users fa-2x text-muted"></i>
@@ -833,7 +907,8 @@
                         </a>
                     </div> -->
                     <div class="col-6 col-md-3 col-lg-6 col-xl-3">
-                        <a class="block block-rounded block-link-pop border-left border-primary border-4x" href="#" id="btn_home_invetario">
+                        <a class="block block-rounded block-link-pop border-left border-primary border-4x"
+                            href="#" id="btn_home_invetario">
                             <div class="block-content block-content-full">
                                 <div class="font-size-sm font-w600 text-uppercase text-muted">Inventario</div>
                                 <i class="fa fa-file-archive fa-2x text-muted"></i>
@@ -842,7 +917,8 @@
                         </a>
                     </div>
                     <div class="col-6 col-md-3 col-lg-6 col-xl-3">
-                        <a class="block block-rounded block-link-pop border-left border-primary border-4x" href="" id="btn_home_cliente">
+                        <a class="block block-rounded block-link-pop border-left border-primary border-4x"
+                            href="" id="btn_home_cliente">
                             <div class="block-content block-content-full">
                                 <div class="font-size-sm font-w600 text-uppercase text-muted">Clientes</div>
                                 <i class=" fa fa-address-book  fa-2x text-muted"></i>
@@ -851,7 +927,8 @@
                         </a>
                     </div>
                     <div class="col-6 col-md-3 col-lg-6 col-xl-3">
-                        <a class="block block-rounded block-link-pop border-left border-primary border-4x" href="#" id="btn_home_pedidos">
+                        <a class="block block-rounded block-link-pop border-left border-primary border-4x"
+                            href="#" id="btn_home_pedidos">
                             <div class="block-content block-content-full">
                                 <div class="font-size-sm font-w600 text-uppercase text-muted">Pedidos</div>
                                 <i class="fa fa-shopping-cart fa-2x text-muted"></i>
@@ -860,7 +937,8 @@
                         </a>
                     </div>
                     <div class="col-6 col-md-3 col-lg-6 col-xl-3">
-                        <a class="block block-rounded block-link-pop border-left border-primary border-4x" href="javascript:void(0)">
+                        <a class="block block-rounded block-link-pop border-left border-primary border-4x"
+                            href="javascript:void(0)">
                             <div class="block-content block-content-full">
                                 <div class="font-size-sm font-w600 text-uppercase text-muted">Hubicaciones</div>
                                 <i class="fa fa-location-arrow fa-2x text-muted"></i>
@@ -884,7 +962,8 @@
                         Desarrollado por:<a class="font-w600" href="#" >EndCode</a>
                     </div> -->
                     <div class="col-sm-6 order-sm-1 py-1 text-center text-sm-left">
-                        <a class="font-w600" href="#">ContBook 1.0</a> &copy; <span data-toggle="year-copy">2022</span>
+                        <a class="font-w600" href="#">ContBook 1.0</a> &copy; <span
+                            data-toggle="year-copy">2022</span>
                     </div>
                 </div>
             </div>
@@ -893,14 +972,16 @@
 
         <!-- Apps Modal -->
         <!-- Opens from the modal toggle button in the header -->
-        <div class="modal fade" id="one-modal-apps" tabindex="-1" role="dialog" aria-labelledby="one-modal-apps" aria-hidden="true">
+        <div class="modal fade" id="one-modal-apps" tabindex="-1" role="dialog" aria-labelledby="one-modal-apps"
+            aria-hidden="true">
             <div class="modal-dialog modal-dialog-top modal-sm" role="document">
                 <div class="modal-content">
                     <div class="block block-themed block-transparent mb-0">
                         <div class="block-header bg-primary-dark">
                             <h3 class="block-title">Apps</h3>
                             <div class="block-options">
-                                <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                                <button type="button" class="btn-block-option" data-dismiss="modal"
+                                    aria-label="Close">
                                     <i class="si si-close"></i>
                                 </button>
                             </div>
@@ -933,7 +1014,8 @@
                                 </div>
                                 <div class="col-6">
                                     <!-- Sales -->
-                                    <a class="block block-rounded block-themed bg-success mb-0" href="javascript:void(0)">
+                                    <a class="block block-rounded block-themed bg-success mb-0"
+                                        href="javascript:void(0)">
                                         <div class="block-content text-center">
                                             <i class="si si-plane fa-2x text-white-75"></i>
                                             <p class="font-w600 font-size-sm text-white mt-2 mb-3">
@@ -945,7 +1027,8 @@
                                 </div>
                                 <div class="col-6">
                                     <!-- Payments -->
-                                    <a class="block block-rounded block-themed bg-warning mb-0" href="javascript:void(0)">
+                                    <a class="block block-rounded block-themed bg-warning mb-0"
+                                        href="javascript:void(0)">
                                         <div class="block-content text-center">
                                             <i class="si si-wallet fa-2x text-white-75"></i>
                                             <p class="font-w600 font-size-sm text-white mt-2 mb-3">
@@ -965,7 +1048,7 @@
     </div>
     <!-- END Page Container -->
 
-    <script src="{{ asset('resources/plantilla/assets/js/oneui.core.min.js')}}"></script>
+    <script src="{{ asset('resources/plantilla/assets/js/oneui.core.min.js') }}"></script>
 
     <!--
             OneUI JS
@@ -973,33 +1056,35 @@
             Custom functionality including Blocks/Layout API as well as other vital and optional helpers
             webpack is putting everything together at assets/_es6/main/app.js
         -->
-    <script src="{{ asset('resources/plantilla/assets/js/oneui.app.min.js')}}"></script>
+    <script src="{{ asset('resources/plantilla/assets/js/oneui.app.min.js') }}"></script>
 
     <!-- Page JS Plugins -->
-    <script src="{{ asset('resources/plantilla/assets/js/plugins/chart.js/Chart.bundle.min.js')}}"></script>
-    <script src="{{ asset('resources/plantilla/assets/js/plugins/jquery-bootstrap-wizard/bs4/jquery.bootstrap.wizard.min.js')}}"></script>
-    <script src="{{ asset('resources/plantilla/assets/js/plugins/jquery-validation/jquery.validate.min.js')}}"></script>
-    <script src="{{ asset('resources/plantilla/assets/js/plugins/jquery-validation/additional-methods.js')}}"></script>
+    <script src="{{ asset('resources/plantilla/assets/js/plugins/chart.js/Chart.bundle.min.js') }}"></script>
+    <script
+        src="{{ asset('resources/plantilla/assets/js/plugins/jquery-bootstrap-wizard/bs4/jquery.bootstrap.wizard.min.js') }}">
+    </script>
+    <script src="{{ asset('resources/plantilla/assets/js/plugins/jquery-validation/jquery.validate.min.js') }}"></script>
+    <script src="{{ asset('resources/plantilla/assets/js/plugins/jquery-validation/additional-methods.js') }}"></script>
 
     <!-- Page JS Code -->
-    <script src="{{ asset('resources/plantilla/assets/js/pages/be_pages_dashboard.min.js')}}"></script>
+    <script src="{{ asset('resources/plantilla/assets/js/pages/be_pages_dashboard.min.js') }}"></script>
 
     <!-- Page JS Plugins -->
-    <script src="{{ asset('resources/plantilla/assets/js/plugins/bootstrap-notify/bootstrap-notify.min.js')}}"></script>
+    <script src="{{ asset('resources/plantilla/assets/js/plugins/bootstrap-notify/bootstrap-notify.min.js') }}"></script>
 
     <!-- Page JS Code -->
-    <!-- <script src="{{ asset('resources/plantilla/assets/js/pages/be_forms_wizard.min.js')}}"></script> -->
+    <!-- <script src="{{ asset('resources/plantilla/assets/js/pages/be_forms_wizard.min.js') }}"></script> -->
 
-    <!-- <script src="{{ asset('resources/plantilla/noty/demo/bouncejs/bounce.js')}}"></script> -->
-    <script src="{{ asset('resources/plantilla/noty/lib/noty.js')}}"></script>
-    <script src="{{ asset('resources/plantilla/noty/demo/demo.js')}}"></script>
+    <!-- <script src="{{ asset('resources/plantilla/noty/demo/bouncejs/bounce.js') }}"></script> -->
+    <script src="{{ asset('resources/plantilla/noty/lib/noty.js') }}"></script>
+    <script src="{{ asset('resources/plantilla/noty/demo/demo.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/velocity/1.5/velocity.min.js"></script>
     <script src="https://cdn.jsdelivr.net/mojs/latest/mo.min.js"></script>
 
 
     <!-- JS del sistema -->
 
-    <script src="{{ asset('resources/js/inicio.js')}}"></script>
+    <script src="{{ asset('resources/js/inicio.js') }}"></script>
 
 </body>
 
