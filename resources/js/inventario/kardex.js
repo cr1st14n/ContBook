@@ -5,32 +5,37 @@ function kardex_home(param) {
         $("#main-container").html(data);
         queryList();
     });
-    One.layout('sidebar_toggle');
-
+    modoApp();
 }
 function queryList() {
     $.get("inventario/kardex/query_list_1", function (data, textStatus, jqXHR) {
         const_tbody(data);
     });
 }
-$('#bus_pro').change(function (e) { 
+$("#bus_pro").change(function (e) {
     e.preventDefault();
     console.log($(this).val());
-    if ($(this).val()=='all') {
-        queryList()
-        return
+    if ($(this).val() == "all") {
+        queryList();
+        return;
     }
-    $.get("inventario/kardex/query_list_2",{id:$(this).val()}, function (data, textStatus, jqXHR) {
-        const_tbody(data);
-    });
+    $.get(
+        "inventario/kardex/query_list_2",
+        { id: $(this).val() },
+        function (data, textStatus, jqXHR) {
+            const_tbody(data);
+        }
+    );
 });
 
 function const_tbody(data) {
     html = data
         .map(function (param) {
-            flecha = ' <span class="font-w600 text-success"> <i class="far fa-arrow-alt-circle-down"></span>';
-            if (param.kd_ent=='-') {
-                flecha = ' <span class="font-w600 text-warning"><i class="far fa-arrow-alt-circle-up"></span>';
+            flecha =
+                ' <span class="font-w600 text-success"> <i class="far fa-arrow-alt-circle-down"></span>';
+            if (param.kd_ent == "-") {
+                flecha =
+                    ' <span class="font-w600 text-warning"><i class="far fa-arrow-alt-circle-up"></span>';
             }
             return (h = `
         <tr>

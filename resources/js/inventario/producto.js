@@ -6,7 +6,7 @@ function producto_home(param) {
         $("#main-container").html(data);
         showList_producto();
     });
-    One.layout("sidebar_toggle");
+    modoApp()
 }
 function lista_est(param) {
     data = { lista: param };

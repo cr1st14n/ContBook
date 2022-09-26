@@ -5,8 +5,8 @@ function provedor_home() {
     $.get("inventario/provedor/home", {}, function (data, textStatus, jqXHR) {
         $("#main-container").html(data);
         show_list_1();
+        modoApp()
     });
-    One.layout('sidebar_toggle');
 }
 
 // *--------crear provedor -----------

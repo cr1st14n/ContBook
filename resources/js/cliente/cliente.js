@@ -6,8 +6,7 @@ function clientes_home() {
             queryListCliente();
         }, 800);
     });
-    One.layout('sidebar_toggle');
-
+    modoApp()
 }
 function queryListCliente() {
     $.get("cliente/list_1", function (data, textStatus, jqXHR) {

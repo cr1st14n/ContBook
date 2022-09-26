@@ -11,7 +11,7 @@ function caducidad_home() {
             }, 900);
         },
     });
-    One.layout("sidebar_toggle");
+    modoApp()
 }
 
 function show_list_tbody_caducidad() {

@@ -4,8 +4,8 @@ usu_s = "";
 function view_usu() {
     $.get("adm/usu", function (data, textStatus, jqXHR) {
         $("#main-container").html(data);
-        One.layout('sidebar_toggle');
     });
+    modoApp();
 }
 $("#btn_new_usu").click(function (e) {
     e.preventDefault();
@@ -133,14 +133,16 @@ $("#form_edit_usu").submit(function (e) {
     });
 });
 function usuEditPermiso(param) {
-    $.post("adm/usu/update_estado",{"_token": $('meta[name="csrf-token"]').attr('content'),'id':param} ,
+    $.post(
+        "adm/usu/update_estado",
+        { _token: $('meta[name="csrf-token"]').attr("content"), id: param },
         function (data, textStatus, jqXHR) {
             console.log(data);
             if (data) {
-                show_list_usu()
+                show_list_usu();
             } else {
-                console.log('Error');
+                console.log("Error");
             }
-        },
+        }
     );
 }

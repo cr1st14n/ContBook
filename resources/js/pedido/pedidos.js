@@ -7,7 +7,7 @@ function pedido_registro() {
             list_1();
         }, 800);
     });
-    One.layout("sidebar_toggle");
+    modoApp()
 }
 function pedido_new() {
     $.get("Pedido/create_1", function (data, textStatus, jqXHR) {
@@ -16,7 +16,7 @@ function pedido_new() {
             list_1();
         }, 800);
     });
-    One.layout("sidebar_toggle");
+    modoApp()
 }
 $("select[name=sele_cliente]").change(function (e) {
     e.preventDefault();
