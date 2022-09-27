@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('pdo_uMedica')->nullable();
             $table->string('pdo_formFarm')->nullable();
             $table->string('pdo_nomGen')->nullable();
+            $table->string('pdo_nomComer')->nullable();
             $table->string('pdo_cant')->nullable();
            
             //campos de auditoria 

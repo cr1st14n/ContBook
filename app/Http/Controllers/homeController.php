@@ -14,4 +14,8 @@ class homeController extends Controller
     {
         return view('home');
     }
+    public function index_APP()
+    {
+        return view('homeApp');
+    }
 }

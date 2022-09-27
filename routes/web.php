@@ -29,12 +29,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('login.login');
 })->name('login')->middleware('guest');
-Route::any('log1', [loginController::class, 'login']); 
+Route::any('log1', [loginController::class, 'login']);
 
 
 Route::post('logout', [loginController::class, 'logout'])->name('logout');
 
 Route::get('index', [homeController::class, 'index']);
+Route::get('indexApp', [homeController::class, 'index_APP']);
 
 Route::group(['prefix' => 'adm', 'middleware' => ['auth']], function () {
     Route::get('/', [AdmController::class, 'index']);
@@ -79,31 +80,30 @@ Route::group(['prefix' => 'inventario', 'middleware' => ['auth']], function () {
         Route::post('check_est_cad', [CaducidadController::class, 'check_est_cad']);
     });
 });
-Route::group(['prefix'=>'cliente','middleware'=>['auth']],function ()
-{
-    Route::get('/',[ClienteController::class,'home']);
-    Route::get('list_1',[ClienteController::class,'list_1']);
-    Route::post('query_create',[ClienteController::class,'store']);
-    Route::get('query_edit',[ClienteController::class,'query_edit']);
-    Route::post('query_update/{id}',[ClienteController::class,'query_update']);
-    Route::post('query_edit_estado',[ClienteController::class,'query_edit_estado']);
-    Route::get('query_search_1',[ClienteController::class,'query_search_1']);
+Route::group(['prefix' => 'cliente', 'middleware' => ['auth']], function () {
+    Route::get('/', [ClienteController::class, 'home']);
+    Route::get('list_1', [ClienteController::class, 'list_1']);
+    Route::post('query_create', [ClienteController::class, 'store']);
+    Route::get('query_edit', [ClienteController::class, 'query_edit']);
+    Route::post('query_update/{id}', [ClienteController::class, 'query_update']);
+    Route::post('query_edit_estado', [ClienteController::class, 'query_edit_estado']);
+    Route::get('query_search_1', [ClienteController::class, 'query_search_1']);
 });
-Route::group(['prefix'=>'Pedido','middleware'=>['auth']],function ()
-{
-    Route::get('/',[PedidoController::class,'home']);
-    Route::get('list_1',[PedidoController::class,'list_1']);
-    Route::get('create_1',[PedidoController::class,'create_1']);
-    
+Route::group(['prefix' => 'Pedido', 'middleware' => ['auth']], function () {
+    Route::get('/', [PedidoController::class, 'home']);
+    Route::get('list_1', [PedidoController::class, 'list_1']);
+    Route::get('create_1', [PedidoController::class, 'create_1']);
 });
 
-Route::group(['prefix'=>'ContApp','middleware'=>['auth']],function ()
-{
-    Route::get('/',[modAppController::class,'home'])->name('AppHome');
-    Route::group(['prefix'=>'cliente'],function ()
-    {
-        Route::get('/',[modAppController::class,'homeCliente']);
+Route::group(['prefix' => 'ContApp', 'middleware' => ['auth']], function () {
+    Route::get('/', [modAppController::class, 'home'])->name('AppHome');
+    Route::group(['prefix' => 'cliente'], function () {
+        Route::get('/', [modAppController::class, 'homeCliente']);
     });
-    Route::get('view_Pedido',[modAppController::class,'homePedido']);
-    Route::get('view_Catalogo',[modAppController::class,'homeCatalogo']);
+    Route::group(['prefix' => 'Pedido'], function () {
+        Route::get('/', [modAppController::class, 'homePedido']);
+        Route::get('busCliente', [modAppController::class, 'busCliente']);
+        Route::get('busProducto', [modAppController::class, 'busProducto']);
+    });
+    Route::get('view_Catalogo', [modAppController::class, 'homeCatalogo']);
 });
