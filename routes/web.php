@@ -104,6 +104,7 @@ Route::group(['prefix' => 'ContApp', 'middleware' => ['auth']], function () {
         Route::get('/', [modAppController::class, 'homePedido']);
         Route::get('busCliente', [modAppController::class, 'busCliente']);
         Route::get('busProducto', [modAppController::class, 'busProducto']);
+        Route::post('storePedido', [modAppController::class, 'storePedido']);
     });
     Route::get('view_Catalogo', [modAppController::class, 'homeCatalogo']);
 });

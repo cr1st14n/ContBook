@@ -41,7 +41,7 @@
                     </tr>
                 </tbody>
             </table>
-            <button class="btn btn-block btn-success btn-sm"><i class="fa  fa-arrow-alt-circle-right"></i>
+            <button class="btn btn-block btn-success btn-sm" onclick="concluirPedido()" ><i class="fa  fa-arrow-alt-circle-right"></i>
                 Concluir</button>
         </div>
     </div>

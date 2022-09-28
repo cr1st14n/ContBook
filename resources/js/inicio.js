@@ -19,67 +19,19 @@ function modoApp() {
 function notif(tipo, texto) {
     switch (tipo) {
         case 1:
-            $.notific8(texto, {
-                life: 3000,
-                heading: "Correcto",
-                icon: "info-circled",
-                theme: "amethyst",
-                family: "atomic",
-                // sticky: true,
-                horizontalEdge: "top",
-                // horizontalEdge: 'bottom',
-                verticalEdge: "rigth",
-                zindex: 1500,
-                // closeText: 'près',
-            });
+            One.helpers('notify', {type: 'info', icon: 'fa fa-info-circle mr-1', texto });
             break;
 
         case 2:
-            $.notific8(texto, {
-                life: 3000,
-                heading: "Correcto",
-                icon: "info-circled",
-                theme: "amethyst",
-                family: "atomic",
-                // sticky: true,
-                horizontalEdge: "top",
-                // horizontalEdge: 'bottom',
-                verticalEdge: "rigth",
-                zindex: 1500,
-                // closeText: 'près',
-            });
+            One.helpers('notify', {type: 'success', icon: 'fa fa-check mr-1', message: texto });
             break;
 
         case 3:
-            $.notific8(texto, {
-                life: 3000,
-                heading: "Correcto",
-                icon: "info-circled",
-                theme: "amethyst",
-                family: "atomic",
-                // sticky: true,
-                horizontalEdge: "top",
-                // horizontalEdge: 'bottom',
-                verticalEdge: "rigth",
-                zindex: 1500,
-                // closeText: 'près',
-            });
+            One.helpers('notify', {type: 'warning', icon: 'fa fa-exclamation mr-1', message: texto });
             break;
 
         case 4:
-            $.notific8(texto, {
-                life: 3000,
-                heading: "Correcto",
-                icon: "info-circled",
-                theme: "amethyst",
-                family: "atomic",
-                // sticky: true,
-                horizontalEdge: "top",
-                // horizontalEdge: 'bottom',
-                verticalEdge: "rigth",
-                zindex: 1500,
-                // closeText: 'près',
-            });
+            One.helpers('notify', {type: 'danger', icon: 'fa fa-times mr-1', message: texto });
             break;
 
         default:

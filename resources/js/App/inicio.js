@@ -1,3 +1,73 @@
+function notif(tipo, texto) {
+    switch (tipo) {
+        case 1:
+            One.helpers("notify", {
+                type: "info",
+                icon: "fa fa-info-circle mr-1",
+                message: texto,
+            });
+            break;
+
+        case 2:
+            One.helpers("notify", {
+                type: "success",
+                icon: "fa fa-check mr-1",
+                message: texto,
+            });
+            break;
+
+        case 3:
+            One.helpers("notify", {
+                type: "warning",
+                icon: "fa fa-exclamation mr-1",
+                message: texto,
+            });
+            break;
+
+        case 4:
+            One.helpers("notify", {
+                type: "danger",
+                icon: "fa fa-times mr-1",
+                message: texto,
+            });
+            break;
+
+        default:
+            $.notific8("Registro actualizado .", {
+                life: 3000,
+                heading: "Correcto",
+                icon: "info-circled",
+                theme: "amethyst",
+                family: "atomic",
+                // sticky: true,
+                horizontalEdge: "top",
+                // horizontalEdge: 'bottom',
+                verticalEdge: "rigth",
+                zindex: 1500,
+                // closeText: 'près',
+                onInit: function (data) {
+                    console.log("--onInit--Inicial");
+                    console.log("data:");
+                    console.log(data);
+                },
+                onCreate: function (notification, data) {
+                    console.log("--onCreate-- Creado");
+                    console.log("notification:");
+                    console.log(notification);
+                    console.log("data:");
+                    console.log(data);
+                },
+                onClose: function (notification, data) {
+                    console.log("--onClose-- Cerrado");
+                    console.log("notification:");
+                    console.log(notification);
+                    console.log("data:");
+                    console.log(data);
+                },
+            });
+            break;
+    }
+}
 function viewInicio() {
     console.log("home ");
     $.get("indexApp", function (data, textStatus, jqXHR) {
@@ -103,14 +173,26 @@ $("#btn_searchPro").click(function (e) {
 function funSelectPro(p) {
     ped_idPro = ped_producto[p];
 
-    ped_data.push({ id: ped_idPro, cant: $("#inp_text_pro_2").val() });
+    console.log($("#inp_text_pro_2").val());
+    console.log(ped_producto[p].pdo_cant);
+    if (
+        parseInt($("#inp_text_pro_2").val()) >
+        parseInt(ped_producto[p].pdo_cant)
+    ) {
+        notif(3, "Cantidad superada");
+        return;
+    }
 
+    ped_data.push({ pro: ped_idPro, cant: $("#inp_text_pro_2").val() });
+
+    notif(1, "Producto agregado");
     console.log(ped_data);
-    html=ped_data.map(function (p) { 
-        return h=`
+    html = ped_data
+        .map(function (p) {
+            return (h = `
         <tr>
-        <th class="text-center" scope="row">${p.id.id}</th>
-        <td class="font-w600 font-size-sm">${p.id.pdo_nomGen} - ${p.id.pdo_nomComer} <br> cantidad: ${p.cant}</td>
+        <th class="text-center" scope="row">${p.pro.id}</th>
+        <td class="font-w600 font-size-sm">${p.pro.pdo_nomGen} - ${p.pro.pdo_nomComer} <br> cantidad: ${p.cant}</td>
         <td class="text-center">
             <div class="btn-group">
                 <button type="button" class="btn btn-sm btn-light" data-toggle="tooltip"
@@ -120,10 +202,31 @@ function funSelectPro(p) {
             </div>
         </td>
     </tr>
-        `;
-     }).join(' ');
-     $('#tbody_listProsect').html(html);
+        `);
+        })
+        .join(" ");
+    $("#tbody_listProsect").html(html);
     $("#modal_busCliente").modal("hide");
     $("#inp_text_pro_2").html("");
     $("#inp_text_pro_1").html("");
+}
+function concluirPedido() {
+    if (ped_idCliente == '') {
+        notif(3, 'seleccione Cliente')
+        return
+    }
+    if ( ped_data == '' ) {
+        notif(3, 'seleccione Productos')
+        return
+    }
+    $.ajax({
+        type: "post",
+        url: "ContApp/Pedido/storePedido",
+        data: {_token: $('meta[name="csrf-token"]').attr("content"), C:ped_idCliente,P:ped_data},
+        success: function (response) {
+            console.log(response);
+            notif(2,'Pedido registrado')
+            viewInicio()
+        }
+    });
 }

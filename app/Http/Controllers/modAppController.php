@@ -43,4 +43,8 @@ class modAppController extends Controller
             })
             ->limit('10')->get();
     }
+    public function storePedido(Request $request)
+    {
+        return $request;
+    }
 }
