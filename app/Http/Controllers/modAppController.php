@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cliente;
+use App\Models\pedido;
 use App\Models\producto;
 use Illuminate\Http\Request;
 
@@ -45,6 +46,11 @@ class modAppController extends Controller
     }
     public function storePedido(Request $request)
     {
+        $pro=$request->input('P');
+        foreach ($pro as $key => $value) {
+                   $new=new pedido();
+                   $new->id_cliente=$request->input('');
+        }
         return $request;
     }
 }
