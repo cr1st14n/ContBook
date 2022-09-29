@@ -35,11 +35,11 @@
                 </tbody>
             </table>
         </div>
-        <div class=" " style="text-align: right">
-            <button class="btn btn-dark  btn-rounded " onclick="concluirPedido()"><i
-                    class="fa  fa-arrow-alt-circle-right"></i>
-            </button>
-        </div>
+    </div>
+    <div class=" " style="text-align: right">
+        <button class="btn btn-dark  btn-rounded " onclick="concluirPedido()"><i
+                class="fa  fa-arrow-alt-circle-right"></i>
+        </button>
     </div>
     <!-- END Small Table -->
 </div>
@@ -47,7 +47,7 @@
 <!-- Fade In Block Modal -->
 <div class="modal fade" id="modal_busCliente" tabindex="-1" role="dialog" aria-labelledby="modal-block-fadein"
     aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-top " role="document">
         <div class="modal-content">
             <div class="block block-themed block-transparent mb-0">
                 <div class="block-header bg-primary-dark">
@@ -93,7 +93,7 @@
 </div>
 <div class="modal fade" id="modal_busProducto" tabindex="-1" role="dialog" aria-labelledby="modal-block-fadein"
     aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-top" role="document">
         <div class="modal-content">
             <div class="block block-themed block-transparent mb-0">
                 <div class="block-header bg-primary-dark">
