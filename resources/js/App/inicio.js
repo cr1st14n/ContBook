@@ -131,8 +131,8 @@ function funSelectClie(p) {
     $("#tbodylistCliePed").html("");
     $("#inp_text_1").val("");
     strin1 = ` 
-    Nombre:${ped_clientes[p].cli_nombre} CI:${ped_clientes[p].cli_ci} <br>
-    R.Z.:${ped_clientes[p].cli_razonSocial} NIT:${ped_clientes[p].cli_razonSocialNit}`;
+    Nombre: <strong>${ped_clientes[p].cli_nombre}</strong> CI:<strong>${ped_clientes[p].cli_ci}</strong> <br>
+    R.Z.:<strong>${ped_clientes[p].cli_razonSocial}</strong> NIT:<strong>${ped_clientes[p].cli_razonSocialNit}</strong>`;
     $("#p_datClie").html(strin1);
 }
 
@@ -195,7 +195,7 @@ function funSelectPro(p) {
         <td class="font-w600 font-size-sm">${p.pro.pdo_nomGen} - ${p.pro.pdo_nomComer} <br> cantidad: ${p.cant}</td>
         <td class="text-center">
             <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-light" data-toggle="tooltip"
+                <button type="button" class="btn btn-sm btn-dark" data-toggle="tooltip"
                     title="Edit Client" >
                     <i class="fa fa-fw fa-arrow-circle-right"></i>
                 </button>
@@ -211,22 +211,26 @@ function funSelectPro(p) {
     $("#inp_text_pro_1").html("");
 }
 function concluirPedido() {
-    if (ped_idCliente == '') {
-        notif(3, 'seleccione Cliente')
-        return
+    if (ped_idCliente == "") {
+        notif(3, "seleccione Cliente");
+        return;
     }
-    if ( ped_data == '' ) {
-        notif(3, 'seleccione Productos')
-        return
+    if (ped_data == "") {
+        notif(3, "seleccione Productos");
+        return;
     }
     $.ajax({
         type: "post",
         url: "ContApp/Pedido/storePedido",
-        data: {_token: $('meta[name="csrf-token"]').attr("content"), C:ped_idCliente,P:ped_data},
+        data: {
+            _token: $('meta[name="csrf-token"]').attr("content"),
+            C: ped_idCliente,
+            P: ped_data,
+        },
         success: function (response) {
             console.log(response);
-            notif(2,'Pedido registrado')
-            viewInicio()
-        }
+            notif(2, "Pedido registrado");
+            viewInicio();
+        },
     });
 }
