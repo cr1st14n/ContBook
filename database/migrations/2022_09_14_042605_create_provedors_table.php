@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('prov_mail')->nullable();
             $table->string('prov_contacto')->nullable();
             $table->string('prov_telfContacto')->nullable();
+            $table->longText('prov_agentes')->nullable();
 
              //campos de auditoria 
              $table->integer('ca_usu_cod')->nullable();
