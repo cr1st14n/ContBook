@@ -19,11 +19,11 @@ return new class extends Migration
 
             $table->string('pdo_cod')->nullable();
             $table->string('pdo_cod2')->nullable();
-            $table->string('pdo_nomGen')->nullable();
-            $table->string('pdo_nomComer')->nullable();
+            $table->longText('pdo_nomGen')->nullable();
+            $table->longText('pdo_nomComer')->nullable();
             $table->string('pdo_desc')->nullable();
             $table->string('pdo_concentracion')->nullable();
-            $table->string('pdo_uMedica')->nullable();
+            $table->string('pdo_uMedida')->nullable();
             $table->string('pdo_formFarm')->nullable();
             $table->string('pdo_cant')->nullable();
             $table->string('pdo_preUniVenta1')->nullable();
