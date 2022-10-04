@@ -138,6 +138,31 @@ function funSelectClie(p) {
 
 $("#btn_showcatalogo").click(function (e) {
     e.preventDefault();
+    $.ajax({
+        type: "get",
+        url: "ContApp/Pedido/listProducto",
+        success: function (response) {
+            html = response
+                .map(function (p, i) {
+                    return (h = `
+                <tr>
+                    <th class="text-center" scope="row">${p.prov_sigla}-${p.pdo_cod}</th>
+                    <td class="font-w600 font-size-sm">- ${p.pdo_nomGen} <br>- ${p.pdo_nomComer} <br> Stock: ${p.pdo_cant}</td>
+                    <td class="text-center">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-light" data-toggle="tooltip"
+                                title="Edit Client" onclick="funSelectPro(${i})">
+                                <i class="fa fa-fw fa-arrow-circle-right"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                `);
+                })
+                .join(" ");
+            $("#tbodylistProPed").html(html);
+        }
+    });
     $("#modal_busProducto").modal("show");
 });
 $("#btn_searchPro").click(function (e) {
@@ -152,8 +177,8 @@ $("#btn_searchPro").click(function (e) {
                 .map(function (p, i) {
                     return (h = `
                 <tr>
-                    <th class="text-center" scope="row">${p.id}</th>
-                    <td class="font-w600 font-size-sm">${p.pdo_nomGen} - ${p.pdo_nomComer} <br> Stock: ${p.pdo_cant}</td>
+                    <th class="text-center" scope="row">${p.prov_sigla}-${p.pdo_cod}</th>
+                    <td class="font-w600 font-size-sm">- ${p.pdo_nomGen} <br>- ${p.pdo_nomComer} <br> Stock: ${p.pdo_cant}</td>
                     <td class="text-center">
                         <div class="btn-group">
                             <button type="button" class="btn btn-sm btn-light" data-toggle="tooltip"

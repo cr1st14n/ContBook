@@ -32,7 +32,7 @@
                         <td class="d-none d-sm-table-cell">--</td>
                         <td>-</td>
                     </tr>
-                </tbody>
+                </tbody> 
             </table>
         </div>
     </div>

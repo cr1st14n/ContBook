@@ -34,22 +34,32 @@ class modAppController extends Controller
             })
             ->limit('20')->get();
     }
+    public function listProducto(Request $request)
+    {
+        return producto::select('id', 'pdo_nomGen', 'pdo_nomComer', 'pdo_cant')
+            ->join('provedors as pro','pro.id','productos.id')
+            ->where('productos.ca_estado', '1')
+            ->select('productos.id','pdo_cod','pdo_cant','pdo_nomGen','pdo_nomComer','prov_sigla','prov_nombre','pdo_id_provedor')
+            ->get();
+    }
     public function busProducto(Request $request)
     {
-        return producto::select('id','pdo_nomGen','pdo_nomComer','pdo_cant')
-            ->where('ca_estado', '1')
+        return producto::select('id', 'pdo_nomGen', 'pdo_nomComer', 'pdo_cant')
+            ->join('provedors as pro','pro.id','productos.id')
+            ->where('productos.ca_estado', '1')
             ->where(function ($query) use ($request) {
                 $query->where('pdo_nomGen', 'LIKE',          '%' . $request->input('data') . '%')
                     ->orWhere('pdo_nomComer', 'LIKE',        '%' .       $request->input('data') . '%');
             })
+            ->select('productos.id','pdo_cod','pdo_cant','pdo_nomGen','pdo_nomComer','prov_sigla','prov_nombre','pdo_id_provedor')
             ->limit('10')->get();
     }
     public function storePedido(Request $request)
     {
-        $pro=$request->input('P');
+        $pro = $request->input('P');
         foreach ($pro as $key => $value) {
-                   $new=new pedido();
-                   $new->id_cliente=$request->input('');
+            $new = new pedido();
+            $new->id_cliente = $request->input('');
         }
         return $request;
     }
