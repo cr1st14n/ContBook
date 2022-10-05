@@ -5,10 +5,10 @@
             <h3 class="block-title">Datos Cliente</h3>
             <div class="block-options">
                 <div class="block-options-item">
-                    <button class="btn btn-secondary btn-sm btn-rounded" id="btn_clienteSearch"><i
+                    <button class="btn btn-secondary btn-sm btn-rounded" onclick="clienteSearch()"><i
                             class="fa fa-fw fa-user-alt "></i>
                     </button>
-                    <button class="btn btn-secondary btn-sm btn-rounded" id="btn_showcatalogo"><i
+                    <button class="btn btn-secondary btn-sm btn-rounded" onclick="showcatalogo()"><i
                             class="fa fa-fw fa-shopping-cart "></i>
                     </button>
                 </div>
@@ -32,8 +32,9 @@
                         <td class="d-none d-sm-table-cell">--</td>
                         <td>-</td>
                     </tr>
-                </tbody> 
+                </tbody>
             </table>
+
         </div>
     </div>
     <div class=" " style="text-align: right">
@@ -65,7 +66,7 @@
                                 <input type="text" class="form-control form-control-sm col-12" id="inp_text_1"
                                     name="example-group3-input1" placeholder="Buscar ">
                                 <div class="input-group-prepend">
-                                    <button type="button" class="btn btn-primary btn-sm" id="btn_searchClie">
+                                    <button type="button" class="btn btn-primary btn-sm" onclick="searchClie()">
                                         <i class="fa fa-search mr-1"></i>
                                     </button>
                                 </div>
@@ -108,12 +109,17 @@
                     <table class="table table-striped table-vcenter table-hover table-responsive">
                         <div class="form-group form-row">
                             <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <button type="button" class="btn btn-primary btn-sm" onclick="showlistPro()">
+                                        <i class="fa fa-search mr-1"></i>
+                                    </button>
+                                </div>
                                 <input type="number" class="form-control form-control-sm col-3" id="inp_text_pro_2"
                                     name="example-group3-input1" placeholder="Cantidad..">
                                 <input type="text" class="form-control form-control-sm col-9" id="inp_text_pro_1"
                                     name="example-group3-input1" placeholder="Buscar ">
                                 <div class="input-group-prepend">
-                                    <button type="button" class="btn btn-primary btn-sm" id="btn_searchPro">
+                                    <button type="button" class="btn btn-primary btn-sm" onclick="searchPro()">
                                         <i class="fa fa-search mr-1"></i>
                                     </button>
                                 </div>
@@ -121,12 +127,26 @@
                         </div>
                         <thead>
                             <tr>
-                                <th class="text-center" style="width: 15%;">Cod</th>
-                                <th class="text-center" style="width: 70px;">Datos</th>
-                                <th class="text-center" style="width: 15%;">-</th>
+                                <th class="text-center" style="width: 10%;">-</th>
+                                <th class="text-center" style="width: 10%;">Cod</th>
+                                <th class="text-center" style="width: 80%;">Datos</th>
                             </tr>
+                            <style type="text/css">
+                                thead tr th {
+                                    position: sticky;
+                                    top: 0;
+                                    z-index: 10;
+                                    background-color: #ffffff;
+                                }
+
+                                .table-responsive {
+                                    height: 700px;
+                                    overflow: scroll;
+                                }
+                            </style>
                         </thead>
                         <tbody id="tbodylistProPed">
+
                         </tbody>
                     </table>
                 </div>
@@ -136,4 +156,4 @@
 </div>
 <!-- END Fade In Block Modal -->
 
-<script src="{{ asset('resources/js/App/inicio.js') }}"></script>
+{{-- <script src="{{ asset('resources/js/App/inicio.js') }}"></script> --}}

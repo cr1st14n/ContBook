@@ -18,8 +18,10 @@ class modAppController extends Controller
         return view('AppMod.cliente_index');
     }
     public function homePedido()
-    {
-        return view('AppMod.pedido_index');
+    {   
+       $producto=producto::get();
+    //    return $producto[2191]; 
+        return view('AppMod.pedido_index')->with('producto',$producto);
     }
     public function busCliente(Request $request)
     {
@@ -27,17 +29,17 @@ class modAppController extends Controller
         return Cliente::select('*')
             ->where('ca_estado', '1')
             ->where(function ($query) use ($request) {
-                $query->where('cli_nombre', 'LIKE',          '%' . $request->input('data') . '%')
-                    ->orWhere('cli_ci', 'LIKE',               $request->input('data') . '%')
-                    ->orWhere('cli_razonSocial', 'LIKE',     '%' . $request->input('data') . '%')
-                    ->orWhere('cli_razonSocialNit', 'LIKE',   $request->input('data') . '%');
+                $query->where('cli_nombre', 'iLIKE',          '%' . $request->input('data') . '%')
+                    ->orWhere('cli_ci', 'iLIKE',               $request->input('data') . '%')
+                    ->orWhere('cli_razonSocial', 'iLIKE',     '%' . $request->input('data') . '%')
+                    ->orWhere('cli_razonSocialNit', 'iLIKE',   $request->input('data') . '%');
             })
             ->limit('20')->get();
     }
     public function listProducto(Request $request)
     {
         return producto::select('id', 'pdo_nomGen', 'pdo_nomComer', 'pdo_cant')
-            ->join('provedors as pro','pro.id','productos.id')
+            ->join('provedors as pro','pro.id','productos.pdo_id_provedor')
             ->where('productos.ca_estado', '1')
             ->select('productos.id','pdo_cod','pdo_cant','pdo_nomGen','pdo_nomComer','prov_sigla','prov_nombre','pdo_id_provedor')
             ->get();
@@ -45,14 +47,14 @@ class modAppController extends Controller
     public function busProducto(Request $request)
     {
         return producto::select('id', 'pdo_nomGen', 'pdo_nomComer', 'pdo_cant')
-            ->join('provedors as pro','pro.id','productos.id')
+            ->join('provedors as pro','pro.id','productos.pdo_id_provedor')
             ->where('productos.ca_estado', '1')
             ->where(function ($query) use ($request) {
-                $query->where('pdo_nomGen', 'LIKE',          '%' . $request->input('data') . '%')
-                    ->orWhere('pdo_nomComer', 'LIKE',        '%' .       $request->input('data') . '%');
+                $query->where('pdo_nomGen', 'iLIKE',          '%' . $request->input('data') . '%')
+                    ->orWhere('pdo_nomComer', 'iLIKE',        '%' .       $request->input('data') . '%');
             })
             ->select('productos.id','pdo_cod','pdo_cant','pdo_nomGen','pdo_nomComer','prov_sigla','prov_nombre','pdo_id_provedor')
-            ->limit('10')->get();
+            ->limit('50')->get();
     }
     public function storePedido(Request $request)
     {

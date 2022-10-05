@@ -92,12 +92,26 @@ ped_idCliente = "";
 ped_clientes = "";
 ped_idPro = "";
 ped_data = [];
-$("#btn_clienteSearch").click(function (e) {
+
+$(document).on("click", "#pagination a", function (e) {
+    console.log("hola");
     e.preventDefault();
-    $("#modal_busCliente").modal("show");
+    var page = $(this).attr("href").split("page=")[1];
+    var route = "ContApp/Pedido";
+    $.ajax({
+        url: route,
+        data: { page: page },
+        type: "GET",
+        success: function (data) {
+            console.log(data);
+            $("#tbodylistProPed").html(data);
+        },
+    });
 });
-$("#btn_searchClie").click(function (e) {
-    e.preventDefault();
+function clienteSearch() {
+    $("#modal_busCliente").modal("show");
+}
+function searchClie() {
     $.get(
         "ContApp/Pedido/busCliente",
         { data: $("#inp_text_1").val() },
@@ -124,7 +138,7 @@ $("#btn_searchClie").click(function (e) {
             $("#tbodylistCliePed").html(html);
         }
     );
-});
+}
 function funSelectClie(p) {
     ped_idCliente = ped_clientes[p].id;
     $("#modal_busCliente").modal("hide");
@@ -136,75 +150,63 @@ function funSelectClie(p) {
     $("#p_datClie").html(strin1);
 }
 
-$("#btn_showcatalogo").click(function (e) {
-    e.preventDefault();
+function showcatalogo() {
+    $("#modal_busProducto").modal("show");
+}
+function showlistPro(param) {
     $.ajax({
         type: "get",
         url: "ContApp/Pedido/listProducto",
         success: function (response) {
-            html = response
-                .map(function (p, i) {
-                    return (h = `
-                <tr>
-                    <th class="text-center" scope="row">${p.prov_sigla}-${p.pdo_cod}</th>
-                    <td class="font-w600 font-size-sm">- ${p.pdo_nomGen} <br>- ${p.pdo_nomComer} <br> Stock: ${p.pdo_cant}</td>
-                    <td class="text-center">
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-light" data-toggle="tooltip"
-                                title="Edit Client" onclick="funSelectPro(${i})">
-                                <i class="fa fa-fw fa-arrow-circle-right"></i>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-                `);
-                })
-                .join(" ");
-            $("#tbodylistProPed").html(html);
-        }
+            console.log(response);
+            ped_producto = response;
+
+            tbodyProdMaque(response);
+        },
     });
-    $("#modal_busProducto").modal("show");
-});
-$("#btn_searchPro").click(function (e) {
-    e.preventDefault();
+}
+function searchPro(e) {
     console.log("click click");
     $.get(
         "ContApp/Pedido/busProducto",
         { data: $("#inp_text_pro_1").val() },
         function (data, textStatus, jqXHR) {
+            console.log(data);
             ped_producto = data;
-            html = data
-                .map(function (p, i) {
-                    return (h = `
-                <tr>
-                    <th class="text-center" scope="row">${p.prov_sigla}-${p.pdo_cod}</th>
-                    <td class="font-w600 font-size-sm">- ${p.pdo_nomGen} <br>- ${p.pdo_nomComer} <br> Stock: ${p.pdo_cant}</td>
-                    <td class="text-center">
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-light" data-toggle="tooltip"
-                                title="Edit Client" onclick="funSelectPro(${i})">
-                                <i class="fa fa-fw fa-arrow-circle-right"></i>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-                `);
-                })
-                .join(" ");
-            $("#tbodylistProPed").html(html);
+            tbodyProdMaque(data);
         }
     );
-});
+}
+function tbodyProdMaque(data) {
+    html = data
+        .map(function (p, i) {
+            return (h = `
+    <tr>
+        <td class="text-center">
+            <div class="btn-group">
+                <button type="button" class="btn btn-sm btn-light" data-toggle="tooltip"
+                    title="Edit Client" onclick="funSelectPro(${i})">
+                    <i class="fa fa-fw fa-arrow-circle-right"></i>
+                </button>
+            </div>
+        </td>
+        <th class="text-center" scope="row">${p.prov_sigla}-${p.pdo_cod}</th>
+        <td class="font-w600 font-size-sm">-NG: ${p.pdo_nomGen} <hr>-NC: ${p.pdo_nomComer} <hr> Stock: ${p.pdo_cant}</td>
+    </tr>
+    `);
+        })
+        .join(" ");
+    $("#tbodylistProPed").html(html);
+}
 function funSelectPro(p) {
     ped_idPro = ped_producto[p];
 
     console.log($("#inp_text_pro_2").val());
     console.log(ped_producto[p].pdo_cant);
     if (
-        parseInt($("#inp_text_pro_2").val()) >
-        parseInt(ped_producto[p].pdo_cant)
+        $("#inp_text_pro_2").val() < 0 || $("#inp_text_pro_2").val()==''
     ) {
-        notif(3, "Cantidad superada");
+        notif(3, "Error. cantidad!");
         return;
     }
 
@@ -231,7 +233,7 @@ function funSelectPro(p) {
         })
         .join(" ");
     $("#tbody_listProsect").html(html);
-    $("#modal_busCliente").modal("hide");
+    $("#modal_busProducto").modal("hide");
     $("#inp_text_pro_2").html("");
     $("#inp_text_pro_1").html("");
 }

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
 
-            $table->string('pdo_cod')->nullable();
+            $table->integer('pdo_cod')->nullable();
             $table->string('pdo_cod2')->nullable();
             $table->longText('pdo_nomGen')->nullable();
             $table->longText('pdo_nomComer')->nullable();
@@ -29,7 +29,7 @@ return new class extends Migration
             $table->string('pdo_preUniVenta1')->nullable();
             $table->string('pdo_preUniVenta2')->nullable();
             $table->string('pdo_preUniVenta3')->nullable();
-            $table->string('pdo_id_provedor')->nullable();
+            $table->integer('pdo_id_provedor')->nullable();
            
             //campos de auditoria 
             $table->integer('ca_usu_cod')->nullable();
