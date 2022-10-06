@@ -41,7 +41,7 @@ class modAppController extends Controller
         return producto::select('id', 'pdo_nomGen', 'pdo_nomComer', 'pdo_cant')
             ->join('provedors as pro','pro.id','productos.pdo_id_provedor')
             ->where('productos.ca_estado', '1')
-            ->select('productos.id','pdo_cod','pdo_cant','pdo_nomGen','pdo_nomComer','prov_sigla','prov_nombre','pdo_id_provedor')
+            ->select('productos.id','pdo_cod','pdo_cant','pdo_nomGen','pdo_nomComer','prov_sigla','prov_nombre','pdo_id_provedor','pdo_preUniVenta1','pdo_preUniVenta2','pdo_preUniVenta3')
             ->get();
     }
     public function busProducto(Request $request)
@@ -53,7 +53,7 @@ class modAppController extends Controller
                 $query->where('pdo_nomGen', 'iLIKE',          '%' . $request->input('data') . '%')
                     ->orWhere('pdo_nomComer', 'iLIKE',        '%' .       $request->input('data') . '%');
             })
-            ->select('productos.id','pdo_cod','pdo_cant','pdo_nomGen','pdo_nomComer','prov_sigla','prov_nombre','pdo_id_provedor')
+            ->select('productos.id','pdo_cod','pdo_cant','pdo_nomGen','pdo_nomComer','prov_sigla','prov_nombre','pdo_id_provedor','pdo_preUniVenta1','pdo_preUniVenta2','pdo_preUniVenta3')
             ->limit('50')->get();
     }
     public function storePedido(Request $request)
