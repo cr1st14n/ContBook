@@ -112,6 +112,7 @@ ped_clientes = "";
 ped_idPro = "";
 ped_data = [];
 ped_TipoPrecio = "";
+let ped_costoTotal = 0;
 
 function clienteSearch() {
     $("#modal_busCliente").modal("show");
@@ -159,6 +160,7 @@ function showcatalogo() {
     $("#modal_busProducto").modal("show");
 }
 function showlistPro(param) {
+    showCarga_1();
     $.ajax({
         type: "get",
         url: "ContApp/Pedido/listProducto",
@@ -172,7 +174,7 @@ function showlistPro(param) {
     });
 }
 function searchPro(e) {
-    console.log("click click");
+    showCarga_1();
     $.get(
         "ContApp/Pedido/busProducto",
         { data: $("#inp_text_pro_1").val(), TP: ped_TipoPrecio },
@@ -182,6 +184,20 @@ function searchPro(e) {
             tbodyProdMaque(data);
         }
     );
+}
+function showCarga_1() {
+    html = `
+    <tr>
+        <td colspan="4">
+            <div class="row items-push-3x text-center">
+                <div class="col-12 col-md-12">
+                    <i class="fa fa-2x fa-cog fa-spin"></i>
+                </div>
+            </div>
+        </td>
+    </tr>
+    `;
+    $("#tbodylistProPed").html(html);
 }
 function tbodyProdMaque(data) {
     html = data
@@ -219,55 +235,89 @@ function tbodyProdMaque(data) {
     $("#tbodylistProPed").html(html);
 }
 function funSelectPro(p) {
-    ped_idPro = ped_producto[p];
-
     console.log($("#inp_text_pro_2").val());
     console.log(ped_producto[p].pdo_cant);
+    console.log(ped_producto[p]);
     if ($("#inp_text_pro_2").val() < 0 || $("#inp_text_pro_2").val() == "") {
         notif(3, "Error. cantidad!");
         return;
     }
+    ped_idPro = ped_producto[p];
+    let cantidad = $("#inp_text_pro_2").val();
+    let tp = 0;
+    switch (ped_TipoPrecio) {
+        case "P1":
+            tp = ped_producto[p].pdo_preUniVenta1;
+            break;
+        case "P2":
+            tp = ped_producto[p].pdo_preUniVenta2;
+            break;
+        case "P3":
+            tp = ped_producto[p].pdo_preUniVenta3;
+            break;
+
+        default:
+            break;
+    }
+    console.log( tp );
+    console.log( parseFloat(tp) );
+
+    ped_costoTotal = (ped_costoTotal + (cantidad  * parseFloat((tp).replace(/,/g, '.') ).toFixed(2) ));
+    $("#secCostoTotal").html("TOTAL :" + ped_costoTotal);
 
     ped_data.push({ pro: ped_idPro, cant: $("#inp_text_pro_2").val() });
 
     notif(1, "Producto agregado");
     console.log(ped_data);
+    showListProSelec();
+}
+function showListProSelec() {
     html = ped_data
         .map(function (p) {
             switch (ped_TipoPrecio) {
                 case "P1":
                     tp = p.pro.pdo_preUniVenta1;
+                    tpT = (parseFloat((tp).replace(/,/g, '.') ).toFixed(2) * parseFloat(p.cant)).toFixed(2);
                     break;
                 case "P2":
                     tp = p.pro.pdo_preUniVenta2;
+                    tpT = (parseFloat((tp).replace(/,/g, '.') ).toFixed(2) * parseFloat(p.cant)).toFixed(2);
                     break;
                 case "P3":
                     tp = p.pro.pdo_preUniVenta3;
+                    tpT = (parseFloat((tp).replace(/,/g, '.') ).toFixed(2) * parseFloat(p.cant)).toFixed(2);
                     break;
 
                 default:
                     break;
             }
+
             return (h = `
-        <tr>
-        <th class="text-center" scope="row">${p.pro.id}</th>
-        <td class="font-w600 font-size-sm">${p.pro.pdo_nomGen} - ${p.pro.pdo_nomComer} <br>C.U.:${tp},  cantidad: ${p.cant}  P.T.:${(parseFloat (tp)* parseFloat( p.cant)).toFixed(2)}</td>
-        <td class="text-center">
-            <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-dark" data-toggle="tooltip"
-                    title="Edit Client" >
-                    <i class="fa fa-fw fa-arrow-circle-right"></i>
-                </button>
-            </div>
-        </td>
-    </tr>
-        `);
+    <tr>
+    <th class="text-center" scope="row">${p.pro.id}</th>
+    <td class="font-w600 font-size-sm">${p.pro.pdo_nomGen} - ${p.pro.pdo_nomComer} <br>C.U.:${tp},  cantidad: ${p.cant}  P.T.:${tpT}</td>
+    <td class="text-center">
+        <div class="btn-group">
+            <button type="button" class="btn btn-sm btn-dark" data-toggle="tooltip"
+                title="Edit Client" >
+                <i class="fa fa-fw fa-arrow-circle-right"></i>
+            </button>
+        </div>
+    </td>
+</tr>
+    `);
         })
         .join(" ");
+
     $("#tbody_listProsect").html(html);
     $("#modal_busProducto").modal("hide");
     $("#inp_text_pro_2").html("");
     $("#inp_text_pro_1").html("");
+}
+function calcularPrecio(p) {
+    ped_producto[p].pdo_cant;
+    ped_costoTotal = ped_costoTotal + parseFloat(p);
+    $("#secCostoTotal").html("TOTAL:" + ped_costoTotal);
 }
 function concluirPedido() {
     if (ped_idCliente == "") {

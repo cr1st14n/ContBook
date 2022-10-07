@@ -38,6 +38,7 @@
         </div>
     </div>
     <div class=" " style="text-align: right">
+    <p id="secCostoTotal">Costo Total</p>
         <button class="btn btn-dark  btn-rounded " onclick="concluirPedido()"><i
                 class="fa  fa-arrow-alt-circle-right"></i>
         </button>
