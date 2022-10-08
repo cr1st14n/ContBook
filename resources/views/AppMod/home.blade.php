@@ -243,9 +243,17 @@
                         </a>
                     </div>
                     <div class="col-6 col-md-3 col-lg-6 col-xl-3">
-                        <a class="block block-rounded block-link-pop border-left border-primary border-4x" href="#" id="btn_viewCatalogo">
+                        <a class="block block-rounded block-link-pop border-left border-primary border-4x" href="#" onclick="viewCatalogo(1)">
                             <div class="block-content block-content-full">
                                 <div class="font-size-sm font-w600 text-uppercase text-muted">Catalogo</div>
+                                <i class="fa fa-store fa-2x text-muted"></i>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-3 col-lg-6 col-xl-3">
+                        <a class="block block-rounded block-link-pop border-left border-primary border-4x" href="#" onclick="viewCatalogo(2)">
+                            <div class="block-content block-content-full">
+                                <div class="font-size-sm font-w600 text-uppercase text-muted">Ofertas / Promociones</div>
                                 <i class="fa fa-store fa-2x text-muted"></i>
                             </div>
                         </a>
@@ -310,11 +318,12 @@
     <script src="{{ asset('resources/plantilla/assets/js/oneui.app.min.js') }}"></script>
 
     <!-- Page JS Plugins -->
-    <script src="{{ asset('resources/plantilla/assets/js/plugins/chart.js/Chart.bundle.min.js') }}"></script>
-    <script src="{{ asset('resources/plantilla/assets/js/plugins/jquery-bootstrap-wizard/bs4/jquery.bootstrap.wizard.min.js') }}">
+    <!-- <script src="{{ asset('resources/plantilla/assets/js/plugins/chart.js/Chart.bundle.min.js') }}"></script> -->
+    <script
+        src="{{ asset('resources/plantilla/assets/js/plugins/jquery-bootstrap-wizard/bs4/jquery.bootstrap.wizard.min.js') }}">
     </script>
-    <script src="{{ asset('resources/plantilla/assets/js/plugins/jquery-validation/jquery.validate.min.js') }}"></script>
-    <script src="{{ asset('resources/plantilla/assets/js/plugins/jquery-validation/additional-methods.js') }}"></script>
+    <!-- <script src="{{ asset('resources/plantilla/assets/js/plugins/jquery-validation/jquery.validate.min.js') }}"></script> -->
+    <!-- <script src="{{ asset('resources/plantilla/assets/js/plugins/jquery-validation/additional-methods.js') }}"></script> -->
 
     <!-- Page JS Code -->
     <script src="{{ asset('resources/plantilla/assets/js/pages/be_pages_dashboard.min.js') }}"></script>

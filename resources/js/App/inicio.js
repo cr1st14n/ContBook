@@ -259,10 +259,12 @@ function funSelectPro(p) {
         default:
             break;
     }
-    console.log( tp );
-    console.log( parseFloat(tp) );
+    console.log(tp);
+    console.log(parseFloat(tp));
 
-    ped_costoTotal = (ped_costoTotal + (cantidad  * parseFloat((tp).replace(/,/g, '.') ).toFixed(2) ));
+    ped_costoTotal =
+        ped_costoTotal +
+        cantidad * parseFloat(tp.replace(/,/g, ".")).toFixed(2);
     $("#secCostoTotal").html("TOTAL :" + ped_costoTotal);
 
     ped_data.push({ pro: ped_idPro, cant: $("#inp_text_pro_2").val() });
@@ -277,15 +279,24 @@ function showListProSelec() {
             switch (ped_TipoPrecio) {
                 case "P1":
                     tp = p.pro.pdo_preUniVenta1;
-                    tpT = (parseFloat((tp).replace(/,/g, '.') ).toFixed(2) * parseFloat(p.cant)).toFixed(2);
+                    tpT = (
+                        parseFloat(tp.replace(/,/g, ".")).toFixed(2) *
+                        parseFloat(p.cant)
+                    ).toFixed(2);
                     break;
                 case "P2":
                     tp = p.pro.pdo_preUniVenta2;
-                    tpT = (parseFloat((tp).replace(/,/g, '.') ).toFixed(2) * parseFloat(p.cant)).toFixed(2);
+                    tpT = (
+                        parseFloat(tp.replace(/,/g, ".")).toFixed(2) *
+                        parseFloat(p.cant)
+                    ).toFixed(2);
                     break;
                 case "P3":
                     tp = p.pro.pdo_preUniVenta3;
-                    tpT = (parseFloat((tp).replace(/,/g, '.') ).toFixed(2) * parseFloat(p.cant)).toFixed(2);
+                    tpT = (
+                        parseFloat(tp.replace(/,/g, ".")).toFixed(2) *
+                        parseFloat(p.cant)
+                    ).toFixed(2);
                     break;
 
                 default:
@@ -340,6 +351,20 @@ function concluirPedido() {
             console.log(response);
             notif(2, "Pedido registrado");
             viewInicio();
+        },
+    });
+}
+
+// *-------------- Catalogo---------
+
+function viewCatalogo(tipo) {
+    $.ajax({
+        type: "get",
+        url: "ContApp/Catalogo/",
+        data: { tipo: tipo },
+        // dataType: "dataType",
+        success: function (data) {
+            $("#main-container").html(data);
         },
     });
 }

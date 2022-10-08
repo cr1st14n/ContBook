@@ -65,4 +65,11 @@ class modAppController extends Controller
         }
         return $request;
     }
+
+    public function homeCatalogo(Request $request)
+    {
+        if ($request->input('tipo')=='1') {
+            return view('AppMod.catalogo');
+        }
+    }
 }
