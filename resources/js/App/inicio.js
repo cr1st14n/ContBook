@@ -70,9 +70,51 @@ function notif(tipo, texto) {
 }
 function viewInicio() {
     console.log("home ");
-    $.get("indexApp", function (data, textStatus, jqXHR) {
-        $("#main-container").html(data);
-    });
+    let data = `<!-- Page Content -->
+    <div class="content content-narrow">
+        <!-- Stats -->
+        <div class="row">
+            <div class="col-6 col-md-3 col-lg-6 col-xl-3">
+                <a class="block block-rounded block-link-pop border-left border-primary border-4x" href="#" onclick="viewCliente()">
+                    <div class="block-content block-content-full">
+                        <div class="font-size-sm font-w600 text-uppercase text-muted">Cliente <i class="fa fa-plus-circle"></i> </div>
+                        <i class=" fa fa-address-book  fa-2x text-muted"></i>
+                    </div>
+                </a>
+            </div>
+            <div class="col-6 col-md-3 col-lg-6 col-xl-3">
+                <a class="block block-rounded block-link-pop border-left border-primary border-4x" href="#" onclick="viewPedido(1)">
+                    <div class="block-content block-content-full">
+                        <div class="font-size-sm font-w600 text-uppercase text-muted">Pedido <i class="fa fa-plus-circle"></i> </div>
+                        <i class="fa fa-shopping-cart fa-2x text-muted"></i>
+
+                    </div>
+                </a>
+            </div>
+            <div class="col-6 col-md-3 col-lg-6 col-xl-3">
+                <a class="block block-rounded block-link-pop border-left border-primary border-4x" href="#" onclick="viewCatalogo(1)">
+                    <div class="block-content block-content-full">
+                        <div class="font-size-sm font-w600 text-uppercase text-muted">Catalogo</div>
+                        <i class="fa fa-store fa-2x text-muted"></i>
+                    </div>
+                </a>
+            </div>
+            <div class="col-6 col-md-3 col-lg-6 col-xl-3">
+                <a class="block block-rounded block-link-pop border-left border-primary border-4x" href="#" onclick="viewCatalogo(2)">
+                    <div class="block-content block-content-full">
+                        <div class="font-size-sm font-w600 text-uppercase text-muted">Ofertas / Promociones</div>
+                        <i class="fa fa-store fa-2x text-muted"></i>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <!-- END Stats -->
+    </div>
+    <!-- END Page Content -->`;
+    $("#main-container").html(data);
+    // $.get("indexApp", function (data, textStatus, jqXHR) {
+    //     $("#main-container").html(data);
+    // });
 }
 function viewCliente() {
     console.log("home cliente");
@@ -80,31 +122,40 @@ function viewCliente() {
         $("#main-container").html(data);
     });
 }
-function viewPedido(key) {
-    console.log("home cliente");
-    switch (key) {
+const viewPedido = () => {
+    if (ped_TipoPrecio == "") {
+        notif(4, "Seleccione Región");
+        return;
+    }
+    $.get("ContApp/Pedido/", function (data, textStatus, jqXHR) {
+        $("#main-container").html(data);
+    });
+};
+const itemSector = (tipo) => {
+    switch (tipo) {
         case 1:
             $("#md_tipoPrecio").modal("show");
             break;
         case 2:
+            ped_TipoPrecio = document.querySelector(
+                'input[name="inp_tipoPrecio"]:checked'
+            ).value;
             $("#md_tipoPrecio").modal("hide");
-            ped_TipoPrecio = $("#inp_tipoPrecio").val();
-            $.get("ContApp/Pedido/", function (data, textStatus, jqXHR) {
-                $("#main-container").html(data);
-            });
-
-            break;
-        case 3:
-            $.get("ContApp/Pedido", function (data, textStatus, jqXHR) {
-                $("#main-container").html(data);
-            });
-
-            break;
-
-        default:
+            switch (ped_TipoPrecio) {
+                case "P1":
+                    texto = `<span class="badge badge-pill badge-primary"><i class="fa fa-fw fa-info"></i> RERGION 1</span>`;
+                    break;
+                case "P2":
+                    texto = `<span class="badge badge-pill badge-info"><i class="fa fa-fw fa-info"></i> RERGION 2</span>`;
+                    break;
+                case "P3":
+                    texto = `<span class="badge badge-pill badge-warning"><i class="fa fa-fw fa-info"></i> RERGION 3</span>`;
+                    break;
+            }
+            $("#itemSector_sec").html(texto);
             break;
     }
-}
+};
 
 // *-------------- PEDIDO AGREGAR-----------
 ped_idCliente = "";
@@ -356,15 +407,27 @@ function concluirPedido() {
 }
 
 // *-------------- Catalogo---------
-
-function viewCatalogo(tipo) {
-    $.ajax({
-        type: "get",
-        url: "ContApp/Catalogo/",
-        data: { tipo: tipo },
-        // dataType: "dataType",
-        success: function (data) {
-            $("#main-container").html(data);
-        },
+const viewCatalogo = () => {
+    if (ped_TipoPrecio == "") {
+        notif(4, "Seleccione Región");
+        return;
+    }
+    $.get("ContApp/Catalogo/",{ tipo: 1 }, function (data, textStatus, jqXHR) {
+        $("#main-container").html(data);
     });
+};
+const listCatalogo=()=>{
+    html = `
+    <tr>
+        <td colspan="4">
+            <div class="row items-push-3x text-center">
+                <div class="col-12 col-md-12">
+                    <i class="fa fa-2x fa-cog fa-spin"></i>
+                </div>
+            </div>
+        </td>
+    </tr>
+    `;
+    $("#tbodyListCatalogo").html(html);
 }
+
