@@ -2,6 +2,20 @@
 <html lang="es">
 
 <head>
+    <script>
+        console.log('al;skjfd');
+        if (
+            navigator.userAgent.match(/Android/i) ||
+            navigator.userAgent.match(/webOS/i) ||
+            navigator.userAgent.match(/iPhone/i) ||
+            navigator.userAgent.match(/iPad/i) ||
+            navigator.userAgent.match(/iPod/i) ||
+            navigator.userAgent.match(/BlackBerry/i) ||
+            navigator.userAgent.match(/Windows Phone/i)
+        ) {
+            window.location.href = 'ContApp';
+        }
+    </script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
@@ -29,20 +43,7 @@
     <link rel="stylesheet" href="{{ asset('resources/plantilla/noty/lib/themes/relax.css')}}" />
     <link rel="stylesheet" href="{{ asset('resources/plantilla/noty/demo/animate.css')}}" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <script>
-        if (
-            navigator.userAgent.match(/Android/i) ||
-            navigator.userAgent.match(/webOS/i) ||
-            navigator.userAgent.match(/iPhone/i) ||
-            navigator.userAgent.match(/iPad/i) ||
-            navigator.userAgent.match(/iPod/i) ||
-            navigator.userAgent.match(/BlackBerry/i) ||
-            navigator.userAgent.match(/Windows Phone/i)
-        ) {
-            window.location.href = 'ContApp';
-            return
-        }
-    </script>
+
 </head>
 
 <body>

@@ -99,6 +99,7 @@ Route::group(['prefix' => 'ContApp', 'middleware' => ['auth']], function () {
     Route::get('/', [modAppController::class, 'home'])->name('AppHome');
     Route::group(['prefix' => 'cliente'], function () {
         Route::get('/', [modAppController::class, 'homeCliente']);
+        Route::post('storeCliente', [modAppController::class, 'storeCliente']);
     });
     Route::group(['prefix' => 'Pedido'], function () {
         Route::get('/', [modAppController::class, 'homePedido']);
@@ -110,5 +111,6 @@ Route::group(['prefix' => 'ContApp', 'middleware' => ['auth']], function () {
     Route::group(['prefix'=>'Catalogo',],function ()
     {
         Route::get('/', [modAppController::class, 'homeCatalogo']);
+        Route::get('list1', [modAppController::class, 'list1']);
     });
 });

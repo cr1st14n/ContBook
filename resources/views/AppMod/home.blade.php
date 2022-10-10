@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="{{ asset('resources/plantilla/noty/lib/themes/relax.css') }}" />
     <link rel="stylesheet" href="{{ asset('resources/plantilla/noty/demo/animate.css') }}" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
 </head>
 
 <body>
@@ -140,15 +141,22 @@
                 <div class="d-flex align-items-center">
 
 
-                    <a type="button" class="btn btn-sm btn-dual mr-2" href="{{route('AppHome')}}">
+                    <a type="button" class="btn btn-sm btn-dual mr-2" onclick="viewInicio()">
                         <i class="si si-grid"></i>
                     </a>
-
+                </div>
+                <div class="d-flex align-items-center">
+                    <strong id="itemSector_sec">
+                        <span class="badge badge-pill badge-danger"><i class="fa fa-fw fa-info"></i> Seleccionar REGION</span>
+                    </strong>
                 </div>
                 <!-- END Left Section -->
 
                 <!-- Right Section -->
                 <div class="d-flex align-items-center">
+                    <a type="button" class="btn btn-sm btn-dual mr-2" onclick="itemSector(1)">
+                        <i class="fa fa-fw fa-cog"></i>
+                    </a>
                     <!-- User Dropdown -->
                     <div class="dropdown d-inline-block ml-2">
                         <button type="button" class="btn btn-sm btn-dual" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -277,7 +285,6 @@
         </footer>
         <!-- END Footer -->
 
-
     </div>
     <div class="modal fade" id="md_tipoPrecio" tabindex="-1" role="dialog" aria-labelledby="modal-block-fadein" aria-hidden="true">
         <div class="modal-dialog modal-dialog-top " role="document">
@@ -292,19 +299,73 @@
                         </div>
                     </div>
                     <div class=" block-content">
-                        <div class=" ">
-                            <select name="" id="inp_tipoPrecio" class="form-control form-control-sm">
-                                <option value="P1">Tipo 1</option>
-                                <option value="P2">Tipo 2</option>
-                                <option value="P3">Tipo 3</option>
-                            </select>
-                        </div><br>
-                        <button type="button" class=" btn btn-success btn-sm btn-block" onclick="viewPedido(2)">Aceptar</button>
+                        <div class="form-group" align='center'>
+                            <label class="d-block">Seleccinar Región</label>
+                            <div class="custom-control custom-radio custom-control-inline custom-control-primary">
+                                <input type="radio" class="custom-control-input" id="example-radio-custom-inline1" name="inp_tipoPrecio" value="P1" checked>
+                                <label class="custom-control-label" for="example-radio-custom-inline1">Región 1</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline custom-control-primary">
+                                <input type="radio" class="custom-control-input" id="example-radio-custom-inline2" name="inp_tipoPrecio" value="P2">
+                                <label class="custom-control-label" for="example-radio-custom-inline2">Región 2</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline custom-control-primary">
+                                <input type="radio" class="custom-control-input" id="example-radio-custom-inline3" name="inp_tipoPrecio" value="P3">
+                                <label class="custom-control-label" for="example-radio-custom-inline3">Región 3</label>
+                            </div>
+                        </div>
                     </div>
+                </div>
+                <div class=" modal-footer">
+                    <button type="button" class=" btn btn-success btn-sm btn-block" onclick="itemSector(2)">Aceptar</button>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        let lat = ''
+        let lon = ''
+        let enlace = ''
+        const extraerUbicacion = () => {
+            if (!"geolocation" in navigator) {
+                return alert("Tu navegador no soporta el acceso a la ubicación. Intenta con otro");
+            }
+
+            // const $latitud = document.querySelector("#latitud"),
+            //     $longitud = document.querySelector("#longitud"),
+            //     $enlace = document.querySelector("#enlace");
+
+
+            const onUbicacionConcedida = ubicacion => {
+                console.log("Tengo la ubicación: ", ubicacion);
+                const coordenadas = ubicacion.coords;
+                // $latitud.innerText = coordenadas.latitude;
+                // $longitud.innerText = coordenadas.longitude;
+                lat = coordenadas.latitude;
+                lon = coordenadas.longitude;
+                enlace = `https://www.google.com/maps/@${coordenadas.latitude},${coordenadas.longitude},20z`;
+            }
+            const onErrorDeUbicacion = err => {
+
+                lat = "Error obteniendo ubicación: " + err.message;
+                lon = "Error obteniendo ubicación: " + err.message;
+                console.log("Error obteniendo ubicación: ", err);
+            }
+
+            const opcionesDeSolicitud = {
+                enableHighAccuracy: true, // Alta precisión
+                maximumAge: 0, // No queremos caché
+                timeout: 5000 // Esperar solo 5 segundos
+            };
+
+            // $latitud.innerText = "Cargando...";
+            // $longitud.innerText = "Cargando...";
+            navigator.geolocation.getCurrentPosition(onUbicacionConcedida, onErrorDeUbicacion, opcionesDeSolicitud);
+
+        };
+        document.addEventListener("DOMContentLoaded", extraerUbicacion);
+    </script>
+
     <!-- END Page Container -->
 
     <script src="{{ asset('resources/plantilla/assets/js/oneui.core.min.js') }}"></script>
@@ -318,9 +379,8 @@
     <script src="{{ asset('resources/plantilla/assets/js/oneui.app.min.js') }}"></script>
 
     <!-- Page JS Plugins -->
-    <!-- <script src="{{ asset('resources/plantilla/assets/js/plugins/chart.js/Chart.bundle.min.js') }}"></script> -->
-    <script
-        src="{{ asset('resources/plantilla/assets/js/plugins/jquery-bootstrap-wizard/bs4/jquery.bootstrap.wizard.min.js') }}">
+    <script src="{{ asset('resources/plantilla/assets/js/plugins/chart.js/Chart.bundle.min.js') }}"></script>
+    <script src="{{ asset('resources/plantilla/assets/js/plugins/jquery-bootstrap-wizard/bs4/jquery.bootstrap.wizard.min.js') }}">
     </script>
     <!-- <script src="{{ asset('resources/plantilla/assets/js/plugins/jquery-validation/jquery.validate.min.js') }}"></script> -->
     <!-- <script src="{{ asset('resources/plantilla/assets/js/plugins/jquery-validation/additional-methods.js') }}"></script> -->

@@ -28,6 +28,7 @@ return new class extends Migration
             $table->integer('ca_usu_cod')->nullable();
             $table->string('ca_tipo', 10)->nullable();
             $table->integer('ca_estado')->nullable();
+            $table->string('ca_ubi')->nullable();
         });
     }
 
