@@ -407,16 +407,86 @@ function concluirPedido() {
 }
 
 // *-------------- Catalogo---------
+const viewCatalogo = () => {
+    if (ped_TipoPrecio == "") {
+        notif(4, "Seleccione Región");
+        return;
+    }
+    $.get("ContApp/Catalogo/", { tipo: 1 }, function (data, textStatus, jqXHR) {
+        $("#main-container").html(data);
+    });
+};
+const listCatalogo = () => {
+    html = `
+    <tr>
+        <td colspan="5">
+            <div class="row items-push-3x text-center">
+                <div class="col-12 col-md-12">
+                    <i class="fa fa-2x fa-cog fa-spin"></i>
+                </div>
+            </div>
+        </td>
+    </tr>
+    `;
+    $("#tbodyListCatalogo").html(html);
+    $.get(
+        "ContApp/Catalogo/list1",
+        { data: ped_TipoPrecio },
+        function (data, textStatus, jqXHR) {
+            console.log(data);
+            html = data
+                .map(function (e) {
+                    switch (ped_TipoPrecio) {
+                        case "P1":
+                            precio = e.pdo_preUniVenta1;
+                            break;
+                        case "P2":
+                            precio = e.pdo_preUniVenta2;
+                            break;
+                        case "P3":
+                            precio = e.pdo_preUniVenta3;
+                            break;
 
-function viewCatalogo(tipo) {
+                        default:
+                            break;
+                    }
+                    return (h = `
+                <tr>
+                    <td class="text-center">
+                        <img class="img-avatar img-avatar48" src="resources/plantilla/assets/media/avatars/logo_1.jpg" alt="">
+                    </td>
+                    <td class="font-size-sm"><p> ${e.pdo_nomGen}</p></td>
+                    <td class="font-size-sm">${e.pdo_nomComer}</td>
+                    <td>
+                        <span class="badge badge-warning">${e.pdo_cant}</span>
+                    </td>
+                    <td>
+                        <span class="badge badge-info">${precio}</span>
+                    </td>
+                </tr>
+                `);
+                })
+                .join(" ");
+            $("#tbodyListCatalogo").html(html);
+        }
+    );
+};
+
+const createCliente = (data) => {
+    data += "&lat=" + lat+"&lon="+lon+"&link="+enlace;
+    console.log(data);
+    extraerUbicacion()
     $.ajax({
-        type: "get",
-        url: "ContApp/Catalogo/",
-        data: { tipo: tipo },
-        // dataType: "dataType",
-        success: function (data) {
-            $("#main-container").html(data);
+        type: "post",
+        url: "ContApp/cliente/storeCliente",
+        data: data,
+        success: function (response) {
+            if (response) {
+                viewInicio();
+                notif(1, "Cliente Registrado");
+            } else {
+                notif("2", "Error ");
+            }
         },
     });
-}
-
+};
