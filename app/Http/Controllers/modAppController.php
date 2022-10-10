@@ -91,7 +91,7 @@ class modAppController extends Controller
         $newclie->ca_usu_cod = Auth::user()->id;
         $newclie->ca_tipo = 'create';
         $newclie->ca_estado = '1';
-        $newclie->ca_ubi =serialize(['lat'=>$request->input('lat'),'lon'=> $request->input('lon'),'link'=>$request->input('')]);
+        $newclie->ca_ubi =serialize(['lat'=>$request->input('lat'),'lon'=> $request->input('lon'),'link'=>$request->input('enlace')]);
         return $res = $newclie->save();
     }
 }
