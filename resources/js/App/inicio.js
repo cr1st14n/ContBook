@@ -236,6 +236,23 @@ function searchPro(e) {
         }
     );
 }
+function searchPro_2(data) {
+    console.log(data);
+    if (data == "all") {
+        $("#tbodylistProPed").html("");
+        return;
+    }
+    $.ajax({
+        type: "get",
+        url: "ContApp/Pedido/busProducto_2",
+        data: { lab: data },
+        success: function (data) {
+            ped_producto = data;
+            tbodyProdMaque(data);
+        },
+    });
+}
+
 function showCarga_1() {
     html = `
     <tr>
@@ -278,7 +295,7 @@ function tbodyProdMaque(data) {
             </div>
         </td>
         <th class="text-center" scope="row">${p.prov_sigla}-${p.pdo_cod}</th>
-        <td class="font-w600 font-size-sm">-NG: ${p.pdo_nomGen} <hr>-NC: ${p.pdo_nomComer} <hr>Precio: ${tp}Bs.-  Stock: ${p.pdo_cant}</td>
+        <td class="font-w600 font-size-sm">- N.C.: ${p.pdo_nomComer} <br> - N.G.: ${p.pdo_nomGen} <br>Stock: ${p.pdo_cant} / Precio: ${tp}Bs.-  </td>
     </tr>
     `);
         })
@@ -357,7 +374,7 @@ function showListProSelec() {
             return (h = `
     <tr>
     <th class="text-center" scope="row">${p.pro.id}</th>
-    <td class="font-w600 font-size-sm">${p.pro.pdo_nomGen} - ${p.pro.pdo_nomComer} <br>C.U.:${tp},  cantidad: ${p.cant}  P.T.:${tpT}</td>
+    <td class="font-w600 font-size-sm">${p.pro.pdo_nomGen} - ${p.pro.pdo_nomComer} <br>P.U.:${tp},  cantidad: ${p.cant} =>  P.T.:${tpT}</td>
     <td class="text-center">
         <div class="btn-group">
             <button type="button" class="btn btn-sm btn-dark" data-toggle="tooltip"
@@ -473,9 +490,9 @@ const listCatalogo = () => {
 };
 
 const createCliente = (data) => {
-    data += "&lat=" + lat+"&lon="+lon+"&link="+enlace;
+    data += "&lat=" + lat + "&lon=" + lon + "&link=" + enlace;
     console.log(data);
-    extraerUbicacion()
+    extraerUbicacion();
     $.ajax({
         type: "post",
         url: "ContApp/cliente/storeCliente",

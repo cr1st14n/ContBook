@@ -5,11 +5,9 @@
             <h3 class="block-title">Datos Cliente</h3>
             <div class="block-options">
                 <div class="block-options-item">
-                    <button class="btn btn-secondary btn-sm btn-rounded" onclick="clienteSearch()"><i
-                            class="fa fa-fw fa-user-alt "></i>
+                    <button class="btn btn-secondary btn-sm btn-rounded" onclick="clienteSearch()"><i class="fa fa-fw fa-user-alt "></i>
                     </button>
-                    <button class="btn btn-secondary btn-sm btn-rounded" onclick="showcatalogo()"><i
-                            class="fa fa-fw fa-shopping-cart "></i>
+                    <button class="btn btn-secondary btn-sm btn-rounded" onclick="showcatalogo()"><i class="fa fa-fw fa-shopping-cart "></i>
                     </button>
                 </div>
             </div>
@@ -38,17 +36,15 @@
         </div>
     </div>
     <div class=" " style="text-align: right">
-    <p id="secCostoTotal">Costo Total</p>
-        <button class="btn btn-dark  btn-rounded " onclick="concluirPedido()"><i
-                class="fa  fa-arrow-alt-circle-right"></i>
+        <p id="secCostoTotal">Costo Total</p>
+        <button class="btn btn-dark  btn-rounded " onclick="concluirPedido()"><i class="fa  fa-arrow-alt-circle-right"></i>
         </button>
     </div>
     <!-- END Small Table -->
 </div>
 <!-- END Page Content -->
 <!-- Fade In Block Modal -->
-<div class="modal fade" id="modal_busCliente" tabindex="-1" role="dialog" aria-labelledby="modal-block-fadein"
-    aria-hidden="true">
+<div class="modal fade" id="modal_busCliente" tabindex="-1" role="dialog" aria-labelledby="modal-block-fadein" aria-hidden="true">
     <div class="modal-dialog modal-dialog-top " role="document">
         <div class="modal-content">
             <div class="block block-themed block-transparent mb-0">
@@ -64,8 +60,7 @@
                     <table class="table table-sm table-vcenter table-hover table-responsive ">
                         <div class="form-group">
                             <div class="input-group">
-                                <input type="text" class="form-control form-control-sm col-12" id="inp_text_1"
-                                    name="example-group3-input1" placeholder="Buscar ">
+                                <input type="text" class="form-control form-control-sm col-12" id="inp_text_1" name="example-group3-input1" placeholder="Buscar ">
                                 <div class="input-group-prepend">
                                     <button type="button" class="btn btn-primary btn-sm" onclick="searchClie()">
                                         <i class="fa fa-search mr-1"></i>
@@ -93,8 +88,7 @@
         </div>
     </div>
 </div>
-<div class="modal fade" id="modal_busProducto" tabindex="-1" role="dialog" aria-labelledby="modal-block-fadein"
-    aria-hidden="true">
+<div class="modal fade" id="modal_busProducto" tabindex="-1" role="dialog" aria-labelledby="modal-block-fadein" aria-hidden="true">
     <div class="modal-dialog modal-dialog-top" role="document">
         <div class="modal-content">
             <div class="block block-themed block-transparent mb-0">
@@ -111,14 +105,19 @@
                         <div class="form-group form-row">
                             <div class="input-group">
                                 <div class="input-group-prepend">
-                                    <button type="button" class="btn btn-primary btn-sm" onclick="showlistPro()">
+                                    <button type="button" class="btn btn-danger btn-sm" onclick="showlistPro()">
                                         <i class="fa fa-search mr-1"></i>
                                     </button>
                                 </div>
-                                <input type="number" class="form-control form-control-sm col-3" id="inp_text_pro_2"
-                                    name="example-group3-input1" placeholder="Cantidad..">
-                                <input type="text" class="form-control form-control-sm col-9" id="inp_text_pro_1"
-                                    name="example-group3-input1" placeholder="Buscar ">
+                                <input type="number" class="form-control form-control-sm col-3" id="inp_text_pro_2" name="example-group3-input1" placeholder="Cantidad..">
+                                <input type="text" class="form-control form-control-sm col-9" id="inp_text_pro_1" name="example-group3-input1" placeholder="Buscar ">
+
+                                <select name="" id="" class="form-control form-control-sm" onchange="searchPro_2($(this).val())">
+                                    <option value="all">Seleccionar</option>
+                                    @foreach( $provs as $p)
+                                    <option value="{{$p->id}}">{{$p->prov_nombre}}</option>
+                                    @endforeach
+                                </select>
                                 <div class="input-group-prepend">
                                     <button type="button" class="btn btn-primary btn-sm" onclick="searchPro()">
                                         <i class="fa fa-search mr-1"></i>

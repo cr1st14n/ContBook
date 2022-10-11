@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cliente;
 use App\Models\pedido;
 use App\Models\producto;
+use App\Models\provedor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,10 +20,10 @@ class modAppController extends Controller
         return view('AppMod.cliente_index');
     }
     public function homePedido()
-    {   
-       $producto=producto::get();
-    //    return $producto[2191]; 
-        return view('AppMod.pedido_index')->with('producto',$producto);
+    {
+        $provs = provedor::get();
+        //    return $producto[2191]; 
+        return view('AppMod.pedido_index')->with('provs', $provs);
     }
     public function busCliente(Request $request)
     {
@@ -40,22 +41,22 @@ class modAppController extends Controller
     public function listProducto(Request $request)
     {
         return producto::select('id', 'pdo_nomGen', 'pdo_nomComer', 'pdo_cant')
-            ->join('provedors as pro','pro.id','productos.pdo_id_provedor')
+            ->join('provedors as pro', 'pro.id', 'productos.pdo_id_provedor')
             ->where('productos.ca_estado', '1')
-            ->select('productos.id','pdo_cod','pdo_cant','pdo_nomGen','pdo_nomComer','prov_sigla','prov_nombre','pdo_id_provedor','pdo_preUniVenta1','pdo_preUniVenta2','pdo_preUniVenta3')
+            ->select('productos.id', 'pdo_cod', 'pdo_cant', 'pdo_nomGen', 'pdo_nomComer', 'prov_sigla', 'prov_nombre', 'pdo_id_provedor', 'pdo_preUniVenta1', 'pdo_preUniVenta2', 'pdo_preUniVenta3')
             ->get();
     }
     public function busProducto(Request $request)
     {
         return producto::select('id', 'pdo_nomGen', 'pdo_nomComer', 'pdo_cant')
-            ->join('provedors as pro','pro.id','productos.pdo_id_provedor')
+            ->join('provedors as pro', 'pro.id', 'productos.pdo_id_provedor')
             ->where('productos.ca_estado', '1')
             ->where(function ($query) use ($request) {
                 $query->where('pdo_nomGen', 'iLIKE',          '%' . $request->input('data') . '%')
                     ->orWhere('pdo_nomComer', 'iLIKE',        '%' .       $request->input('data') . '%');
             })
-            ->select('productos.id','pdo_cod','pdo_cant','pdo_nomGen','pdo_nomComer','prov_sigla','prov_nombre','pdo_id_provedor','pdo_preUniVenta1','pdo_preUniVenta2','pdo_preUniVenta3')
-            ->limit('50')->get();
+            ->select('productos.id', 'pdo_cod', 'pdo_cant', 'pdo_nomGen', 'pdo_nomComer', 'prov_sigla', 'prov_nombre', 'pdo_id_provedor', 'pdo_preUniVenta1', 'pdo_preUniVenta2', 'pdo_preUniVenta3')
+            ->limit('200')->get();
     }
     public function storePedido(Request $request)
     {
@@ -69,14 +70,14 @@ class modAppController extends Controller
 
     public function homeCatalogo(Request $request)
     {
-        if ($request->input('tipo')=='1') {
+        if ($request->input('tipo') == '1') {
             return view('AppMod.catalogo');
         }
     }
 
     public function list1(Request $request)
     {
-        return producto::where('ca_estado','1')->get();
+        return producto::where('ca_estado', '1')->get();
     }
     public function storeCliente(Request $request)
     {
@@ -91,7 +92,22 @@ class modAppController extends Controller
         $newclie->ca_usu_cod = Auth::user()->id;
         $newclie->ca_tipo = 'create';
         $newclie->ca_estado = '1';
-        $newclie->ca_ubi =serialize(['lat'=>$request->input('lat'),'lon'=> $request->input('lon'),'link'=>$request->input('enlace')]);
+        $newclie->ca_ubi = serialize(['lat' => $request->input('lat'), 'lon' => $request->input('lon'), 'link' => $request->input('enlace')]);
         return $res = $newclie->save();
+    }
+
+    public function busProducto_2(Request $request)
+    {
+
+        return producto::select('id', 'pdo_nomGen', 'pdo_nomComer', 'pdo_cant')
+            ->join('provedors as pro', 'pro.id', 'productos.pdo_id_provedor')
+            ->where('productos.ca_estado', '1')
+            ->where('productos.pdo_id_provedor', $request->input('lab'))
+            // ->where(function ($query) use ($request) {
+            //     $query->where('pdo_nomGen', 'iLIKE',          '%' . $request->input('data') . '%')
+            //         ->orWhere('pdo_nomComer', 'iLIKE',        '%' .       $request->input('data') . '%');
+            // })
+            ->select('productos.id', 'pdo_cod', 'pdo_cant', 'pdo_nomGen', 'pdo_nomComer', 'prov_sigla', 'prov_nombre', 'pdo_id_provedor', 'pdo_preUniVenta1', 'pdo_preUniVenta2', 'pdo_preUniVenta3')
+            ->get();
     }
 }
