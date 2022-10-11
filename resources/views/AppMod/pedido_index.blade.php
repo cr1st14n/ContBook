@@ -60,7 +60,7 @@
                     <table class="table table-sm table-vcenter table-hover table-responsive ">
                         <div class="form-group">
                             <div class="input-group">
-                                <input type="text" class="form-control form-control-sm col-12" id="inp_text_1" name="example-group3-input1" placeholder="Buscar ">
+                                <input type="text" class="form-control form-control-sm col-12" id="inp_text_clie" name="example-group3-input1" placeholder="Buscar ">
                                 <div class="input-group-prepend">
                                     <button type="button" class="btn btn-primary btn-sm" onclick="searchClie()">
                                         <i class="fa fa-search mr-1"></i>

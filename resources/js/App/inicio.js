@@ -171,8 +171,9 @@ function clienteSearch() {
 function searchClie() {
     $.get(
         "ContApp/Pedido/busCliente",
-        { data: $("#inp_text_1").val() },
+        { data: $("#inp_text_clie").val() },
         function (data, textStatus, jqXHR) {
+            console.log(data);
             ped_clientes = data;
             html = data
                 .map(function (p, i) {
@@ -307,7 +308,7 @@ function funSelectPro(p) {
     console.log(ped_producto[p].pdo_cant);
     console.log(ped_producto[p]);
     if ($("#inp_text_pro_2").val() < 0 || $("#inp_text_pro_2").val() == "") {
-        notif(3, "Error. cantidad!");
+        notif(3, "Ingrese Cantidad !");
         return;
     }
     ped_idPro = ped_producto[p];
@@ -414,6 +415,7 @@ function concluirPedido() {
             _token: $('meta[name="csrf-token"]').attr("content"),
             C: ped_idCliente,
             P: ped_data,
+            ubi: { lat: lat, lon: lon, link: enlace },
         },
         success: function (response) {
             console.log(response);

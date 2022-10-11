@@ -36,7 +36,8 @@ class modAppController extends Controller
                     ->orWhere('cli_razonSocial', 'iLIKE',     '%' . $request->input('data') . '%')
                     ->orWhere('cli_razonSocialNit', 'iLIKE',   $request->input('data') . '%');
             })
-            ->limit('20')->get();
+            ->limit('100')
+            ->get();
     }
     public function listProducto(Request $request)
     {
