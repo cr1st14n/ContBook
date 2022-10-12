@@ -331,12 +331,17 @@ function funSelectPro(p) {
     console.log(tp);
     console.log(parseFloat(tp));
 
-    ped_costoTotal =
-        ped_costoTotal +
-        cantidad * parseFloat(tp.replace(/,/g, ".")).toFixed(2);
+    tp = parseFloat(tp.replace(/,/g, ".")).toFixed(2);
+    ped_costoTotal = ped_costoTotal + cantidad * tp;
+
     $("#secCostoTotal").html("TOTAL :" + ped_costoTotal);
 
-    ped_data.push({ pro: ped_idPro, cant: $("#inp_text_pro_2").val() });
+    ped_data.push({
+        pro: ped_idPro,
+        cant: $("#inp_text_pro_2").val(),
+        precio: tp,
+        region: ped_TipoPrecio,
+    });
 
     notif(1, "Producto agregado");
     console.log(ped_data);
@@ -344,7 +349,8 @@ function funSelectPro(p) {
 }
 function showListProSelec() {
     html = ped_data
-        .map(function (p) {
+        .map(function (p, i) {
+            console.log(i);
             switch (ped_TipoPrecio) {
                 case "P1":
                     tp = p.pro.pdo_preUniVenta1;
@@ -379,7 +385,7 @@ function showListProSelec() {
     <td class="text-center">
         <div class="btn-group">
             <button type="button" class="btn btn-sm btn-dark" data-toggle="tooltip"
-                title="Edit Client" >
+                title="Eliminar" onclick="deleteItemPedido(${i})">
                 <i class="fa fa-fw fa-arrow-circle-right"></i>
             </button>
         </div>
@@ -393,6 +399,18 @@ function showListProSelec() {
     $("#modal_busProducto").modal("hide");
     $("#inp_text_pro_2").html("");
     $("#inp_text_pro_1").html("");
+}
+function deleteItemPedido(i) {
+    ped_costoTotal-=parseFloat(ped_data[i]["cant"] ) -parseFloat( ped_data[i]["precio"]);
+    ped_data1=[]
+    ped_data.forEach((element,e) => {
+        if (i != e) {
+            ped_data1.push(element);
+        }
+    });
+    ped_data = ped_data1;
+    console.log(ped_data);
+    showListProSelec();
 }
 function calcularPrecio(p) {
     ped_producto[p].pdo_cant;
