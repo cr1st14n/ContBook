@@ -49,15 +49,35 @@ class modAppController extends Controller
     }
     public function busProducto(Request $request)
     {
-        return producto::select('id', 'pdo_nomGen', 'pdo_nomComer', 'pdo_cant')
-            ->join('provedors as pro', 'pro.id', 'productos.pdo_id_provedor')
-            ->where('productos.ca_estado', '1')
-            ->where(function ($query) use ($request) {
-                $query->where('pdo_nomGen', 'iLIKE',          '%' . $request->input('data') . '%')
-                    ->orWhere('pdo_nomComer', 'iLIKE',        '%' .       $request->input('data') . '%');
-            })
-            ->select('productos.id', 'pdo_cod', 'pdo_cant', 'pdo_nomGen', 'pdo_nomComer', 'prov_sigla', 'prov_nombre', 'pdo_id_provedor', 'pdo_preUniVenta1', 'pdo_preUniVenta2', 'pdo_preUniVenta3')
-            ->limit('200')->get();
+        // return $request;
+        if ($request->input('lab') == 'all') {
+            $pro= producto::select('id', 'pdo_nomGen', 'pdo_nomComer', 'pdo_cant')
+                ->join('provedors as pro', 'pro.id', 'productos.pdo_id_provedor')
+                ->where('productos.ca_estado', '1')
+                ->where(function ($query) use ($request) {
+                    $query->where('pdo_nomGen', 'iLIKE',          '%' . $request->input('data') . '%')
+                        ->orWhere('pdo_nomComer', 'iLIKE',        '%' .       $request->input('data') . '%');
+                })
+                ->select('productos.id', 'pdo_cod', 'pdo_data', 'pdo_nomGen', 'pdo_nomComer', 'prov_sigla', 'prov_nombre', 'pdo_id_provedor', 'pdo_preUniVenta1', 'pdo_preUniVenta2', 'pdo_preUniVenta3')
+                ->limit('200')->get();
+        }else {
+            # code...
+            $pro= producto::select('id', 'pdo_nomGen', 'pdo_nomComer', 'pdo_cant')
+                ->join('provedors as pro', 'pro.id', 'productos.pdo_id_provedor')
+                ->where('productos.ca_estado', '1')
+                ->where('productos.pdo_id_provedor', $request->input('lab'))
+                ->where(function ($query) use ($request) {
+                    $query->where('pdo_nomGen', 'iLIKE',          '%' . $request->input('data') . '%')
+                        ->orWhere('pdo_nomComer', 'iLIKE',        '%' .       $request->input('data') . '%');
+                })
+                ->select('productos.id', 'pdo_cod', 'pdo_data', 'pdo_nomGen', 'pdo_nomComer', 'prov_sigla', 'prov_nombre', 'pdo_id_provedor', 'pdo_preUniVenta1', 'pdo_preUniVenta2', 'pdo_preUniVenta3')
+                ->limit('200')->get();
+        }
+
+        foreach ($pro as $key => $value) {
+            $pro[$key]['pdo_data'] = unserialize($value['pdo_data']);
+        }
+        return $pro;
     }
     public function storePedido(Request $request)
     {
@@ -78,7 +98,27 @@ class modAppController extends Controller
 
     public function list1(Request $request)
     {
-        return producto::where('ca_estado', '1')->get();
+        $data = producto::select()
+            ->where('productos.ca_estado', '1')
+            ->join('provedors as pro', 'pro.id', 'productos.pdo_id_provedor')
+            ->select(
+                'productos.id',
+                'pdo_cod',
+                'pdo_data',
+                'pdo_nomGen',
+                'pdo_nomComer',
+                'prov_sigla',
+                'prov_nombre',
+                'pdo_id_provedor',
+                'pdo_preUniVenta1',
+                'pdo_preUniVenta2',
+                'pdo_preUniVenta3'
+            )
+            ->get();
+        foreach ($data as $key => $value) {
+            $data[$key]['pdo_data'] = unserialize($value['pdo_data']);
+        }
+        return $data;
     }
     public function storeCliente(Request $request)
     {
@@ -100,7 +140,7 @@ class modAppController extends Controller
     public function busProducto_2(Request $request)
     {
 
-        return producto::select('id', 'pdo_nomGen', 'pdo_nomComer', 'pdo_cant')
+        $pro = producto::select('id', 'pdo_nomGen', 'pdo_nomComer', 'pdo_cant')
             ->join('provedors as pro', 'pro.id', 'productos.pdo_id_provedor')
             ->where('productos.ca_estado', '1')
             ->where('productos.pdo_id_provedor', $request->input('lab'))
@@ -108,7 +148,12 @@ class modAppController extends Controller
             //     $query->where('pdo_nomGen', 'iLIKE',          '%' . $request->input('data') . '%')
             //         ->orWhere('pdo_nomComer', 'iLIKE',        '%' .       $request->input('data') . '%');
             // })
-            ->select('productos.id', 'pdo_cod', 'pdo_cant', 'pdo_nomGen', 'pdo_nomComer', 'prov_sigla', 'prov_nombre', 'pdo_id_provedor', 'pdo_preUniVenta1', 'pdo_preUniVenta2', 'pdo_preUniVenta3')
+            ->select('productos.id', 'pdo_cod', 'pdo_data', 'pdo_nomGen', 'pdo_nomComer', 'prov_sigla', 'prov_nombre', 'pdo_id_provedor', 'pdo_preUniVenta1', 'pdo_preUniVenta2', 'pdo_preUniVenta3')
             ->get();
+
+        foreach ($pro as $key => $value) {
+            $pro[$key]['pdo_data'] = unserialize($value['pdo_data']);
+        }
+        return $pro;
     }
 }

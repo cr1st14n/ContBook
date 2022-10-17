@@ -11,23 +11,21 @@
             </div>
         </div>
         <div class="block-content">
-            <div class="block-content">
-                <div class="table-responsive">
-                    <table class="table table-bordered table-striped ">
-                        <thead>
-                            <tr>
-                                <th class="text-center" style="width: 100px;"></th>
-                                <th style="width: 30%;">Cod.</th>
-                                <th style="width: 30%;">Nombre</th>
-                                <th style="width: 10%;">Stock</th>
-                                <th style="width: 10%;">Precio</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tbodyListCatalogo">
+            <div class=" table table-responsive">
+                <table class="table table-bordered table-striped ">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Cod.</th>
+                            <th>Descripción</th>
+                        
+                        </tr>
+                    </thead>
+                    <tbody id="tbodyListCatalogo">
 
-                        </tbody>
-                    </table>
-                </div>
+                    </tbody >
+                    <span style="font-size:medium ;"></span>
+                </table>
             </div>
         </div>
         <!-- END Page Container -->

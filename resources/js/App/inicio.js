@@ -5,6 +5,7 @@ function notif(tipo, texto) {
                 type: "info",
                 icon: "fa fa-info-circle mr-1",
                 message: texto,
+                align: "left",
             });
             break;
 
@@ -13,6 +14,7 @@ function notif(tipo, texto) {
                 type: "success",
                 icon: "fa fa-check mr-1",
                 message: texto,
+                align: "left",
             });
             break;
 
@@ -21,6 +23,7 @@ function notif(tipo, texto) {
                 type: "warning",
                 icon: "fa fa-exclamation mr-1",
                 message: texto,
+                align: "left",
             });
             break;
 
@@ -29,6 +32,7 @@ function notif(tipo, texto) {
                 type: "danger",
                 icon: "fa fa-times mr-1",
                 message: texto,
+                align: "left",
             });
             break;
 
@@ -156,6 +160,14 @@ const itemSector = (tipo) => {
             break;
     }
 };
+
+const vernull = (data) => {
+    if (data != null) {
+        return data;
+    } else {
+        return "";
+    }
+};
 // *-------------- PEDIDO AGREGAR-----------
 ped_idCliente = "";
 ped_clientes = "";
@@ -227,9 +239,15 @@ function showlistPro(param) {
 }
 function searchPro(e) {
     showCarga_1();
+    datos = {
+        data: $("#inp_text_pro_1").val(),
+        TP: ped_TipoPrecio,
+        lab: $("#inp_lab").val(),
+    };
+    console.log(datos);
     $.get(
         "ContApp/Pedido/busProducto",
-        { data: $("#inp_text_pro_1").val(), TP: ped_TipoPrecio },
+        datos,
         function (data, textStatus, jqXHR) {
             console.log(data);
             ped_producto = data;
@@ -269,6 +287,7 @@ function showCarga_1() {
     $("#tbodylistProPed").html(html);
 }
 function tbodyProdMaque(data) {
+    console.log(data);
     html = data
         .map(function (p, i) {
             switch (ped_TipoPrecio) {
@@ -291,12 +310,18 @@ function tbodyProdMaque(data) {
             <div class="btn-group">
                 <button type="button" class="btn btn-sm btn-light" data-toggle="tooltip"
                     title="Edit Client" onclick="funSelectPro(${i})">
-                    <i class="fa fa-fw fa-arrow-circle-right"></i>
+                    <i class="fa fa-fw fa-plus-circle"></i>
                 </button>
             </div>
         </td>
         <th class="text-center" scope="row">${p.prov_sigla}-${p.pdo_cod}</th>
-        <td class="font-w600 font-size-sm">- N.C.: ${p.pdo_nomComer} <br> - N.G.: ${p.pdo_nomGen} <br>Stock: ${p.pdo_cant} / Precio: ${tp}Bs.-  </td>
+        <td class="font-w600 font-size-sm">- N.C.: ${vernull(
+            p.pdo_nomComer
+        )} <br> - N.G.: ${vernull(p.pdo_nomGen)} <br>Stock: ${
+                p.pdo_data.cantidad
+            } / Precio: ${tp}Bs.- <span style="color:blue">F.V.: ${
+              vernull(  p.pdo_data.fechVenc)
+            }</span> </td>
     </tr>
     `);
         })
@@ -334,7 +359,7 @@ function funSelectPro(p) {
     tp = parseFloat(tp.replace(/,/g, ".")).toFixed(2);
     ped_costoTotal = ped_costoTotal + cantidad * tp;
 
-    $("#secCostoTotal").html("TOTAL :" + ped_costoTotal);
+    $("#secCostoTotal").html("Costo Total: <br> <span style='font-size:25px '>Bs.- " + ped_costoTotal+"</span>");
 
     ped_data.push({
         pro: ped_idPro,
@@ -401,9 +426,10 @@ function showListProSelec() {
     $("#inp_text_pro_1").html("");
 }
 function deleteItemPedido(i) {
-    ped_costoTotal-=parseFloat(ped_data[i]["cant"] ) -parseFloat( ped_data[i]["precio"]);
-    ped_data1=[]
-    ped_data.forEach((element,e) => {
+    ped_costoTotal -=
+        parseFloat(ped_data[i]["cant"]) - parseFloat(ped_data[i]["precio"]);
+    ped_data1 = [];
+    ped_data.forEach((element, e) => {
         if (i != e) {
             ped_data1.push(element);
         }
@@ -431,8 +457,9 @@ function concluirPedido() {
         url: "ContApp/Pedido/storePedido",
         data: {
             _token: $('meta[name="csrf-token"]').attr("content"),
-            C: ped_idCliente,
-            P: ped_data,
+            Cliente: ped_idCliente,
+            productos: ped_data,
+            region: ped_TipoPrecio,
             ubi: { lat: lat, lon: lon, link: enlace },
         },
         success: function (response) {
@@ -451,6 +478,8 @@ const viewCatalogo = () => {
     }
     $.get("ContApp/Catalogo/", { tipo: 1 }, function (data, textStatus, jqXHR) {
         $("#main-container").html(data);
+        // unserialize()
+        // console.log(data[0].pdo_data.cantidad);
     });
 };
 const listCatalogo = () => {
@@ -492,13 +521,17 @@ const listCatalogo = () => {
                     <td class="text-center">
                         <img class="img-avatar img-avatar48" src="resources/plantilla/assets/media/avatars/logo_1.jpg" alt="">
                     </td>
-                    <td class="font-size-sm"><p> ${e.pdo_nomGen}</p></td>
-                    <td class="font-size-sm">${e.pdo_nomComer}</td>
-                    <td>
-                        <span class="badge badge-warning">${e.pdo_cant}</span>
+                    <td class="text-center">
+                       ${e.prov_sigla}-${e.pdo_cod}
                     </td>
-                    <td>
-                        <span class="badge badge-info">${precio}</span>
+                    <td class="font-w600 font-size-sm"><span>
+                        N.Com: ${vernull(e.pdo_nomComer)}
+                        <br>
+                        N.Gen: ${vernull(e.pdo_nomGen)}
+                        </span> <br>
+                        <span class="">stock: ${e.pdo_data.cantidad}</span><br>
+                        <span class="badge badge-info" style="color:black;font-size:medium " >Bs.- ${precio}</span>
+                        <span class="">F.V.:${e.pdo_data.fechVenc}</span>
                     </td>
                 </tr>
                 `);

@@ -27,17 +27,23 @@
         <div class="d-flex align-items-center justify-content-center bg-br-primary ht-100v">
 
             <div class="login-wrapper wd-300 wd-xs-350 pd-25 pd-xs-40 bg-white rounded shadow-base">
-                <div class="signin-logo tx-center tx-28 tx-bold tx-inverse"><span class="tx-normal">[</span> ContBook <span class="tx-normal">]</span></div>
-                <div class="tx-center mg-b-60">Sistema Contable Comercial</div>
+                <div class="login-wrapper" align="center">
+                    <img src="{{ asset('resources/template/img/logo.jpg')}}" alt="" width="100px">
+                </div>
+                <!-- <div class="tx-center mg-b-60">Sistema Contable Comercial</div> -->
+                <br>
 
                 <div class="form-group">
                     <input type="text" class="form-control" name="usu_cod" placeholder="Codigo de Usuario" required autocomplete="off">
                 </div><!-- form-group -->
                 <div class="form-group">
                     <input type="password" class="form-control" name="password" placeholder="Contraseña" required>
-                    <a href="" class="tx-info tx-12 d-block mg-t-10">Olvido la contraseña?</a>
                 </div><!-- form-group -->
                 <button type="submit" class="btn btn-info btn-block">Ingresar</button>
+                <br>
+                <div class="signin-logo tx-right tx-9 tx-bold tx-inverse" ><span class="tx-normal" >[</span > ContBook <span class="tx-normal">] </span> <br>
+                Desarrollado por <SPAn style="color: #23CDC2;">ENDCODE</SPAn>
+                </div>
             </div><!-- login-wrapper -->
         </div><!-- d-flex -->
     </form>

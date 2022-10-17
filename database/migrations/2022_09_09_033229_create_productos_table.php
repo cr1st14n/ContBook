@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('pdo_concentracion')->nullable();
             $table->string('pdo_uMedida')->nullable();
             $table->string('pdo_formFarm')->nullable();
-            $table->string('pdo_cant')->nullable();
+            $table->longText('pdo_data')->nullable();
             $table->string('pdo_preUniVenta1')->nullable();
             $table->string('pdo_preUniVenta2')->nullable();
             $table->string('pdo_preUniVenta3')->nullable();

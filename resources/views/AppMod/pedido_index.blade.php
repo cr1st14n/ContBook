@@ -13,8 +13,19 @@
             </div>
         </div>
         <div class="block-content">
-            <p style="font-size: 14px" id="p_datClie">Nombre: CI: <br>
-                R.Z.: NIT:</p>
+            <div class="row">
+                <div class="col-sm-6">
+
+                    <p style="font-size: 14px" id="p_datClie">Nombre: CI: <br>
+                        R.Z.: NIT:</p>
+                </div>
+                <div class="col-sm-4">
+                    <p id="secCostoTotal">Costo Total: <br> <span style=" font-size:25px ">Bs.- </span></p>
+                </div>
+                <div class=" col-sm-2" style="text-align:right;">
+                    <button type="button" class=" btn btn-warning btn"  onclick="concluirPedido()" style="color:floralwhite;"><i class="fa fa-fw fa-2x fa-shopping-cart"></i></button>
+                </div>
+            </div>
             <table class="table   table-hover table-responsive">
                 <thead class=" thead-indigo ">
                     <tr>
@@ -32,13 +43,7 @@
                     </tr>
                 </tbody>
             </table>
-
         </div>
-    </div>
-    <div class=" " style="text-align: right">
-        <p id="secCostoTotal">Costo Total</p>
-        <button class="btn btn-dark  btn-rounded " onclick="concluirPedido()"><i class="fa  fa-arrow-alt-circle-right"></i>
-        </button>
     </div>
     <!-- END Small Table -->
 </div>
@@ -89,7 +94,7 @@
     </div>
 </div>
 <div class="modal fade" id="modal_busProducto" tabindex="-1" role="dialog" aria-labelledby="modal-block-fadein" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-top" role="document">
+    <div class="modal-dialog modal-dialog-top modal-xl" role="document">
         <div class="modal-content">
             <div class="block block-themed block-transparent mb-0">
                 <div class="block-header bg-primary-dark">
@@ -112,8 +117,8 @@
                                 <input type="number" class="form-control form-control-sm col-3" id="inp_text_pro_2" name="example-group3-input1" placeholder="Cantidad..">
                                 <input type="text" class="form-control form-control-sm col-9" id="inp_text_pro_1" name="example-group3-input1" placeholder="Buscar ">
 
-                                <select name="" id="" class="form-control form-control-sm" onchange="searchPro_2($(this).val())">
-                                    <option value="all">Seleccionar</option>
+                                <select name="inp_lab" id="inp_lab" class="form-control form-control-sm" onchange="searchPro_2($(this).val())">
+                                    <option value="all">Todo</option>
                                     @foreach( $provs as $p)
                                     <option value="{{$p->id}}">{{$p->prov_nombre}}</option>
                                     @endforeach
@@ -140,7 +145,7 @@
                                 }
 
                                 .table-responsive {
-                                    height: 700px;
+                                    height: 1000px;
                                     overflow: scroll;
                                 }
                             </style>
