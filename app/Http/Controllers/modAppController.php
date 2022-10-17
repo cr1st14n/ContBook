@@ -22,7 +22,7 @@ class modAppController extends Controller
     public function homePedido()
     {
         $provs = provedor::get();
-        //    return $producto[2191]; 
+        //    return $producto[2191];
         return view('AppMod.pedido_index')->with('provs', $provs);
     }
     public function busCliente(Request $request)
@@ -51,7 +51,7 @@ class modAppController extends Controller
     {
         // return $request;
         if ($request->input('lab') == 'all') {
-            $pro= producto::select('id', 'pdo_nomGen', 'pdo_nomComer', 'pdo_cant')
+            $pro = producto::select('id', 'pdo_nomGen', 'pdo_nomComer', 'pdo_cant')
                 ->join('provedors as pro', 'pro.id', 'productos.pdo_id_provedor')
                 ->where('productos.ca_estado', '1')
                 ->where(function ($query) use ($request) {
@@ -60,9 +60,9 @@ class modAppController extends Controller
                 })
                 ->select('productos.id', 'pdo_cod', 'pdo_data', 'pdo_nomGen', 'pdo_nomComer', 'prov_sigla', 'prov_nombre', 'pdo_id_provedor', 'pdo_preUniVenta1', 'pdo_preUniVenta2', 'pdo_preUniVenta3')
                 ->limit('200')->get();
-        }else {
+        } else {
             # code...
-            $pro= producto::select('id', 'pdo_nomGen', 'pdo_nomComer', 'pdo_cant')
+            $pro = producto::select('id', 'pdo_nomGen', 'pdo_nomComer', 'pdo_cant')
                 ->join('provedors as pro', 'pro.id', 'productos.pdo_id_provedor')
                 ->where('productos.ca_estado', '1')
                 ->where('productos.pdo_id_provedor', $request->input('lab'))
@@ -139,6 +139,7 @@ class modAppController extends Controller
 
     public function busProducto_2(Request $request)
     {
+        // return serialize(['cantidad' => 0, 'fechVenc' => '']);
 
         $pro = producto::select('id', 'pdo_nomGen', 'pdo_nomComer', 'pdo_cant')
             ->join('provedors as pro', 'pro.id', 'productos.pdo_id_provedor')

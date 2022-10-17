@@ -214,7 +214,7 @@ function funSelectClie(p) {
     $("#modal_busCliente").modal("hide");
     $("#tbodylistCliePed").html("");
     $("#inp_text_1").val("");
-    strin1 = ` 
+    strin1 = `
     Nombre: <strong>${ped_clientes[p].cli_nombre}</strong> CI:<strong>${ped_clientes[p].cli_ci}</strong> <br>
     R.Z.:<strong>${ped_clientes[p].cli_razonSocial}</strong> NIT:<strong>${ped_clientes[p].cli_razonSocialNit}</strong>`;
     $("#p_datClie").html(strin1);
@@ -319,9 +319,9 @@ function tbodyProdMaque(data) {
             p.pdo_nomComer
         )} <br> - N.G.: ${vernull(p.pdo_nomGen)} <br>Stock: ${
                 p.pdo_data.cantidad
-            } / Precio: ${tp}Bs.- <span style="color:blue">F.V.: ${
-              vernull(  p.pdo_data.fechVenc)
-            }</span> </td>
+            } / Precio: ${tp}Bs.- <span style="color:blue">F.V.: ${vernull(
+                p.pdo_data.fechVenc
+            )}</span> </td>
     </tr>
     `);
         })
@@ -330,7 +330,7 @@ function tbodyProdMaque(data) {
 }
 function funSelectPro(p) {
     console.log($("#inp_text_pro_2").val());
-    console.log(ped_producto[p].pdo_cant);
+    console.log(ped_producto[p].pdo_data.cantidad);
     console.log(ped_producto[p]);
     if ($("#inp_text_pro_2").val() < 0 || $("#inp_text_pro_2").val() == "") {
         notif(3, "Ingrese Cantidad !");
@@ -356,10 +356,15 @@ function funSelectPro(p) {
     console.log(tp);
     console.log(parseFloat(tp));
 
-    tp = parseFloat(tp.replace(/,/g, ".")).toFixed(2);
+    tp = parseFloat(tp.replace(/,/g, ".")).toFixed(2); //* cambio coma por punto
     ped_costoTotal = ped_costoTotal + cantidad * tp;
+    ped_costoTotal=parseFloat(ped_costoTotal).toFixed(2);
 
-    $("#secCostoTotal").html("Costo Total: <br> <span style='font-size:25px '>Bs.- " + ped_costoTotal+"</span>");
+    $("#secCostoTotal").html(
+        "Costo Total: <br> <span style='font-size:25px '>Bs.- " +
+            ped_costoTotal +
+            "</span>"
+    );
 
     ped_data.push({
         pro: ped_idPro,
@@ -439,7 +444,8 @@ function deleteItemPedido(i) {
     showListProSelec();
 }
 function calcularPrecio(p) {
-    ped_producto[p].pdo_cant;
+    console.log(p);
+    ped_producto[p].pdo_data;
     ped_costoTotal = ped_costoTotal + parseFloat(p);
     $("#secCostoTotal").html("TOTAL:" + ped_costoTotal);
 }
