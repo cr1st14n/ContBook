@@ -37,43 +37,10 @@ function notif(tipo, texto) {
             break;
 
         default:
-            $.notific8("Registro actualizado .", {
-                life: 3000,
-                heading: "Correcto",
-                icon: "info-circled",
-                theme: "amethyst",
-                family: "atomic",
-                // sticky: true,
-                horizontalEdge: "top",
-                // horizontalEdge: 'bottom',
-                verticalEdge: "rigth",
-                zindex: 1500,
-                // closeText: 'près',
-                onInit: function (data) {
-                    console.log("--onInit--Inicial");
-                    console.log("data:");
-                    console.log(data);
-                },
-                onCreate: function (notification, data) {
-                    console.log("--onCreate-- Creado");
-                    console.log("notification:");
-                    console.log(notification);
-                    console.log("data:");
-                    console.log(data);
-                },
-                onClose: function (notification, data) {
-                    console.log("--onClose-- Cerrado");
-                    console.log("notification:");
-                    console.log(notification);
-                    console.log("data:");
-                    console.log(data);
-                },
-            });
             break;
     }
 }
 function viewInicio() {
-    console.log("home ");
     let data = `<!-- Page Content -->
     <div class="content content-narrow">
         <!-- Stats -->
@@ -121,7 +88,6 @@ function viewInicio() {
     // });
 }
 function viewCliente() {
-    console.log("home cliente");
     $.get("ContApp/cliente", function (data, textStatus, jqXHR) {
         $("#main-container").html(data);
     });
@@ -174,7 +140,7 @@ ped_clientes = "";
 ped_idPro = "";
 ped_data = [];
 ped_TipoPrecio = "";
-let ped_costoTotal = 0;
+ped_costoTotal = 0;
 // *------ cliente----
 
 function clienteSearch() {
@@ -185,7 +151,6 @@ function searchClie() {
         "ContApp/Pedido/busCliente",
         { data: $("#inp_text_clie").val() },
         function (data, textStatus, jqXHR) {
-            console.log(data);
             ped_clientes = data;
             html = data
                 .map(function (p, i) {
@@ -230,7 +195,6 @@ function showlistPro(param) {
         url: "ContApp/Pedido/listProducto",
         data: { TP: ped_TipoPrecio },
         success: function (response) {
-            console.log(response);
             ped_producto = response;
 
             tbodyProdMaque(response);
@@ -244,19 +208,16 @@ function searchPro(e) {
         TP: ped_TipoPrecio,
         lab: $("#inp_lab").val(),
     };
-    console.log(datos);
     $.get(
         "ContApp/Pedido/busProducto",
         datos,
         function (data, textStatus, jqXHR) {
-            console.log(data);
             ped_producto = data;
             tbodyProdMaque(data);
         }
     );
 }
 function searchPro_2(data) {
-    console.log(data);
     if (data == "all") {
         $("#tbodylistProPed").html("");
         return;
@@ -287,7 +248,6 @@ function showCarga_1() {
     $("#tbodylistProPed").html(html);
 }
 function tbodyProdMaque(data) {
-    console.log(data);
     html = data
         .map(function (p, i) {
             switch (ped_TipoPrecio) {
@@ -329,9 +289,6 @@ function tbodyProdMaque(data) {
     $("#tbodylistProPed").html(html);
 }
 function funSelectPro(p) {
-    console.log($("#inp_text_pro_2").val());
-    console.log(ped_producto[p].pdo_data.cantidad);
-    console.log(ped_producto[p]);
     if ($("#inp_text_pro_2").val() < 0 || $("#inp_text_pro_2").val() == "") {
         notif(3, "Ingrese Cantidad !");
         return;
@@ -353,19 +310,6 @@ function funSelectPro(p) {
         default:
             break;
     }
-    console.log(tp);
-    console.log(parseFloat(tp));
-
-    tp = parseFloat(tp.replace(/,/g, ".")).toFixed(2); //* cambio coma por punto
-    ped_costoTotal = ped_costoTotal + cantidad * tp;
-    ped_costoTotal=parseFloat(ped_costoTotal).toFixed(2);
-
-    $("#secCostoTotal").html(
-        "Costo Total: <br> <span style='font-size:25px '>Bs.- " +
-            ped_costoTotal +
-            "</span>"
-    );
-
     ped_data.push({
         pro: ped_idPro,
         cant: $("#inp_text_pro_2").val(),
@@ -374,13 +318,11 @@ function funSelectPro(p) {
     });
 
     notif(1, "Producto agregado");
-    console.log(ped_data);
     showListProSelec();
 }
 function showListProSelec() {
     html = ped_data
         .map(function (p, i) {
-            console.log(i);
             switch (ped_TipoPrecio) {
                 case "P1":
                     tp = p.pro.pdo_preUniVenta1;
@@ -425,6 +367,44 @@ function showListProSelec() {
         })
         .join(" ");
 
+    let cos = 0;
+    ped_data.map(function (p, i) {
+        switch (ped_TipoPrecio) {
+            case "P1":
+                tp = p.pro.pdo_preUniVenta1;
+                tpT = (
+                    parseFloat(tp.replace(/,/g, ".")).toFixed(2) *
+                    parseFloat(p.cant)
+                ).toFixed(2);
+                break;
+            case "P2":
+                tp = p.pro.pdo_preUniVenta2;
+                tpT = (
+                    parseFloat(tp.replace(/,/g, ".")).toFixed(2) *
+                    parseFloat(p.cant)
+                ).toFixed(2);
+                break;
+            case "P3":
+                tp = p.pro.pdo_preUniVenta3;
+                tpT = (
+                    parseFloat(tp.replace(/,/g, ".")).toFixed(2) *
+                    parseFloat(p.cant)
+                ).toFixed(2);
+                break;
+
+            default:
+                break;
+        }
+
+        cos = parseFloat(cos) + parseFloat(tpT);
+        ped_costoTotal=cos;
+    });
+    $("#secCostoTotal").html(
+        "Costo Total: <br> <span style='font-size:25px '>Bs.- " +
+            parseFloat(cos).toFixed(2) +
+            "</span>"
+    );
+
     $("#tbody_listProsect").html(html);
     $("#modal_busProducto").modal("hide");
     $("#inp_text_pro_2").html("");
@@ -440,15 +420,9 @@ function deleteItemPedido(i) {
         }
     });
     ped_data = ped_data1;
-    console.log(ped_data);
     showListProSelec();
 }
-function calcularPrecio(p) {
-    console.log(p);
-    ped_producto[p].pdo_data;
-    ped_costoTotal = ped_costoTotal + parseFloat(p);
-    $("#secCostoTotal").html("TOTAL:" + ped_costoTotal);
-}
+
 function concluirPedido() {
     if (ped_idCliente == "") {
         notif(3, "seleccione Cliente");
@@ -466,6 +440,7 @@ function concluirPedido() {
             Cliente: ped_idCliente,
             productos: ped_data,
             region: ped_TipoPrecio,
+            costoTotal: ped_costoTotal,
             ubi: { lat: lat, lon: lon, link: enlace },
         },
         success: function (response) {
@@ -485,7 +460,6 @@ const viewCatalogo = () => {
     $.get("ContApp/Catalogo/", { tipo: 1 }, function (data, textStatus, jqXHR) {
         $("#main-container").html(data);
         // unserialize()
-        // console.log(data[0].pdo_data.cantidad);
     });
 };
 const listCatalogo = () => {
@@ -505,7 +479,6 @@ const listCatalogo = () => {
         "ContApp/Catalogo/list1",
         { data: ped_TipoPrecio },
         function (data, textStatus, jqXHR) {
-            console.log(data);
             html = data
                 .map(function (e) {
                     switch (ped_TipoPrecio) {
@@ -550,7 +523,6 @@ const listCatalogo = () => {
 
 const createCliente = (data) => {
     data += "&lat=" + lat + "&lon=" + lon + "&link=" + enlace;
-    console.log(data);
     extraerUbicacion();
     $.ajax({
         type: "post",

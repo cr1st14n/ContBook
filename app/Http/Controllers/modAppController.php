@@ -81,12 +81,23 @@ class modAppController extends Controller
     }
     public function storePedido(Request $request)
     {
-        $pro = $request->input('P');
-        foreach ($pro as $key => $value) {
-            $new = new pedido();
-            $new->id_cliente = $request->input('');
-        }
-        return $request;
+        // return $request;
+        $new = new pedido();
+
+        $new->id_cliente = $request->input('Cliente');
+        $new->pdd_cantidad = count(  $request->input('productos'));
+        $new->pdd_fecha2 = '';
+        $new->pdd_respaldo = 'Digital';
+        $new->pdd_costo = $request->input('costoTotal');
+        $new->pdd_region = $request->input('region');
+        $new->pdd_productos = serialize($request->input('productos'));
+
+        $new->ca_usu_cod = Auth::user()->id;
+        $new->ca_tipo = 'create';
+        $new->ca_estado = 1;
+        $new->ca_ubi = serialize($request->input('ubi'));
+        return $new;
+        return $res=$new->save();
     }
 
     public function homeCatalogo(Request $request)

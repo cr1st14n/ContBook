@@ -17,19 +17,19 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
 
-            $table->integer('id_cliente');
-            $table->string('pdd_cantidad');
-            $table->dateTime('pdd_fecha2');
-            $table->string('pdd_respaldo');
-            $table->string('pdd_costo');
-            $table->longText('pdd_productos');
-            $table->longText('pdd_hubicacion');
+            $table->integer('id_cliente')->nullable();
+            $table->string('pdd_cantidad')->nullable();
+            $table->dateTime('pdd_fecha2')->nullable();
+            $table->string('pdd_respaldo')->nullable();
+            $table->string('pdd_costo')->nullable();
+            $table->string('pdd_region')->nullable();
+            $table->longText('pdd_productos')->nullable();
 
-            // *campos de auditoria 
+            // *campos de auditoria
             $table->integer('ca_usu_cod')->nullable();
             $table->string('ca_tipo', 10)->nullable();
             $table->integer('ca_estado')->nullable();
-            $table->string('ca_ubi')->nullable();
+            $table->longText('ca_ubi')->nullable();
 
         });
     }

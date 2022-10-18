@@ -20,7 +20,7 @@
                         R.Z.: NIT:</p>
                 </div>
                 <div class="col-sm-4">
-                    <p id="secCostoTotal">Costo Total: <br> <span style=" font-size:25px ">Bs.- </span></p>
+                    <p id="secCostoTotal">Costo Total: <br> <span style=" font-size:25px ">Bs.- 0.00</span></p>
                 </div>
                 <div class=" col-sm-2" style="text-align:right;">
                     <button type="button" class=" btn btn-warning btn"  onclick="concluirPedido()" style="color:floralwhite;"><i class="fa fa-fw fa-2x fa-shopping-cart"></i></button>
