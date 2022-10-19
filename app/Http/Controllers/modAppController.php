@@ -81,12 +81,14 @@ class modAppController extends Controller
     }
     public function storePedido(Request $request)
     {
+
+        
         // return $request;
         $new = new pedido();
 
         $new->id_cliente = $request->input('Cliente');
-        $new->pdd_cantidad = count(  $request->input('productos'));
-        $new->pdd_fecha2 = '';
+        $new->pdd_cantidad = count($request->input('productos'));
+        $new->pdd_fecha2 = null;
         $new->pdd_respaldo = 'Digital';
         $new->pdd_costo = $request->input('costoTotal');
         $new->pdd_region = $request->input('region');
@@ -96,8 +98,7 @@ class modAppController extends Controller
         $new->ca_tipo = 'create';
         $new->ca_estado = 1;
         $new->ca_ubi = serialize($request->input('ubi'));
-        return $new;
-        return $res=$new->save();
+        return $res = $new->save();
     }
 
     public function homeCatalogo(Request $request)
