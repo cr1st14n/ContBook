@@ -1,5 +1,17 @@
 id_Pedido_select = "";
+$(document).ready(function () {
+    list_pp1();
+});
+setTimeout(() => {
+list_pp1()
+}, 300);
+alert('lasjf')
+function list_pp1() {
 
+    $.get("Pedido/list_1",{data:'tipo_1'}, function (data, textStatus, jqXHR) {
+        console.log(data);
+    });
+}
 function pedido_registro() {
     $.get("Pedido", function (data, textStatus, jqXHR) {
         $("#main-container").html(data);
@@ -7,7 +19,7 @@ function pedido_registro() {
             list_1();
         }, 800);
     });
-    modoApp()
+    modoApp();
 }
 function pedido_new() {
     $.get("Pedido/create_1", function (data, textStatus, jqXHR) {
@@ -16,7 +28,7 @@ function pedido_new() {
             list_1();
         }, 800);
     });
-    modoApp()
+    modoApp();
 }
 $("select[name=sele_cliente]").change(function (e) {
     e.preventDefault();

@@ -91,7 +91,7 @@ Route::group(['prefix' => 'cliente', 'middleware' => ['auth']], function () {
 });
 Route::group(['prefix' => 'Pedido', 'middleware' => ['auth']], function () {
     Route::get('/', [PedidoController::class, 'home']);
-    Route::get('list_1', [PedidoController::class, 'list_1']);
+    Route::get('list_1/{tipo}', [PedidoController::class, 'list_1']);
     Route::get('create_1', [PedidoController::class, 'create_1']);
 });
 
