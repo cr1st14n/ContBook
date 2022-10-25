@@ -10,6 +10,8 @@ use App\Http\Requests\StorepedidoRequest;
 use App\Http\Requests\UpdatepedidoRequest;
 use Symfony\Component\Console\Input\Input;
 
+use function PHPUnit\Framework\returnSelf;
+
 class PedidoController extends Controller
 {
     /**
@@ -26,7 +28,7 @@ class PedidoController extends Controller
         // return $request;
         switch ($request->input('data')) {
             case 'tipo_1':
-                $data=pedido::where('ca_estado','1');
+                $data = pedido::where('ca_estado', '1')->get();
                 break;
             case 'tipo_2':
                 # code...
@@ -42,7 +44,12 @@ class PedidoController extends Controller
                 # code...
                 break;
         }
-        return $data->get();
+
+        foreach ($data as $key => $value) {
+             $data[$key]->pdd_productos=unserialize($data[$key]->pdd_productos);
+             $data[$key]->ca_ubi=unserialize($data[$key]->ca_ubi);
+        }
+        return $data;
     }
     public function create_1()
     {

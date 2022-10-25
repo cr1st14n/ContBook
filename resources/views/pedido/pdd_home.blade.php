@@ -14,19 +14,28 @@
                 </div>
                 <div class="block-content">
                     <input type="text" class="form-control form-control-sm col-2" id="inp_search_clie" placeholder="Buscar Cliente"><br>
-                    <table class="table table-hover table-vcenter">
+                    <table class="table table-hover table-vcenter table-responsive" style="width: 100%" >
                         <thead>
                             <tr>
-                                <th class="text-center" style="width: 10%;">cod</th>
-                                <th class="text-center">Cliente</th>
-                                <th class="text-center">Producto</th>
-                                <th class="text-center">Cantidad</th>
-                                <th class="text-center">Fecha</th>
+                                <th class="text-center" style="width: 10%;">Cod</th>
+                                <th class="text-center" style="width: 10%">Usuario</th>
+                                <th class="text-center" style="width: 20%">Detalle</th>
+                                <th class="text-center" style="width: 10%">C.T.</th>
+                                <th class="text-center" style="width: 10%">Fecha</th>
+                                <th class="text-center" style="width: 10%">Ref</th>
                                 <!-- <th class="d-none d-sm-table-cell" style="width: 20%;"></th> -->
                                 <th class="text-center" style="width: 10%;"></th>
                             </tr>
                         </thead>
                         <tbody id="tbodyList_pedidos">
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td> <a href=""></a> </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>

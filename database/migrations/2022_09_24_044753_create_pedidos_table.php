@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('pdd_costo')->nullable();
             $table->string('pdd_region')->nullable();
             $table->longText('pdd_productos')->nullable();
+            $table->boolean('pdd_estVen')->nullable();
 
             // *campos de auditoria
             $table->integer('ca_usu_cod')->nullable();

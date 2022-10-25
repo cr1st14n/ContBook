@@ -4,18 +4,44 @@ $(document).ready(function () {
 });
 
 function list_pp1() {
-
     $.ajax({
         type: "get",
         url: "Pedido/list_1",
-        data: {data:'tipo_1'},
+        data: { data: "tipo_1" },
         success: function (response) {
             console.log(response);
-
-            
-        }
+            maq_tbody_pedidos(response)
+        },
     });
 }
+
+function maq_tbody_pedidos(data) {
+    html = data
+        .map(function (e) {
+            h1=e.pdd_productos.map(function (param) {
+                return h=`
+                    <p>${param.cant}
+                    </p>
+                `;
+             }).join(' ')
+            return (h = `
+            <tr>
+                <td class="text-center">${e.id}</td>
+                <td class="text-center">${e.ca_usu_cod}</td>
+                <td class="text-center">${e.id_cliente} <br> ${e.pdd_region} </td>
+                <td class="text-center">${h1}</td>
+                <td class="text-center">${e.pdd_costo}</td>
+                <td class="text-center">${e.created_at}</td>
+                <td class="text-center"> <a href='${e.ca_ubi.link}' target="_blank"><i class=' fa fa-map-marked'></i> Hubicación</a></td>
+                <td class="text-center"></td>
+
+            </tr>
+        `);
+        })
+        .join(" ");
+        $('#tbodyList_pedidos').html(html);
+}
+
 function pedido_registro() {
     $.get("Pedido", function (data, textStatus, jqXHR) {
         $("#main-container").html(data);
