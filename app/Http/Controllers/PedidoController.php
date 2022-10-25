@@ -23,7 +23,7 @@ class PedidoController extends Controller
     }
     public function list_1(Request $request)
     {
-        return $request;
+        // return $request;
         switch ($request->input('data')) {
             case 'tipo_1':
                 $data=pedido::where('ca_estado','1');
@@ -42,7 +42,7 @@ class PedidoController extends Controller
                 # code...
                 break;
         }
-        return $data;
+        return $data->get();
     }
     public function create_1()
     {

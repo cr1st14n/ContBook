@@ -19,19 +19,35 @@ function modoApp() {
 function notif(tipo, texto) {
     switch (tipo) {
         case 1:
-            One.helpers('notify', {type: 'info', icon: 'fa fa-info-circle mr-1', texto });
+            One.helpers("notify", {
+                type: "info",
+                icon: "fa fa-info-circle mr-1",
+                texto,
+            });
             break;
 
         case 2:
-            One.helpers('notify', {type: 'success', icon: 'fa fa-check mr-1', message: texto });
+            One.helpers("notify", {
+                type: "success",
+                icon: "fa fa-check mr-1",
+                message: texto,
+            });
             break;
 
         case 3:
-            One.helpers('notify', {type: 'warning', icon: 'fa fa-exclamation mr-1', message: texto });
+            One.helpers("notify", {
+                type: "warning",
+                icon: "fa fa-exclamation mr-1",
+                message: texto,
+            });
             break;
 
         case 4:
-            One.helpers('notify', {type: 'danger', icon: 'fa fa-times mr-1', message: texto });
+            One.helpers("notify", {
+                type: "danger",
+                icon: "fa fa-times mr-1",
+                message: texto,
+            });
             break;
 
         default:

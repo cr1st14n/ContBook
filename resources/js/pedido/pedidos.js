@@ -2,14 +2,18 @@ id_Pedido_select = "";
 $(document).ready(function () {
     list_pp1();
 });
-setTimeout(() => {
-list_pp1()
-}, 300);
-alert('lasjf')
+
 function list_pp1() {
 
-    $.get("Pedido/list_1",{data:'tipo_1'}, function (data, textStatus, jqXHR) {
-        console.log(data);
+    $.ajax({
+        type: "get",
+        url: "Pedido/list_1",
+        data: {data:'tipo_1'},
+        success: function (response) {
+            console.log(response);
+
+            
+        }
     });
 }
 function pedido_registro() {

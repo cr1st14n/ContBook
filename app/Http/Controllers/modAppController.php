@@ -82,7 +82,7 @@ class modAppController extends Controller
     public function storePedido(Request $request)
     {
 
-        
+
         // return $request;
         $new = new pedido();
 

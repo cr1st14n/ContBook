@@ -101,5 +101,5 @@
         </div>
     </div>
 </div>
-
-<script src="{{ asset('resources/js/pedido/pedidos.js')}}"></script>
+{{--
+<script src="{{ asset('resources/js/pedido/pedidos.js')}}"></script> --}}
