@@ -3,7 +3,6 @@
 
 <head>
     <script>
-        console.log('al;skjfd');
         if (
             navigator.userAgent.match(/Android/i) ||
             navigator.userAgent.match(/webOS/i) ||

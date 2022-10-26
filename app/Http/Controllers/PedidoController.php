@@ -28,7 +28,11 @@ class PedidoController extends Controller
         // return $request;
         switch ($request->input('data')) {
             case 'tipo_1':
-                $data = pedido::where('ca_estado', '1')->get();
+                $data = pedido::where('pedidos.ca_estado', '1')
+                ->join('users','users.id','pedidos.ca_usu_cod')
+                ->join('clientes as c','c.id','pedidos.id_cliente')
+                ->select('pedidos.*','users.usu_nombre','c.cli_nombre','c.cli_ci','c.cli_razonSocial','c.cli_razonSocialNit')
+                ->get();
                 break;
             case 'tipo_2':
                 # code...

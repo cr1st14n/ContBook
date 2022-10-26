@@ -1,4 +1,5 @@
 id_Pedido_select = "";
+data_pedidos_1 = Array;
 $(document).ready(function () {
     list_pp1();
 });
@@ -10,36 +11,85 @@ function list_pp1() {
         data: { data: "tipo_1" },
         success: function (response) {
             console.log(response);
-            maq_tbody_pedidos(response)
+            maq_tbody_pedidos(response);
         },
     });
 }
 
 function maq_tbody_pedidos(data) {
+    const contItem = 0;
+    data_pedidos_1 = data;
     html = data
-        .map(function (e) {
-            h1=e.pdd_productos.map(function (param) {
-                return h=`
+        .map(function (e, i) {
+            var f = new Date(e.created_at);
+            f = f.toLocaleDateString();
+            switch (e.pdd_region) {
+                case "P1":
+                    region = "region 1";
+                    break;
+                case "P2":
+                    region = "region 2";
+                    break;
+                case "P3":
+                    region = "region 3";
+                    break;
+
+                default:
+                    break;
+            }
+            h1 = e.pdd_productos
+                .map(function (param) {
+                    return (h = `
                     <p>${param.cant}
                     </p>
-                `;
-             }).join(' ')
+                `);
+                })
+                .join(" ");
             return (h = `
             <tr>
-                <td class="text-center">${e.id}</td>
-                <td class="text-center">${e.ca_usu_cod}</td>
-                <td class="text-center">${e.id_cliente} <br> ${e.pdd_region} </td>
-                <td class="text-center">${h1}</td>
-                <td class="text-center">${e.pdd_costo}</td>
-                <td class="text-center">${e.created_at}</td>
-                <td class="text-center"> <a href='${e.ca_ubi.link}' target="_blank"><i class=' fa fa-map-marked'></i> Hubicación</a></td>
+                <td class="text-center">Ped-${e.id}</td>
+                <td class="text-center">${e.usu_nombre}</td>
+                <td class="text-center"><strong>
+                ${e.cli_nombre} - CI: ${e.cli_ci} <br>
+                ${e.cli_razonSocial} NIT.:${e.cli_razonSocialNit}
+                </strong>  <br>- ${region} </td>
+                <td class="text-center"><a href='#' onClick='showListProPed("${i}")'>${
+                e.pdd_productos.length
+            } Items.</a>  <br> <strong>Bs.- ${parseFloat(e.pdd_costo).toFixed(
+                2
+            )}</strong>  </td>
+                <td class="text-center"> ${f}</td>
+                <td class="text-center"> <a href='#'  onClick='show_hubi("${
+                    e.ca_ubi.link
+                }")'><i class=' fa fa-map-marked'></i> Hubicación</a></td>
                 <td class="text-center"></td>
 
             </tr>
         `);
         })
         .join(" ");
-        $('#tbodyList_pedidos').html(html);
+    $("#tbodyList_pedidos").html(html);
+}
+function show_hubi(ubi) {
+    $("#md_ubi").modal("show");
+    $("#emb_mapa_1").attr("src", ubi);
+}
+function showListProPed(data) {
+    console.log(data_pedidos_1[data]['pdd_productos']);
+    html = data_pedidos_1[data]['pdd_productos']
+        .map(function (p) {
+            return (h = `
+        <tr>
+            <td>${p.pro.pdo_nomGen} ${p.pro.pdo_nomComer}</td>
+            <td>${p.cant}</td>
+            <td>${p.precio}</td>
+            <td>${parseFloat(  parseFloat(p.cant)*parseFloat(p.precio.replace(/,/g, "."))).toFixed(2)}</td>
+        </tr>
+        `);
+        })
+        .join(" ");
+    $("#mq_listPro_pedido").html(html);
+    $("#md_listPedido_producto").modal("show");
 }
 
 function pedido_registro() {
