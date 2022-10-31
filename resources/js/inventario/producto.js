@@ -1,18 +1,17 @@
 url = "inventario/producto/list_1";
 data = { lista: "a" };
-
 function producto_home(param) {
     $.get("inventario/producto/home", function (data, textStatus, jqXHR) {
         $("#main-container").html(data);
         showList_producto();
     });
-    modoApp()
 }
 function lista_est(param) {
     data = { lista: param };
     showList_producto();
 }
 function showList_producto() {
+    console.log("imprimiendo la lista");
     $.ajax({
         type: "get",
         url: url,
@@ -26,21 +25,26 @@ function showList_producto() {
                     }
                     return (h = `
                     <tr>
-                        <td class="text-center">${param.id}</td>
-                        <td class="font-w600 font-size-sm">${param.pdo_cod}</td>
-                        <td>${param.pdo_cod2}</td>
-                        <td>${param.pdo_nomGen}</td>
-                        <td>${param.pdo_concentracion}</td>
-                        <td>${param.pdo_uMedica}</td>
-                        <td>${param.pdo_formFarm}</td>
-                        <td class="font-size-sm">${param.pdo_cant}</td>
+                        <td class="font-w600 font-size-sm">${
+                            param.prov_sigla
+                        }-${param.pdo_cod}</td>
+                        <td>${verNull(param.pdo_nomComer)}</td>
+                        <td>${verNull(param.pdo_nomGen)}</td>
+                        <td>${verNull(param.pdo_concentracion)}</td>
+                        <td>${verNull(param.pdo_uMedica)}</td>
+                        <td>${verNull(param.pdo_formFarm)}</td>
+                        <td class="font-size-sm">${
+                            param.pdo_data["cantidad"]
+                        }</td>
                         <td>${tm}</td>
                         <td class="text-center">
                             <div class="btn-group">
                                 <button type="button" class="btn btn-sm btn-primary "  title="Edit">
                                     <i class="fa fa-fw fa-pencil-alt"></i>
                                 </button>
-                                <button type="button" class="btn btn-sm btn-primary " onClick="fun_proEstado(${param.id})" title="Inhabilitar">
+                                <button type="button" class="btn btn-sm btn-primary " onClick="fun_proEstado(${
+                                    param.id
+                                })" title="Inhabilitar">
                                     <i class="fa fa-fw fa-times"></i>
                                 </button>
                             </div>

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Psy\CodeCleaner\ReturnTypePass;
 use App\Http\Requests\StorepedidoRequest;
 use App\Http\Requests\UpdatepedidoRequest;
+use App\Models\User;
 use Symfony\Component\Console\Input\Input;
 
 use function PHPUnit\Framework\returnSelf;
@@ -20,8 +21,9 @@ class PedidoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function home()
-    {
-        return view('pedido.pdd_home');
+    {   $clientes=Cliente::where('ca_estado',1)->get();
+        $usurios = User::where('ca_estado', 1)->get();
+        return view('pedido.pdd_home')->with('usuarios', $usurios)->with('clientes',$clientes);
     }
     public function list_1(Request $request)
     {
@@ -29,16 +31,26 @@ class PedidoController extends Controller
         switch ($request->input('data')) {
             case 'tipo_1':
                 $data = pedido::where('pedidos.ca_estado', '1')
-                ->join('users','users.id','pedidos.ca_usu_cod')
-                ->join('clientes as c','c.id','pedidos.id_cliente')
-                ->select('pedidos.*','users.usu_nombre','c.cli_nombre','c.cli_ci','c.cli_razonSocial','c.cli_razonSocialNit')
-                ->get();
+                    ->join('users', 'users.id', 'pedidos.ca_usu_cod')
+                    ->join('clientes as c', 'c.id', 'pedidos.id_cliente')
+                    ->select('pedidos.*', 'users.usu_nombre', 'c.cli_nombre', 'c.cli_ci', 'c.cli_razonSocial', 'c.cli_razonSocialNit')
+                    ->get();
                 break;
             case 'tipo_2':
-                # code...
+                $data = pedido::where('pedidos.ca_estado', '1')
+                    ->where('pedidos.id_cliente', $request->input('id'))
+                    ->join('users', 'users.id', 'pedidos.ca_usu_cod')
+                    ->join('clientes as c', 'c.id', 'pedidos.id_cliente')
+                    ->select('pedidos.*', 'users.usu_nombre', 'c.cli_nombre', 'c.cli_ci', 'c.cli_razonSocial', 'c.cli_razonSocialNit')
+                    ->get();
                 break;
             case 'tipo_3':
-                # code...
+                $data = pedido::where('pedidos.ca_estado', '1')
+                ->where('pedidos.ca_usu_cod', $request->input('id'))
+                ->join('users', 'users.id', 'pedidos.ca_usu_cod')
+                ->join('clientes as c', 'c.id', 'pedidos.id_cliente')
+                ->select('pedidos.*', 'users.usu_nombre', 'c.cli_nombre', 'c.cli_ci', 'c.cli_razonSocial', 'c.cli_razonSocialNit')
+                ->get();
                 break;
             case 'tipo_4':
                 # code...
@@ -50,8 +62,8 @@ class PedidoController extends Controller
         }
 
         foreach ($data as $key => $value) {
-             $data[$key]->pdd_productos=unserialize($data[$key]->pdd_productos);
-             $data[$key]->ca_ubi=unserialize($data[$key]->ca_ubi);
+            $data[$key]->pdd_productos = unserialize($data[$key]->pdd_productos);
+            $data[$key]->ca_ubi = unserialize($data[$key]->ca_ubi);
         }
         return $data;
     }

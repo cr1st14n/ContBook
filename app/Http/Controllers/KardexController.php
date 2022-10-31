@@ -9,6 +9,7 @@ use App\Models\caducidad;
 use App\Models\producto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\homeController;
 
 class KardexController extends Controller
 {
@@ -20,9 +21,10 @@ class KardexController extends Controller
     public function query_list_1()
     {
         return kardex::join('productos','kardexes.id_pro','=','productos.id')
-        ->orderBy('kardexes.id', 'desc') 
-        ->select('kardexes.*') 
-        ->addSelect('productos.pdo_nomGen') 
+        ->join('provedors','provedors.id','productos.pdo_id_provedor')
+        ->orderBy('kardexes.id', 'desc')
+        ->select('kardexes.*')
+        ->addSelect('productos.pdo_cod','productos.pdo_nomGen','productos.pdo_nomComer','provedors.prov_sigla')
         ->get();
 
     }
@@ -30,9 +32,9 @@ class KardexController extends Controller
     {
         return kardex::join('productos','kardexes.id_pro','=','productos.id')
         ->where('kardexes.id_pro',$request->input('id'))
-        ->orderBy('kardexes.id', 'desc') 
-        ->select('kardexes.*') 
-        ->addSelect('productos.pdo_nomGen') 
+        ->orderBy('kardexes.id', 'desc')
+        ->select('kardexes.*')
+        ->addSelect('productos.pdo_nomGen')
         ->get();
 
     }
@@ -52,7 +54,7 @@ class KardexController extends Controller
             $va_saldo = $request->input('ent_cant') * (($request->input('ent_cost') * 87) / 100);
         } else {
             if ($pro == null) {
-                return 'sin previo registro';
+                return 'Error_iniciarStock';
             }
             $regKrd = kardex::latest('id')->where('id_pro', $request->input('ent_pro'))->first();
             $fis_entrado = $request->input('ent_cant');
@@ -96,7 +98,11 @@ class KardexController extends Controller
         $cad->save();
 
         $p = producto::find($request->input('ent_pro'));
-        $p->pdo_cant = $n->kd_sdo_fis;
+        $data= unserialize( $p->pdo_data);
+        $data['cantidad']=$n->kd_sdo_fis;
+        $data['fechVenc']=$cad->cad_fecha;
+        $data['lote']=$cad->cad_lote;
+        $p->pdo_data =  serialize($data);
         $res2 = $p->save();
         return ($res1 == 1 && $res2 == 1) ? 'success' : 'error fatal';
 

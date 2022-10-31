@@ -25,7 +25,7 @@
                     </select>
                 </div>
                 <div class="col-md-3 col-xs-12" style="text-align:right">
-                    <button class="btn btn-info btn-sm" id="btn_pro_add_1"><i class="fa fa-plus"></i> Nuevo</button>
+                    <button class="btn btn-info btn-sm" id="btn_pro_add_1" onclick="createProducto()"><i class="fa fa-plus"></i> Nuevo</button>
                 </div>
             </div>
             <br>
@@ -33,12 +33,11 @@
                 <table class="table table-bordered table-striped table-vcenter table-sm">
                     <thead>
                         <tr>
-                            <th class="text-center">Cod</th>
-                            <th class="text-center">Cod. Va.</th>
+                            <th class="text-center">Cod.</th>
+                            <th>Nom. Comercial</th>
                             <th>Nom. Generico</th>
-                            <th>Descripción</th>
                             <th>Concentración</th>
-                            <th style="width: 10%;">U.Medica</th>
+                            <th style="width: 10%;">U.Medida</th>
                             <th style="width: 15%;">Forma Farm.</th>
                             <th style="width: 5%;">Cantidad</th>
                             <th style="width: 40px;">Est</th>
@@ -88,15 +87,19 @@
                 <form id="form_new_producto">@csrf
                     <div class="block-content font-size-sm">
                         <div class="form-group row">
-                            <label class="col-sm-4 col-form-label" for="example-hf-email">Codigo</label>
+                            <label class="col-sm-4 col-form-label" for="example-hf-email">Provedor</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control form-control-sm" id="pdo_cod" name="pdo_cod" placeholder="" required>
+                                <select class=" form-control form-control-sm" name="pdo_id_provedor" id="pdo_id_provedor" required>
+                                    @foreach($probs as $p)
+                                        <option value="{{$p->id}}">{{$p->prov_nombre}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-4 col-form-label" for="example-hf-email">Cod. Vademecum</label>
+                            <label class="col-sm-4 col-form-label" for="example-hf-email">Nombre Comercial</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control form-control-sm" id="pdo_cod2" name="pdo_cod2" placeholder="">
+                                <input type="text" class="form-control form-control-sm" id="pdo_nomComer" name="pdo_nomComer" placeholder="" required>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -114,13 +117,36 @@
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label" for="example-hf-email">Unidad de Medida</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control form-control-sm" id="pdo_uMedica" name="pdo_uMedica" placeholder="" required>
+                                <input type="text" class="form-control form-control-sm" id="pdo_uMedida" name="pdo_uMedida" placeholder="" required>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label" for="example-hf-email">Forma Farmaceutica</label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control form-control-sm" id="pdo_formFarm" name="pdo_formFarm" placeholder="" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label" for="example-hf-email">Cod. Vademecum</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control form-control-sm" id="pdo_cod2" name="pdo_cod2" placeholder="">
+                            </div>
+                        </div>
+                        <br><p>Datos de Venta <br> utilizar coma (,) para decimales </p>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label" for="example-hf-email">Costo Region 1</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control form-control-sm" placeholder="###,##" id="pdo_preUniVenta1" name="pdo_preUniVenta1" placeholder="">
+                            </div>
+                        </div><div class="form-group row">
+                            <label class="col-sm-4 col-form-label" for="example-hf-email">Costo Region 2</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control form-control-sm" placeholder="###,##" id="pdo_preUniVenta2" name="pdo_preUniVenta2" placeholder="">
+                            </div>
+                        </div><div class="form-group row">
+                            <label class="col-sm-4 col-form-label" for="example-hf-email">Costo Region 3</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control form-control-sm" placeholder="###,##" id="pdo_preUniVenta3" name="pdo_preUniVenta3" placeholder="">
                             </div>
                         </div>
                     </div>
@@ -135,5 +161,3 @@
 </div>
 
 <script src="{{ asset('resources/js/inventario/producto.js')}}"></script>
-<script>
-</script>

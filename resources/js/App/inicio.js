@@ -397,7 +397,7 @@ function showListProSelec() {
         }
 
         cos = parseFloat(cos) + parseFloat(tpT);
-        ped_costoTotal=cos;
+        ped_costoTotal = cos;
     });
     $("#secCostoTotal").html(
         "Costo Total: <br> <span style='font-size:25px '>Bs.- " +
@@ -424,6 +424,7 @@ function deleteItemPedido(i) {
 }
 
 function concluirPedido() {
+    extraerUbicacion
     if (ped_idCliente == "") {
         notif(3, "seleccione Cliente");
         return;
@@ -441,7 +442,7 @@ function concluirPedido() {
             productos: ped_data,
             region: ped_TipoPrecio,
             costoTotal: ped_costoTotal,
-            ubi: { lat: lat, lon: lon, link: enlace },
+            ubi: { lat: lat, lon: lon, link: enlace ,link2: JSON.stringify(enlace2) },
         },
         success: function (response) {
             console.log(response);
@@ -459,7 +460,6 @@ const viewCatalogo = () => {
     }
     $.get("ContApp/Catalogo/", { tipo: 1 }, function (data, textStatus, jqXHR) {
         $("#main-container").html(data);
-        // unserialize()
     });
 };
 const listCatalogo = () => {
@@ -538,3 +538,7 @@ const createCliente = (data) => {
         },
     });
 };
+
+const datamapa={
+
+}

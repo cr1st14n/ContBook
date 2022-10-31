@@ -18,4 +18,8 @@ class homeController extends Controller
     {
         return view('homeApp');
     }
+    public function test1()
+    {
+        return 'hola mundo';
+    }
 }

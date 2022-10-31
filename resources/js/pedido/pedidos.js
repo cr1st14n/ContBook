@@ -3,14 +3,38 @@ data_pedidos_1 = Array;
 $(document).ready(function () {
     list_pp1();
 });
+function listPedSelc(tipo,dato) {
+    if (dato == 0) {
+        list_pp1();
+        return;
+    }
+    $data={}
+    switch (tipo) {
+        case 1:
+            $data = { data: "tipo_2", id: dato };
+            break;
+        case 2:
+            $data = { data: "tipo_3", id: dato };
+            break;
 
+        default:
+            break;
+    }
+    $.ajax({
+        type: "get",
+        url: "Pedido/list_1",
+        data: $data,
+        success: function (response) {
+            maq_tbody_pedidos(response);
+        },
+    });
+}
 function list_pp1() {
     $.ajax({
         type: "get",
         url: "Pedido/list_1",
         data: { data: "tipo_1" },
         success: function (response) {
-            console.log(response);
             maq_tbody_pedidos(response);
         },
     });
@@ -19,6 +43,7 @@ function list_pp1() {
 function maq_tbody_pedidos(data) {
     const contItem = 0;
     data_pedidos_1 = data;
+    console.log(data);
     html = data
         .map(function (e, i) {
             var f = new Date(e.created_at);
@@ -59,9 +84,11 @@ function maq_tbody_pedidos(data) {
                 2
             )}</strong>  </td>
                 <td class="text-center"> ${f}</td>
-                <td class="text-center"> <a href='#'  onClick='show_hubi("${
-                    e.ca_ubi.link
-                }")'><i class=' fa fa-map-marked'></i> Hubicación</a></td>
+                <td class="text-center"> <a href='#'  onClick='show_hubi(${
+                    e.ca_ubi.lat
+                },${
+                e.ca_ubi.lon
+            })'><i class=' fa fa-map-marked'></i> Hubicación</a></td>
                 <td class="text-center"></td>
 
             </tr>
@@ -70,20 +97,51 @@ function maq_tbody_pedidos(data) {
         .join(" ");
     $("#tbodyList_pedidos").html(html);
 }
-function show_hubi(ubi) {
+function show_hubi(lat, lon) {
+    var map;
+    if (navigator.geolocation) {
+        console.log(lat);
+        console.log(lon);
+        navigator.geolocation.getCurrentPosition(A);
+    } else {
+        console.log("sin acceso a mapa");
+    }
+    function A(para) {
+        latlng = { lat: lat, lng: lon };
+        var myOptions = {
+            zoom: 20,
+            center: latlng,
+            mapTypeControl: true,
+            navigationControlOptions: {
+                style: google.maps.NavigationControlStyle.SMALL,
+            },
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+        };
+        const map = new google.maps.Map(
+            document.getElementById("mapcanvas"),
+            myOptions
+        );
+
+        new google.maps.Marker({
+            position: latlng,
+            map,
+            title: "Hubicación Aproximada!",
+        });
+    }
     $("#md_ubi").modal("show");
-    $("#emb_mapa_1").attr("src", ubi);
 }
 function showListProPed(data) {
-    console.log(data_pedidos_1[data]['pdd_productos']);
-    html = data_pedidos_1[data]['pdd_productos']
+    console.log(data_pedidos_1[data]["pdd_productos"]);
+    html = data_pedidos_1[data]["pdd_productos"]
         .map(function (p) {
             return (h = `
         <tr>
             <td>${p.pro.pdo_nomGen} ${p.pro.pdo_nomComer}</td>
             <td>${p.cant}</td>
             <td>${p.precio}</td>
-            <td>${parseFloat(  parseFloat(p.cant)*parseFloat(p.precio.replace(/,/g, "."))).toFixed(2)}</td>
+            <td>${parseFloat(
+                parseFloat(p.cant) * parseFloat(p.precio.replace(/,/g, "."))
+            ).toFixed(2)}</td>
         </tr>
         `);
         })

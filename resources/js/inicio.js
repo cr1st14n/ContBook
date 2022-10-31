@@ -98,6 +98,12 @@ function zeroPad(num, numZeros) {
     return zeroString + n;
 }
 
+function verNull(param) {
+    if (param == null) {
+        param = "***";
+    }
+    return param
+}
 $("#btn_menu_users").click(function (e) {
     e.preventDefault();
     console.log("printjj");

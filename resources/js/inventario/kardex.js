@@ -40,7 +40,8 @@ function const_tbody(data) {
             return (h = `
         <tr>
             <td class="text-center">${param.id}</td>
-            <td class="text-center">${param.pdo_nomGen}</td>
+            <td class="text-center">${param.prov_sigla}-${param.pdo_cod}</td>
+            <td class="text-center"> ${verNull(param.pdo_nomComer)} | ${verNull(param.pdo_nomGen)}</td>
             <td class="text-center">${param.kd_detalle}</td>
             <td class="text-center">${param.kd_respaldo}</td>
             <td class="text-center">${param.kd_ent}</td>
@@ -61,24 +62,24 @@ function showModalMovPro(param) {
         "inventario/producto/query_list_proActivo",
         {},
         function (data, textStatus, jqXHR) {
-            console.log(data.producto);
+            console.log('data.producto');
             sel = data.producto
                 .map(function (p) {
                     return (h = `
-                <option value="${p.id}">${p.pdo_nomGen}</option>
+                <option value="${p.id}">${verNull(p.pdo_nomComer)} | ${verNull(p.pdo_nomGen)} | ${p.prov_sigla}-${p.pdo_cod}</option>
                 `);
                 })
                 .join(" ");
-            provedor = data.provedor
-                .map(function (p) {
-                    return (h = `
-                <option value="${p.id}">${p.prov_contacto}/${p.prov_nombre}</option>
-                `);
-                })
-                .join(" ");
+            // provedor = data.provedor
+            //     .map(function (p) {
+            //         return (h = `
+            //     <option value="${p.id}">${verNull(p.prov_contacto)}/${verNull(p.prov_nombre)}</option>
+            //     `);
+            //     })
+            //     .join(" ");
             if (param == "1") {
                 $("#ent_pro").html(sel);
-                $("#ent_provedor").html(provedor);
+                // $("#ent_provedor").html(provedor);
                 $("#md_pro_entrada").modal("show");
                 $("#frm_pro_entrada").trigger("reset");
             }
@@ -99,11 +100,16 @@ $("#frm_pro_entrada").submit(function (e) {
             console.log(data);
             if (data == "erro_noInicial") {
                 console.log("no para carga inicial");
+                notif(3,'Aviso! Item no apto para carga inicial!.')
                 return;
             }
             if (data == "success") {
                 $("#md_pro_entrada").modal("hide");
                 queryList();
+            }
+            if (data=='Error_iniciarStock') {
+                notif(3,'Aviso! El item requiere inserción por inv. inicial!.')
+                return
             }
         }
     );

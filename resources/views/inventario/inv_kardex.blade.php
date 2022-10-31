@@ -70,7 +70,8 @@
                         </tr>
                         <tr>
                             <th class="text-center">No</th>
-                            <th class="text-center">Producto</th>
+                            <th class="text-center">Cod.Pro.</th>
+                            <th class="text-center">Producto (N.C. | N.G.)</th>
                             <th class="text-center">Detalle</th>
                             <th class="text-center">Respaldo</th>
 
@@ -127,16 +128,16 @@
                         <hr>
                         <div class="row">
                             <div class="col-md-6">
-                                <label for="ent_pro">Producto</label>
-                                <select class="form-control form-control-sm" name="ent_pro" id="ent_pro">
+                                <label for="ent_pro">Producto (N.C. | N.G. | Cod.Lab)</label>
+                                <select class="js-select2 form-control form-control-sm" name="ent_pro" id="ent_pro">
                                     <option value=""></option>
                                 </select>
                             </div>
                             <div class="col-md-6">
-                                <label for="ent_pro">Provedor</label>
+                                {{-- <label for="ent_pro">Provedor</label>
                                 <select class="form-control form-control-sm" name="ent_provedor" id="ent_provedor">
                                     <option value=""></option>
-                                </select>
+                                </select> --}}
                             </div>
                             <br>
                             <div class="col-md-6">

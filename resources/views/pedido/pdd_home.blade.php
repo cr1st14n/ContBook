@@ -14,8 +14,27 @@
 
                 </div>
                 <div class="block-content">
-                    <input type="text" class="form-control form-control-sm col-2" id="inp_search_clie"
-                        placeholder="Buscar Cliente"><br>
+                    <form class=" form-group form-row">
+                        <div class=" col-4">
+                            <select name="" id="" class=" form-control form-control-sm"
+                                onchange="listPedSelc(1,this.value)">
+                                <option value="0">Todos</option>
+                                @foreach ($clientes as $cli)
+                                    <option value="{{ $cli->id }}">{{ $cli->cli_nombre }} {{ $cli->cli_ci }} <br>
+                                        {{ $cli->cli_razonSocial }} {{ $cli->cli_ccli_razonSocialNiti }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class=" col-2">
+                            <select name="" id="" class=" form-control form-control-sm"
+                                onchange="listPedSelc(2,this.value)">
+                                <option value="0">Todos</option>
+                                @foreach ($usuarios as $usu)
+                                    <option value="{{ $usu->id }}">{{ $usu->usu_nombre }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </form>
                     <table class="table table-hover table-vcenter table-responsive" style="width: 100%">
                         <thead>
                             <tr>
@@ -60,7 +79,8 @@
                     </div>
                 </div>
                 <div class="block-content font-size-sm">
-                    <iframe src="" id="emb_mapa_1" type=""></iframe>
+                    <div id="mapcanvas" style="width:700px; height:400px"></div>
+
                 </div>
                 <div class="block-content block-content-full text-right border-top">
                     <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">Close</button>
@@ -112,4 +132,5 @@
     </div>
 </div>
 <!-- END Large Block Modal -->
+
 <script src="{{ asset('resources/js/pedido/pedidos.js') }}"></script>
