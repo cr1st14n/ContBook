@@ -45,6 +45,15 @@
     <link rel="stylesheet" href="{{ asset('resources/plantilla/noty/lib/themes/relax.css') }}" />
     <link rel="stylesheet" href="{{ asset('resources/plantilla/noty/demo/animate.css') }}" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
+
+    <style>
+        #map {
+            widh: 500px;
+            height: 600px;
+        }
+    </style>
 
 </head>
 
@@ -764,7 +773,8 @@
                         <div
                             class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center mt-5 mb-2 text-center text-sm-left">
                             <div class="flex-sm-fill">
-                                <h1 class="font-w600 text-white mb-0 invisible" data-toggle="appear">Usuario: {{ Auth::User()->usu_cod }}
+                                <h1 class="font-w600 text-white mb-0 invisible" data-toggle="appear">Usuario:
+                                    {{ Auth::User()->usu_cod }}
                                 </h1>
                                 <h2 class="h4 font-w400 text-white-75 mb-0 invisible" data-toggle="appear"
                                     data-timeout="250">CI: {{ Auth::User()->usu_ci }}</h2>
@@ -972,18 +982,36 @@
     <script src="{{ asset('resources/plantilla/noty/demo/demo.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/velocity/1.5/velocity.min.js"></script>
     <script src="https://cdn.jsdelivr.net/mojs/latest/mo.min.js"></script>
+    <button class="btn btn-block" onclick="iniciar_mapa()">ver mapa</button>
 
-
-    {{-- <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBCKiIqCdZGrVxx06LSbe7uG3zXOq1Cz5k&callback=initMap" async
-        defer></script> --}}
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgDWBXUaAtdpQJ8wjRHzQLUFrIaE3RYG0&sensor=true"
-        type="text/javascript"></script>
-    {{-- <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script> --}}
-
-    <!-- JS del sistema -->
+    <div id="map"></div>
 
     <script src="{{ asset('resources/js/inicio.js') }}"></script>
+    <script>
+        function iniciar_mapa() {
+            setTimeout(() => {
+                data = [-16.481434, -68.169116]
+                map.flyTo(data, 18)
+                L.marker(data, {
+                    draggable: true
+                }).addTo(map);
+            }, 5000);
+            data = [-16.502026040289255, -68.13101576997244]
+            var map = L.map('map').
+            setView(data,
+                18);
 
+            L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
+                maxZoom: 18
+            }).addTo(map);
+
+            L.control.scale().addTo(map);
+            L.marker(data, {
+                draggable: true
+            }).addTo(map);
+        }
+    </script>
 </body>
 
 </html>

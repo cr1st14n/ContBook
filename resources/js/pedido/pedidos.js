@@ -3,12 +3,12 @@ data_pedidos_1 = Array;
 $(document).ready(function () {
     list_pp1();
 });
-function listPedSelc(tipo,dato) {
+function listPedSelc(tipo, dato) {
     if (dato == 0) {
         list_pp1();
         return;
     }
-    $data={}
+    $data = {};
     switch (tipo) {
         case 1:
             $data = { data: "tipo_2", id: dato };
@@ -98,38 +98,25 @@ function maq_tbody_pedidos(data) {
     $("#tbodyList_pedidos").html(html);
 }
 function show_hubi(lat, lon) {
-    var map;
-    if (navigator.geolocation) {
-        console.log(lat);
-        console.log(lon);
-        navigator.geolocation.getCurrentPosition(A);
-    } else {
-        console.log("sin acceso a mapa");
-    }
-    function A(para) {
-        latlng = { lat: lat, lng: lon };
-        var myOptions = {
-            zoom: 20,
-            center: latlng,
-            mapTypeControl: true,
-            navigationControlOptions: {
-                style: google.maps.NavigationControlStyle.SMALL,
-            },
-            mapTypeId: google.maps.MapTypeId.ROADMAP,
-        };
-        const map = new google.maps.Map(
-            document.getElementById("mapcanvas"),
-            myOptions
-        );
+    // iniciar_mapa();
+    latlng = { lat: lat, lng: lon };
+    var map = L.map("map").setView(
+        [-16.502026040289255, -68.13101576997244],
+        18
+    );
 
-        new google.maps.Marker({
-            position: latlng,
-            map,
-            title: "Hubicación Aproximada!",
-        });
-    }
+    L.tileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution:
+            'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
+        maxZoom: 50,
+    }).addTo(map);
+
+    L.control.scale().addTo(map);
+    L.marker([-16.502026040289255, -68.13101576997244], {
+        draggable: true,
+    }).addTo(map);
+
     $("#md_ubi").modal("show");
-    // $("#emb_mapa_1").attr("src", ubi);
 }
 function showListProPed(data) {
     console.log(data_pedidos_1[data]["pdd_productos"]);
@@ -137,10 +124,14 @@ function showListProPed(data) {
         .map(function (p) {
             return (h = `
         <tr>
-            <td class="text-center">${p.pro.pdo_nomGen} ${p.pro.pdo_nomComer}</td>
+            <td class="text-center">${p.pro.pdo_nomGen} ${
+                p.pro.pdo_nomComer
+            }</td>
             <td class="text-center">${p.cant}</td>
             <td>Bs.- ${p.precio}</td>
-            <td>Bs.- ${parseFloat(  parseFloat(p.cant)*parseFloat(p.precio.replace(/,/g, "."))).toFixed(2)}</td>
+            <td>Bs.- ${parseFloat(
+                parseFloat(p.cant) * parseFloat(p.precio.replace(/,/g, "."))
+            ).toFixed(2)}</td>
         </tr>
         `);
         })

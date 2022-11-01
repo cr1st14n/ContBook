@@ -69,27 +69,7 @@
 <div class="modal" id="md_ubi" tabindex="-1" role="dialog" aria-labelledby="modal-block-large" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-            <div class="block block-themed block-transparent mb-0">
-                <div class="block-header bg-primary-dark">
-                    <h3 class="block-title">Modal Title</h3>
-                    <div class="block-options">
-                        <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
-                            <i class="fa fa-fw fa-times"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="block-content font-size-sm">
-                    <iframe id="emb_mapa_1"
-                        src=`https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d478.1845736725786!2d-68.13103288470776!3d-16.502020085584633!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x915f207008106593%3A0xd52a4c464c7e8179!2sAv.%2016%20de%20Julio%2C%20La%20Paz!5e0!3m2!1ses-419!2sbo!4v1666787134014!5m2!1ses-419!2sbo`
-                        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
-                <div class="block-content block-content-full text-right border-top">
-                    <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal"><i
-                            class="fa fa-check mr-1"></i>Ok</button>
-                </div>
-            </div>
+            <div id="map"></div>
         </div>
     </div>
 </div>

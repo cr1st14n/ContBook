@@ -424,7 +424,7 @@ function deleteItemPedido(i) {
 }
 
 function concluirPedido() {
-    extraerUbicacion()
+    funcionInit();
     if (ped_idCliente == "") {
         notif(3, "seleccione Cliente");
         return;
@@ -442,7 +442,7 @@ function concluirPedido() {
             productos: ped_data,
             region: ped_TipoPrecio,
             costoTotal: ped_costoTotal,
-            ubi: { lat: lat, lon: lon, link: enlace ,link2: JSON.stringify(enlace2) },
+            ubi: { lat: lat, lon: lon, link: enlace  },
         },
         success: function (response) {
             console.log(response);
@@ -523,7 +523,7 @@ const listCatalogo = () => {
 
 const createCliente = (data) => {
     data += "&lat=" + lat + "&lon=" + lon + "&link=" + enlace;
-    extraerUbicacion();
+    funcionInit();
     $.ajax({
         type: "post",
         url: "ContApp/cliente/storeCliente",
