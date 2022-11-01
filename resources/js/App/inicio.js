@@ -424,7 +424,7 @@ function deleteItemPedido(i) {
 }
 
 function concluirPedido() {
-    extraerUbicacion
+    extraerUbicacion()
     if (ped_idCliente == "") {
         notif(3, "seleccione Cliente");
         return;

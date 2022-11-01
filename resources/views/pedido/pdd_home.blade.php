@@ -79,8 +79,10 @@
                     </div>
                 </div>
                 <div class="block-content font-size-sm">
-                    <div id="mapcanvas" style="width:700px; height:400px"></div>
-
+                    <iframe id="emb_mapa_1"
+                        src=`https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d478.1845736725786!2d-68.13103288470776!3d-16.502020085584633!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x915f207008106593%3A0xd52a4c464c7e8179!2sAv.%2016%20de%20Julio%2C%20La%20Paz!5e0!3m2!1ses-419!2sbo!4v1666787134014!5m2!1ses-419!2sbo`
+                        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
                 <div class="block-content block-content-full text-right border-top">
                     <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">Close</button>
@@ -108,10 +110,10 @@
                     <table class="table table-active table-striped table-responsive table-colored">
                         <thead>
                             <tr>
-                                <th style="width: 70%">Producto</th>
+                                <th style="width: 50%">Producto</th>
                                 <th style="width: 10%">Cantidad</th>
-                                <th style="width: 10%">Precio</th>
-                                <th style="width: 10%">C.T.</th>
+                                <th style="width: 15%">Precio</th>
+                                <th style="width: 15%">C.T.</th>
                             </tr>
                         </thead>
                         <tbody id="mq_listPro_pedido">

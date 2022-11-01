@@ -129,6 +129,7 @@ function show_hubi(lat, lon) {
         });
     }
     $("#md_ubi").modal("show");
+    // $("#emb_mapa_1").attr("src", ubi);
 }
 function showListProPed(data) {
     console.log(data_pedidos_1[data]["pdd_productos"]);
@@ -136,12 +137,10 @@ function showListProPed(data) {
         .map(function (p) {
             return (h = `
         <tr>
-            <td>${p.pro.pdo_nomGen} ${p.pro.pdo_nomComer}</td>
-            <td>${p.cant}</td>
-            <td>${p.precio}</td>
-            <td>${parseFloat(
-                parseFloat(p.cant) * parseFloat(p.precio.replace(/,/g, "."))
-            ).toFixed(2)}</td>
+            <td class="text-center">${p.pro.pdo_nomGen} ${p.pro.pdo_nomComer}</td>
+            <td class="text-center">${p.cant}</td>
+            <td>Bs.- ${p.precio}</td>
+            <td>Bs.- ${parseFloat(  parseFloat(p.cant)*parseFloat(p.precio.replace(/,/g, "."))).toFixed(2)}</td>
         </tr>
         `);
         })

@@ -172,7 +172,7 @@
                         <i class="si si-grid"></i>
                     </a>
                     <strong id="itemSector_hubi">
-                        <span class="badge "><i style="color: red" class="fa fa-2x fa-lightbulb"></i> </span>
+                        <span class="badge "><i style="color:red" class="fa fa-2x fa-lightbulb"></i> </span>
                     </strong>
                 </div>
                 <div class="d-flex align-items-center">
@@ -382,56 +382,39 @@
             </div>
         </div>
     </div>
-    {{-- <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> --}}
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCKiIqCdZGrVxx06LSbe7uG3zXOq1Cz5k&callback=initMap" async
-        defer></script>
+    {{-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCKiIqCdZGrVxx06LSbe7uG3zXOq1Cz5k&callback=initMap" async
+        defer></script> --}}
     <script>
-        let lat = ''
-        let lon = ''
-        let enlace = ''
-        let enlace2 = ''
-
-        const extraerUbicacion = () => {
-            if (navigator.geolocation) {
-                const onUbicacionConcedida = ubicacion => {
-                    console.log("Tengo la ubicación: ", ubicacion);
-                    const coordenadas = ubicacion.coords;
-                    // $latitud.innerText = coordenadas.latitude;
-                    // $longitud.innerText = coordenadas.longitude;
-                    lat = coordenadas.latitude;
-                    lon = coordenadas.longitude;
-                    enlace = `https://www.google.com/maps/@${coordenadas.latitude},${coordenadas.longitude},20z`;
-
-
-                    $('#itemSector_hubi').html(
-                        '<span class="badge "><i style="color:yellow" class="fa fa-2x fa-lightbulb"></i> </span>'
-                    );
-                }
-                const onErrorDeUbicacion = err => {
-
-                    lat = "Error obteniendo ubicación: " + err.message;
-                    lon = "Error obteniendo ubicación: " + err.message;
-                    console.log("Error obteniendo ubicación: ", err);
-
-                }
-
-                const opcionesDeSolicitud = {
-                    enableHighAccuracy: true, // Alta precisión
-                    maximumAge: 0, // No queremos caché
-                    timeout: 2000 // Esperar solo 5 segundos
-                };
-                navigator.geolocation.watchPosition(onUbicacionConcedida, onErrorDeUbicacion, opcionesDeSolicitud);
-
-
-            } else {
-                alert("Tu navegador no soporta el acceso a la ubicación. Intenta con otro");
+        let lat = '';
+        let lon = '';
+        let enlace = '';
+        let datoo = '';
+        const funcionInit = () => {
+            if (!"geolocation" in navigator) {
+                return alert("Tu navegador no soporta el acceso a la ubicación. Intenta con otro");
             }
+            const onUbicacionConcedida = ubicacion => {
+                lat = ubicacion.coords.latitude;
+                lon = ubicacion.coords.longitude;
+                console.log("Tengo la ubicación: ", ubicacion.coords.latitude, '|', ubicacion.coords.longitude);
+                $('#itemSector_hubi').html(
+                    '<span class="badge "><i style="color: yellow" class="fa fa-2x fa-lightbulb"></i> </span>');
+            }
+            const onErrorDeUbicacion = err => {
+
+
+                console.log("Error obteniendo ubicación: ", err);
+            }
+
+            const opcionesDeSolicitud = {
+                enableHighAccuracy: true, // Alta precisión
+                maximumAge: 0, // No queremos caché
+                timeout: 5000 // Esperar solo 5 segundos
+            };
+            navigator.geolocation.getCurrentPosition(onUbicacionConcedida, onErrorDeUbicacion, opcionesDeSolicitud);
+
         };
-        setTimeout(() => {
-            extraerUbicacion()
-            console.log('corriedno la gps');
-        }, 5000);
-        // document.addEventListener("DOMContentLoaded", extraerUbicacion);
+        document.addEventListener("DOMContentLoaded", funcionInit);
     </script>
 
     <!-- END Page Container -->
