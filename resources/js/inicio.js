@@ -205,3 +205,18 @@ $("#btn_home_pedidos").click(function (e) {
         },
     });
 });
+$("#btn_home_hubic").click(function (e) {
+    e.preventDefault();
+    $.ajax({
+        type: "get",
+        url: "Hubicaion/",
+        data: {},
+        // dataType: "dataType",
+        success: function (response) {
+            $("#main-container").html(response);
+            html1 = ``;
+            $("#menu_1").html(html1);
+            setTimeout(() => {}, 900);
+        },
+    });
+});

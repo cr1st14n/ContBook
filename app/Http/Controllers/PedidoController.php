@@ -34,6 +34,7 @@ class PedidoController extends Controller
                     ->join('users', 'users.id', 'pedidos.ca_usu_cod')
                     ->join('clientes as c', 'c.id', 'pedidos.id_cliente')
                     ->select('pedidos.*', 'users.usu_nombre', 'c.cli_nombre', 'c.cli_ci', 'c.cli_razonSocial', 'c.cli_razonSocialNit')
+                    ->orderBy('pedidos.created_at','desc')
                     ->get();
                 break;
             case 'tipo_2':
@@ -42,6 +43,7 @@ class PedidoController extends Controller
                     ->join('users', 'users.id', 'pedidos.ca_usu_cod')
                     ->join('clientes as c', 'c.id', 'pedidos.id_cliente')
                     ->select('pedidos.*', 'users.usu_nombre', 'c.cli_nombre', 'c.cli_ci', 'c.cli_razonSocial', 'c.cli_razonSocialNit')
+                    ->orderBy('pedidos.created_at','desc')
                     ->get();
                 break;
             case 'tipo_3':
@@ -50,6 +52,7 @@ class PedidoController extends Controller
                 ->join('users', 'users.id', 'pedidos.ca_usu_cod')
                 ->join('clientes as c', 'c.id', 'pedidos.id_cliente')
                 ->select('pedidos.*', 'users.usu_nombre', 'c.cli_nombre', 'c.cli_ci', 'c.cli_razonSocial', 'c.cli_razonSocialNit')
+                ->orderBy('pedidos.created_at','desc')
                 ->get();
                 break;
             case 'tipo_4':

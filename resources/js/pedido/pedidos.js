@@ -84,11 +84,6 @@ function maq_tbody_pedidos(data) {
                 2
             )}</strong>  </td>
                 <td class="text-center"> ${f}</td>
-                <td class="text-center"> <a href='#'  onClick='show_hubi(${
-                    e.ca_ubi.lat
-                },${
-                e.ca_ubi.lon
-            })'><i class=' fa fa-map-marked'></i> Hubicación</a></td>
                 <td class="text-center"></td>
 
             </tr>

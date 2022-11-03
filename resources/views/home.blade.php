@@ -50,8 +50,8 @@
 
     <style>
         #map {
-            widh: 500px;
-            height: 600px;
+            width: 2000px;
+            height: 900px;;
         }
     </style>
 
@@ -840,7 +840,7 @@
                     </div>
                     <div class="col-6 col-md-3 col-lg-6 col-xl-3">
                         <a class="block block-rounded block-link-pop border-left border-primary border-4x"
-                            href="javascript:void(0)">
+                            href="" id="btn_home_hubic">
                             <div class="block-content block-content-full">
                                 <div class="font-size-sm font-w600 text-uppercase text-muted">Ubicaciones</div>
                                 <i class="fa fa-location-arrow fa-2x text-muted"></i>
@@ -982,36 +982,10 @@
     <script src="{{ asset('resources/plantilla/noty/demo/demo.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/velocity/1.5/velocity.min.js"></script>
     <script src="https://cdn.jsdelivr.net/mojs/latest/mo.min.js"></script>
-    <button class="btn btn-block" onclick="iniciar_mapa()">ver mapa</button>
 
-    <div id="map"></div>
 
     <script src="{{ asset('resources/js/inicio.js') }}"></script>
-    <script>
-        function iniciar_mapa() {
-            setTimeout(() => {
-                data = [-16.481434, -68.169116]
-                map.flyTo(data, 18)
-                L.marker(data, {
-                    draggable: true
-                }).addTo(map);
-            }, 5000);
-            data = [-16.502026040289255, -68.13101576997244]
-            var map = L.map('map').
-            setView(data,
-                18);
-
-            L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
-                maxZoom: 18
-            }).addTo(map);
-
-            L.control.scale().addTo(map);
-            L.marker(data, {
-                draggable: true
-            }).addTo(map);
-        }
-    </script>
+    
 </body>
 
 </html>

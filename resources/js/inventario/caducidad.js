@@ -5,6 +5,7 @@ function caducidad_home() {
         data: {},
         // dataType: "dataType",
         success: function (response) {
+            console.log(response);
             $("#main-container").html(response);
             setTimeout(() => {
                 show_list_tbody_caducidad();
@@ -19,6 +20,7 @@ function show_list_tbody_caducidad() {
         "inventario/caducidad/query_list_1",
         data,
         function (data, textStatus, jqXHR) {
+            console.log(data);
             html = data
                 .map(function (p) {
                     // console.log(p['dias']);

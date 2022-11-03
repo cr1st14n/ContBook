@@ -1,13 +1,13 @@
 <div class="content">
     <div class="row">
-        <div class="col-xl-8">
+        <div class="col-xl-12">
             <!-- Hover Table -->
             <div class="block">
                 <div class="block-header">
                     <h3 class="block-title">Lista de productos a caducar </h3>
                     <div class="block-options">
-                        <div class="block-options-item">volvo
-                            <code></code>toyota
+                        <div class="block-options-item">
+                            <code></code>
                         </div>
                     </div>
                 </div>

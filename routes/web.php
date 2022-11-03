@@ -4,6 +4,7 @@ use App\Http\Controllers\AdmController;
 use App\Http\Controllers\CaducidadController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\homeController;
+use App\Http\Controllers\hubicacionController;
 use App\Http\Controllers\inventarioController;
 use App\Http\Controllers\KardexController;
 use App\Http\Controllers\loginController;
@@ -93,6 +94,10 @@ Route::group(['prefix' => 'Pedido', 'middleware' => ['auth']], function () {
     Route::get('/', [PedidoController::class, 'home']);
     Route::get('list_1/', [PedidoController::class, 'list_1']);
     Route::get('create_1', [PedidoController::class, 'create_1']);
+});
+Route::group(['prefix' => 'Hubicaion', 'middleware' => ['auth']], function () {
+    Route::get('/', [hubicacionController::class, 'home']);
+    Route::get('/list_1', [hubicacionController::class, 'list_1']);
 });
 
 Route::group(['prefix' => 'ContApp', 'middleware' => ['auth']], function () {

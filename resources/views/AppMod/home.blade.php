@@ -385,8 +385,8 @@
     {{-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCKiIqCdZGrVxx06LSbe7uG3zXOq1Cz5k&callback=initMap" async
         defer></script> --}}
     <script>
-        let lat = '';
-        let lon = '';
+        let lat = '-';
+        let lon = '-';
         let enlace = '';
         let datoo = '';
         const funcionInit = () => {

@@ -18,10 +18,13 @@ class CaducidadController extends Controller
      */
     public function query_list1()
     {
+        return caducidad::
+        where('caducidads.ca_estado','1')
+        ->get();
         $data = caducidad::join('productos', 'productos.id', 'caducidads.id_pro')
             ->join('provedors', 'provedors.id', 'caducidads.id_provedor')
             ->select('caducidads.*')
-            ->addSelect('productos.pdo_nomGen', 'productos.pdo_uMedica', 'provedors.prov_contacto', 'provedors.prov_nombre')
+            ->addSelect('productos.pdo_nomGen', 'productos.pdo_uMedida', 'provedors.prov_contacto', 'provedors.prov_nombre')
             ->where('caducidads.ca_estado','1')
             ->get();
 

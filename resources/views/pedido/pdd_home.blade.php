@@ -43,9 +43,8 @@
                                 <th class="text-center" style="width: 20%">Cliente</th>
                                 <th class="text-center" style="width: 10%">Pedido</th>
                                 <th class="text-center" style="width: 10%">Fecha</th>
-                                <th class="text-center" style="width: 10%">Ref</th>
                                 <!-- <th class="d-none d-sm-table-cell" style="width: 20%;"></th> -->
-                                <th class="text-center" style="width: 10%;"></th>
+                                <th class="text-center" style="width: 5%;"></th>
                             </tr>
                         </thead>
                         <tbody id="tbodyList_pedidos">
