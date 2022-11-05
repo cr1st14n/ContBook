@@ -149,6 +149,10 @@ $("#btn_home_invetario").click(function (e) {
                 <i class="nav-main-link-icon si si-users"></i>
                 <span class="nav-main-link-name">Kardex</span>
             </a>
+            <a class="nav-main-link active" href="#" onclick="compras_home()">
+                <i class="nav-main-link-icon si si-users"></i>
+                <span class="nav-main-link-name">Compras</span>
+            </a>
             <a class="nav-main-link active" href="#" onclick="provedor_home()">
                 <i class="nav-main-link-icon si si-users"></i>
                 <span class="nav-main-link-name">Provedores</span>

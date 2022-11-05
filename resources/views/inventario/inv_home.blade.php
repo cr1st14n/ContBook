@@ -36,3 +36,4 @@
 <script src="{{ asset('resources/js/inventario/provedor.js')}}"></script>
 <script src="{{ asset('resources/js/inventario/kardex.js')}}"></script>
 <script src="{{ asset('resources/js/inventario/caducidad.js')}}"></script>
+<script src="{{ asset('resources/js/inventario/compras.js')}}"></script>
