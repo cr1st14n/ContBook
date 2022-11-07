@@ -16,6 +16,12 @@ return new class extends Migration
         Schema::create('compras', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->longText('compra_data');
+             // *campos de auditoria
+             $table->integer('ca_usu_cod')->nullable();
+             $table->string('ca_tipo', 10)->nullable();
+             $table->integer('ca_estado')->nullable();
+            //  $table->longText('ca_ubi')->nullable();
         });
     }
 

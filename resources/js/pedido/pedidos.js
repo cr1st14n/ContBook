@@ -43,11 +43,12 @@ function list_pp1() {
 function maq_tbody_pedidos(data) {
     const contItem = 0;
     data_pedidos_1 = data;
-    console.log(data);
+    console.log('data');
     html = data
         .map(function (e, i) {
             var f = new Date(e.created_at);
-            f = f.toLocaleDateString();
+            f1 = f.toLocaleDateString();
+            f2 = f.toLocaleTimeString();
             switch (e.pdd_region) {
                 case "P1":
                     region = "region 1";
@@ -83,7 +84,7 @@ function maq_tbody_pedidos(data) {
             } Items.</a>  <br> <strong>Bs.- ${parseFloat(e.pdd_costo).toFixed(
                 2
             )}</strong>  </td>
-                <td class="text-center"> ${f}</td>
+                <td class="text-center"> ${f1} ${f2}</td>
                 <td class="text-center"></td>
 
             </tr>

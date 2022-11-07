@@ -22,7 +22,7 @@ class KardexController extends Controller
     {
         return kardex::join('productos','kardexes.id_pro','=','productos.id')
         ->join('provedors','provedors.id','productos.pdo_id_provedor')
-        ->orderBy('kardexes.id', 'desc')
+        ->orderBy('kardexes.id', 'asc')
         ->select('kardexes.*')
         ->addSelect('productos.pdo_cod','productos.pdo_nomGen','productos.pdo_nomComer','provedors.prov_sigla')
         ->get();
@@ -98,10 +98,10 @@ class KardexController extends Controller
         $cad->save();
 
         $p = producto::find($request->input('ent_pro'));
-        $data= unserialize( $p->pdo_data);
-        $data['cantidad']=$n->kd_sdo_fis;
-        $data['fechVenc']=$cad->cad_fecha;
-        $data['lote']=$cad->cad_lote;
+            $data= unserialize( $p->pdo_data);
+            $data['cantidad']=$n->kd_sdo_fis;
+            $data['fechVenc']=$cad->cad_fecha;
+            $data['lote']=$cad->cad_lote;
         $p->pdo_data =  serialize($data);
         $res2 = $p->save();
         return ($res1 == 1 && $res2 == 1) ? 'success' : 'error fatal';

@@ -92,7 +92,7 @@
                                 <th style="width: 50%">Producto</th>
                                 <th style="width: 10%">Cantidad</th>
                                 <th style="width: 15%">Precio</th>
-                                <th style="width: 15%">C.T.</th>
+                                <th style="width: 15%">C.P.</th>
                             </tr>
                         </thead>
                         <tbody id="mq_listPro_pedido">

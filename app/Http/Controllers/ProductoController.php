@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateproductoRequest;
 use App\Models\provedor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PhpParser\Node\Stmt\Foreach_;
 
 // use GuzzleHttp\Psr7\Request;
 
@@ -121,5 +122,18 @@ class ProductoController extends Controller
             ->orWhere('pdo_desc', 'LIKE', '%' . $request->input('data') . '%')
             ->orWhere('pdo_nomGen', 'LIKE', '%' . $request->input('data') . '%')
             ->get();
+    }
+
+    public function query_buscarListPro(Request $request)
+    {
+        $pro=producto::where('productos.ca_estado',1)->Where('pdo_id_provedor',$request->input('data'))
+        ->join('provedors as p','p.id','productos.pdo_id_provedor')
+        ->select('productos.*','p.prov_sigla')
+        ->get();
+        foreach ($pro as $key => $value) {
+            if ($value['pdo_nomComer']==null){  $pro[$key]['pdo_nomComer']='';} ;
+            if ($value['pdo_nomGen']==null){  $pro[$key]['pdo_nomGen']='';} ;
+        }
+        return json_encode($pro);
     }
 }

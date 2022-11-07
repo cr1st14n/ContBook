@@ -127,7 +127,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-4 col-form-label" for="example-hf-email">Cod. Vademecum</label>
+                            <label class="col-sm-4 col-form-label" for="example-hf-email">Registro Sanitario</label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control form-control-sm" id="pdo_cod2" name="pdo_cod2" placeholder="">
                             </div>

@@ -59,6 +59,7 @@ Route::group(['prefix' => 'inventario', 'middleware' => ['auth']], function () {
         // * QUERY
         Route::get('query_list_proActivo', [ProductoController::class, 'list_proActivo']);
         Route::get('query_buscarPro', [ProductoController::class, 'query_buscarPro']);
+        Route::get('query_buscarListPro', [ProductoController::class, 'query_buscarListPro']);
     });
     Route::group(['prefix' => 'kardex',], function () {
         Route::get('home', [KardexController::class, 'index']);
@@ -83,6 +84,7 @@ Route::group(['prefix' => 'inventario', 'middleware' => ['auth']], function () {
     });
     Route::group(['prefix' => 'compras'], function () {
         Route::get('home', [ComprasController::class, 'index']);
+        Route::post('store_1', [ComprasController::class, 'store_1']);
     });
 });
 Route::group(['prefix' => 'cliente', 'middleware' => ['auth']], function () {
