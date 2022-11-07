@@ -31,11 +31,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('login.login');
 })->name('login')->middleware('guest');
-Route::any('log1', [loginController::class, 'login']);
-
-
+Route::post('log1', [loginController::class, 'login']);
 Route::post('logout', [loginController::class, 'logout'])->name('logout');
-
 Route::get('index', [homeController::class, 'index']);
 Route::get('indexApp', [homeController::class, 'index_APP']);
 
