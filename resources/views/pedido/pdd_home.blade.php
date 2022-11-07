@@ -1,6 +1,6 @@
 <div class="content">
     <div class="row">
-        <div class="col-xl-12">
+        <div class="col-xl-6">
             <!-- Hover Table -->
             <div class="block">
                 <div class="block-header">
@@ -61,6 +61,46 @@
                 </div>
             </div>
             <!-- END Hover Table -->
+        </div>
+        <div class=" col-xl-6">
+            <div class="block">
+                <div class=" block-header">
+                    <h3 class=" block-title">Pedido a Venta</h3>
+                    <div class=" block-options-item">
+                        <button class="btn btn-danger btn-sm"> <i class="fa fa-desktop"></i> Cancelar</button>
+                        <button class="btn btn-success btn-sm"> <i class="fa fa-desktop"></i> Registrar</button>
+                    </div>
+                </div>
+                <div class=" block-content">
+                    <p>
+                        Datos Cliente: <br>
+                        <strong>datos del cliente</strong><br>
+                        Fecha Pedido: <strong>01-01-2022</strong>
+                    </p>
+                    <div>
+                        <table class="table table-responsive table-responsive-lg table-striped" style="height: 100%">
+                            <thead>
+                                <tr>
+                                    <th width="60%">Producto</th>
+                                    <th width="10%">Cantidad</th>
+                                    <th width="10%">Precio U.</th>
+                                    <th width="10%">Precio T.</th>
+                                    <th width="10%"><i class="fa fa-save"></i></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
