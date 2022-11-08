@@ -1,6 +1,6 @@
 <div class="content">
     <div class="row">
-        <div class="col-xl-6">
+        <div class="col-xl-5">
             <!-- Hover Table -->
             <div class="block">
                 <div class="block-header">
@@ -62,7 +62,7 @@
             </div>
             <!-- END Hover Table -->
         </div>
-        <div class=" col-xl-6">
+        <div class=" col-xl-7">
             <div class="block">
                 <div class=" block-header">
                     <h3 class=" block-title">Pedido a Venta</h3>
@@ -72,24 +72,26 @@
                     </div>
                 </div>
                 <div class=" block-content">
-                    <p>
+                    <p style="font-size: 12px">
                         Datos Cliente: <br>
                         <strong>datos del cliente</strong><br>
-                        Fecha Pedido: <strong>01-01-2022</strong>
+                        Fecha Pedido: <strong>01-01-2022</strong><br>
+                        Ejecutivo de ventas: <br> <strong>usuario </strong>
                     </p>
                     <div>
                         <table class="table table-responsive table-responsive-lg table-striped" style="height: 100%">
                             <thead>
                                 <tr>
                                     <th width="60%">Producto</th>
-                                    <th width="10%">Cantidad</th>
-                                    <th width="10%">Precio U.</th>
-                                    <th width="10%">Precio T.</th>
-                                    <th width="10%"><i class="fa fa-save"></i></th>
+                                    <th width="5%"  style="font-size: 12px">Stock</th>
+                                    <th width="5%"  style="font-size: 12px">Cantidad</th>
+                                    <th width="15%" style="font-size: 11px">Precio U.</th>
+                                    <th width="15%" style="font-size: 11px">Precio T.</th>
+                                    <th width="5%"><i class="fa fa-save"></i></th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
+                            <tbody id="tbody_PedComp_1">
+                                <tr >
                                     <td></td>
                                     <td></td>
                                     <td></td>

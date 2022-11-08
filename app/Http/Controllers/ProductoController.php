@@ -136,4 +136,14 @@ class ProductoController extends Controller
         }
         return json_encode($pro);
     }
+
+    public function query_verf_cant_1(Request $request)
+    {
+        $data=$request->input('data');
+        foreach ($data as $key => $value) {
+            $datos=unserialize(  producto::where('id',$value['pro']['id'])->value('pdo_data'));
+            array_push($data[$key],['enStock'=>$datos['cantidad']]);
+        }
+        return $data;
+    }
 }

@@ -57,6 +57,7 @@ Route::group(['prefix' => 'inventario', 'middleware' => ['auth']], function () {
         Route::get('query_list_proActivo', [ProductoController::class, 'list_proActivo']);
         Route::get('query_buscarPro', [ProductoController::class, 'query_buscarPro']);
         Route::get('query_buscarListPro', [ProductoController::class, 'query_buscarListPro']);
+        Route::get('query_verf_cant_1', [ProductoController::class, 'query_verf_cant_1']);
     });
     Route::group(['prefix' => 'kardex',], function () {
         Route::get('home', [KardexController::class, 'index']);

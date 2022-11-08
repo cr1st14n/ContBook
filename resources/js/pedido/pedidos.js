@@ -43,7 +43,7 @@ function list_pp1() {
 function maq_tbody_pedidos(data) {
     const contItem = 0;
     data_pedidos_1 = data;
-    console.log('data');
+    console.log("datasd");
     html = data
         .map(function (e, i) {
             var f = new Date(e.created_at);
@@ -72,10 +72,10 @@ function maq_tbody_pedidos(data) {
                 })
                 .join(" ");
             return (h = `
-            <tr>
+            <tr onClick="pedidoVenta_1(${i})">
                 <td class="text-center">Ped-${e.id}</td>
                 <td class="text-center">${e.usu_nombre}</td>
-                <td class="text-center"><strong>
+                <td class="text-center" style="font-size: 12px"><strong>
                 ${e.cli_nombre} - CI: ${e.cli_ci} <br>
                 ${e.cli_razonSocial} NIT.:${e.cli_razonSocialNit}
                 </strong>  <br>- ${region} </td>
@@ -204,3 +204,43 @@ $("#inp_buscar_pro").keyup(function (e) {
 });
 function detalle_clie(param) {}
 function list_1(param) {}
+
+// * PEdido a venta
+function pedidoVenta_1(i) {
+    $.ajax({
+        type: "get",
+        url: "inventario/producto/query_verf_cant_1",
+        data: { data: data_pedidos_1[i]["pdd_productos"] },
+        // dataType: "json",
+        success: function (response) {
+            html = response
+                .map(function (p, i) {
+                    console.log(response[i][0]["enStock"]);
+                    stock = response[i][0]["enStock"];
+                    return (h = `
+                <tr>
+                    <td class="text-left"style="font-size: 14px"><p>NC.: ${verNull(
+                        p.pro.pdo_nomComer
+                    )}<br>NG.: ${verNull(p.pro.pdo_nomGen)}</p></td>
+                    <td class="text-center">${stock}</td>
+                    <td class="text-center"><input type="number" onkeyup='calCant(this.value,${stock})' min="0" max="${stock}" class=' form-control form-control-sm' value='${
+                        p.cant
+                    }'></td>
+                    <td>Bs.- ${p.precio}</td>
+                    <td>Bs.- ${parseFloat(
+                        parseFloat(p.cant) *
+                            parseFloat(p.precio.replace(/,/g, "."))
+                    ).toFixed(2)}</td>
+                    <td></td>
+                </tr>
+                `);
+                })
+                .join(" ");
+            $("#tbody_PedComp_1").html(html);
+        },
+    });
+    console.log(data_pedidos_1[i]);
+}
+function calCant(v,s) {
+    console.log(v,s);
+ }
