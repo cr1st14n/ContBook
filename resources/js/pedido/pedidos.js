@@ -1,5 +1,6 @@
 id_Pedido_select = "";
 data_pedidos_1 = Array;
+data_pedidos_ver_2 = Array;
 $(document).ready(function () {
     list_pp1();
 });
@@ -207,32 +208,54 @@ function list_1(param) {}
 
 // * PEdido a venta
 function pedidoVenta_1(i) {
+    id_Pedido_select = data_pedidos_1[i]["id"];
     $.ajax({
         type: "get",
         url: "inventario/producto/query_verf_cant_1",
         data: { data: data_pedidos_1[i]["pdd_productos"] },
         // dataType: "json",
         success: function (response) {
+            data_pedidos_ver_2 = response;
+            console.log(data_pedidos_ver_2);
             html = response
                 .map(function (p, i) {
                     console.log(response[i][0]["enStock"]);
-                    stock = response[i][0]["enStock"];
-                    return (h = `
-                <tr>
-                    <td class="text-left"style="font-size: 14px"><p>NC.: ${verNull(
-                        p.pro.pdo_nomComer
-                    )}<br>NG.: ${verNull(p.pro.pdo_nomGen)}</p></td>
-                    <td class="text-center">${stock}</td>
-                    <td class="text-center"><input type="number" onkeyup='calCant(this.value,${stock})' min="0" max="${stock}" class=' form-control form-control-sm' value='${
-                        p.cant
-                    }'></td>
-                    <td>Bs.- ${p.precio}</td>
-                    <td>Bs.- ${parseFloat(
+                    let signo = "--";
+                    let stock = response[i][0]["enStock"];
+                    let PrecioTotal = parseFloat(
                         parseFloat(p.cant) *
                             parseFloat(p.precio.replace(/,/g, "."))
-                    ).toFixed(2)}</td>
-                    <td></td>
-                </tr>
+                    ).toFixed(2);
+
+                    if (stock >= p.cant) {
+                        signo =
+                            '<i style="color:green" class=" fa fa-check"></i>';
+                    } else {
+                        signo = '<i style="color:red" class=" fa fa-info"></i>';
+                    }
+                    return (h = `
+                        <tr>
+                            <td class="text-left"style="font-size: 14px"><p>NC.: ${verNull(
+                                p.pro.pdo_nomComer
+                            )}<br>NG.: ${verNull(p.pro.pdo_nomGen)}</p></td>
+                            <td class="text-center">${stock}</td>
+                            <td class="text-center">
+                            <input type="number" id='cant_2-${i}'
+                            onchange='calCant(this.value,${stock},"${
+                        p.precio
+                    }",${i})'
+                            onkeyup='calCant(this.value,${stock},"${
+                        p.precio
+                    }",${i})'
+                            min="0" max="${stock}"
+                            class=' form-control form-control-sm' value='${
+                                p.cant
+                            }'>
+                            </td>
+                            <td class="text-center" id="s-${i}">${signo}</td>
+                            <td id="p-${i}">Bs.- ${p.precio}</td>
+                            <td id="pt-${i}">Bs.- ${PrecioTotal}</td>
+                        </tr>
                 `);
                 })
                 .join(" ");
@@ -241,6 +264,63 @@ function pedidoVenta_1(i) {
     });
     console.log(data_pedidos_1[i]);
 }
-function calCant(v,s) {
-    console.log(v,s);
- }
+function calCant(c, s, p, i) {
+    if (s >= c) {
+        signo = '<i style="color:green" class=" fa fa-check"></i>';
+        $("#s-" + i).html(signo);
+        $("#pt-" + i).html(
+            "Bs.-" +
+                parseFloat(
+                    parseFloat(c) * parseFloat(p.replace(/,/g, "."))
+                ).toFixed(2)
+        );
+    } else {
+        signo = '<i style="color:red" class=" fa fa-info"></i>';
+        $("#s-" + i).html(signo);
+        $("#pt-" + i).html("Error!");
+    }
+}
+
+function registraVentPedido(tipo) {
+    data1 = data_pedidos_ver_2;
+    est_error = 0;
+    data1.map(function (e, i) {
+        data_pedidos_ver_2[i]["cant"] = $(`#cant_2-${i}`).val();
+        if (
+            data_pedidos_ver_2[i]["cant"] > data_pedidos_ver_2[i][0]["enStock"]
+        ) {
+            est_error = est_error + 1;
+        }
+    });
+    console.log(
+        est_error,
+        parseInt(data_pedidos_ver_2[0]["cant"]),
+        parseInt(data_pedidos_ver_2[0][0]["enStock"])
+    );
+    if (est_error != 0) {
+        notif(4, "Corrija las cantidades!");
+        return;
+    } else {
+        $("#md_confirmar_PedVenta").modal("show");
+    }
+
+    if (tipo == 2) {
+        $.ajax({
+            type: "post",
+            url: "Pedido/store_pedVenta",
+            data: {
+                _token: $('meta[name="csrf-token"]').attr("content"),
+                id: id_Pedido_select,
+                data: data_pedidos_ver_2,
+            },
+            // dataType: "dataType",
+            success: function (response) {
+                console.log(response);
+                if (response == "success") {
+                    $("#md_confirmar_PedVenta").modal("hide");
+                    notif(1, "Venta realizada");
+                }
+            },
+        });
+    }
+}

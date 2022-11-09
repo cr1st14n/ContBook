@@ -68,7 +68,8 @@
                     <h3 class=" block-title">Pedido a Venta</h3>
                     <div class=" block-options-item">
                         <button class="btn btn-danger btn-sm"> <i class="fa fa-desktop"></i> Cancelar</button>
-                        <button class="btn btn-success btn-sm"> <i class="fa fa-desktop"></i> Registrar</button>
+                        <button class="btn btn-success btn-sm" onclick="registraVentPedido()"> <i
+                                class="fa fa-desktop"></i> Registrar</button>
                     </div>
                 </div>
                 <div class=" block-content">
@@ -83,22 +84,20 @@
                             <thead>
                                 <tr>
                                     <th width="60%">Producto</th>
-                                    <th width="5%"  style="font-size: 12px">Stock</th>
-                                    <th width="5%"  style="font-size: 12px">Cantidad</th>
+                                    <th width="5%" style="font-size: 12px">Stock</th>
+                                    <th width="5%" style="font-size: 12px">Cantidad</th>
+                                    <th width="5%" style="font-size: 12px"></th>
                                     <th width="15%" style="font-size: 11px">Precio U.</th>
-                                    <th width="15%" style="font-size: 11px">Precio T.</th>
-                                    <th width="5%"><i class="fa fa-save"></i></th>
+                                    <th width="20%" style="font-size: 11px">Precio T.</th>
                                 </tr>
                             </thead>
                             <tbody id="tbody_PedComp_1">
-                                <tr >
+                                <tr>
                                     <td></td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
-                                </tr>
-                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -155,5 +154,36 @@
     </div>
 </div>
 <!-- END Large Block Modal -->
-
+<!-- Small Block Modal -->
+<div class="modal" id="md_confirmar_PedVenta" tabindex="-1" role="dialog" aria-labelledby="modal-block-small"
+    aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="block block-themed block-transparent mb-0">
+                <div class="block-header bg-primary-dark">
+                    <h3 class="block-title"></h3>
+                    <div class="block-options">
+                        <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                            <i class="fa fa-fw fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="block-content font-size-sm">
+                    <p>Confirmar y registrar Pedido a Venta?</p>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <button type="button" class="btn btn-sm btn-warning"
+                                data-dismiss="modal">Cancelar</button>
+                        </div>
+                        <div class="col-lg-6">
+                            <button type="button" class="btn btn-sm btn-primary" onclick="registraVentPedido(2)"><i
+                                    class="fa fa-check mr-1"></i>Confirmar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END Small Block Modal -->
 <script src="{{ asset('resources/js/pedido/pedidos.js') }}"></script>

@@ -98,6 +98,8 @@ Route::group(['prefix' => 'Pedido', 'middleware' => ['auth']], function () {
     Route::get('/', [PedidoController::class, 'home']);
     Route::get('list_1/', [PedidoController::class, 'list_1']);
     Route::get('create_1', [PedidoController::class, 'create_1']);
+    // *rutas Pedida -> venta
+    Route::post('store_pedVenta', [PedidoController::class, 'store_pedVenta']);
 });
 Route::group(['prefix' => 'Hubicaion', 'middleware' => ['auth']], function () {
     Route::get('/', [hubicacionController::class, 'home']);
