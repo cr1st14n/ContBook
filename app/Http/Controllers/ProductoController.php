@@ -37,7 +37,15 @@ class ProductoController extends Controller
     public function list_1(Request $request)
     {
         if ($request->input('lista') == 't') {
-            return producto::orderBy('pdo_id_provedor', 'asc')->get();
+            $data = producto::join('provedors', 'provedors.id', 'productos.pdo_id_provedor')
+                ->select('productos.*', 'provedors.prov_sigla')
+                ->orderBy('pdo_id_provedor', 'asc')
+                ->orderBy('pdo_cod', 'desc')
+                ->get();
+            foreach ($data as $key => $value) {
+                $data[$key]['pdo_data'] = unserialize($value->pdo_data);
+            }
+            return $data;
         }
         if ($request->input('lista') == 'a') {
             $listAct = '1';
@@ -50,6 +58,7 @@ class ProductoController extends Controller
             ->join('provedors', 'provedors.id', 'productos.pdo_id_provedor')
             ->select('productos.*', 'provedors.prov_sigla')
             ->orderBy('pdo_id_provedor', 'asc')
+            ->orderBy('pdo_cod', 'desc')
             ->get();
         foreach ($data as $key => $value) {
             $data[$key]['pdo_data'] = unserialize($value->pdo_data);
@@ -88,7 +97,7 @@ class ProductoController extends Controller
             }
         }
         $p = new producto();
-        $p->pdo_cod = producto::where('pdo_id_provedor',$request->input('pdo_id_provedor'))->max('pdo_cod')+1;
+        $p->pdo_cod = producto::where('pdo_id_provedor', $request->input('pdo_id_provedor'))->max('pdo_cod') + 1;
         $p->pdo_id_provedor = $request->input('pdo_id_provedor');
         $p->pdo_cod2 = $request->input('pdo_cod2');
         $p->pdo_nomComer = $request->input('pdo_nomComer');
@@ -126,24 +135,95 @@ class ProductoController extends Controller
 
     public function query_buscarListPro(Request $request)
     {
-        $pro=producto::where('productos.ca_estado',1)->Where('pdo_id_provedor',$request->input('data'))
-        ->join('provedors as p','p.id','productos.pdo_id_provedor')
-        ->select('productos.*','p.prov_sigla')
-        ->get();
+        $pro = producto::where('productos.ca_estado', 1)->Where('pdo_id_provedor', $request->input('data'))
+            ->join('provedors as p', 'p.id', 'productos.pdo_id_provedor')
+            ->select('productos.*', 'p.prov_sigla')
+            ->get();
         foreach ($pro as $key => $value) {
-            if ($value['pdo_nomComer']==null){  $pro[$key]['pdo_nomComer']='';} ;
-            if ($value['pdo_nomGen']==null){  $pro[$key]['pdo_nomGen']='';} ;
+            if ($value['pdo_nomComer'] == null) {
+                $pro[$key]['pdo_nomComer'] = '';
+            };
+            if ($value['pdo_nomGen'] == null) {
+                $pro[$key]['pdo_nomGen'] = '';
+            };
         }
         return json_encode($pro);
     }
 
     public function query_verf_cant_1(Request $request)
     {
-        $data=$request->input('data');
+        $data = $request->input('data');
         foreach ($data as $key => $value) {
-            $datos=unserialize(  producto::where('id',$value['pro']['id'])->value('pdo_data'));
-            array_push($data[$key],['enStock'=>$datos['cantidad']]);
+            $datos = unserialize(producto::where('id', $value['pro']['id'])->value('pdo_data'));
+            array_push($data[$key], ['enStock' => $datos['cantidad']]);
         }
         return $data;
+    }
+
+    public function update_1(Request $request)
+    {
+        $up = producto::find($request->input('id'));
+        $up->pdo_cod2 = $request->input('pdo_cod2_edit');
+        $up->pdo_nomComer = $request->input('pdo_nomComer_edit');
+        $up->pdo_nomGen = $request->input('pdo_nomGen_edit');
+        $up->pdo_concentracion = $request->input('pdo_concentracion_edit');
+        $up->pdo_uMedida = $request->input('pdo_uMedida_edit');
+        $up->pdo_formFarm = $request->input('pdo_formFarm_edit');
+        $up->pdo_preUniVenta1 = $request->input('pdo_preUniVenta1_edit');
+        $up->pdo_preUniVenta2 = $request->input('pdo_preUniVenta2_edit');
+        $up->pdo_preUniVenta3 = $request->input('pdo_preUniVenta3_edit');
+        $up->ca_usu_cod = Auth::user()->id;
+        $up->ca_tipo = 'update';
+        $res = $up->save();
+        if (!$res) {
+            return $res;
+        }
+        $up->pdo_data = unserialize($up->pdo_data);
+        $up->labSigla = provedor::where('id', $up->pdo_id_provedor)->value('prov_sigla');
+        return $up;
+    }
+    public function query_buscarListPro_2(Request $request)
+    {
+        $lab = provedor::where('prov_sigla', 'iLike', $request->input('prov'))->value('id');
+        if ($lab != null) {
+            $pro = producto::where('productos.ca_estado', 1)
+                ->Where('pdo_id_provedor',$lab)
+                ->Where('pdo_cod', $request->input('id'))
+                ->join('provedors as p', 'p.id', 'productos.pdo_id_provedor')
+                ->select('productos.*', 'p.prov_sigla')
+                ->get();
+            foreach ($pro as $key => $value) {
+                if ($value['pdo_nomComer'] == null) {
+                    $pro[$key]['pdo_nomComer'] = '';
+                };
+                if ($value['pdo_nomGen'] == null) {
+                    $pro[$key]['pdo_nomGen'] = '';
+                };
+                $pro[$key]['pdo_data']=unserialize($value['pdo_data']);
+            }
+            return json_encode($pro);
+        } else {
+            return false;
+        }
+    }
+    public function query_buscarListPro_3(Request $request)
+    {
+        $pro = producto::where('productos.ca_estado', 1)
+            ->Where('pdo_nomGen','iLIKE','%'.$request->input('val').'%')
+            ->Where('pdo_nomComer','iLIKE','%'.$request->input('val').'%')
+            ->join('provedors as p', 'p.id', 'productos.pdo_id_provedor')
+            ->select('productos.*', 'p.prov_sigla')
+            ->limit('50')
+            ->get();
+            foreach ($pro as $key => $value) {
+                if ($value['pdo_nomComer'] == null) {
+                    $pro[$key]['pdo_nomComer'] = '';
+                };
+                if ($value['pdo_nomGen'] == null) {
+                    $pro[$key]['pdo_nomGen'] = '';
+                };
+                $pro[$key]['pdo_data']=unserialize($value['pdo_data']);
+            }
+            return json_encode($pro);
     }
 }

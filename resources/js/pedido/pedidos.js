@@ -73,7 +73,7 @@ function maq_tbody_pedidos(data) {
                 })
                 .join(" ");
             return (h = `
-            <tr onClick="pedidoVenta_1(${i})">
+            <tr id="ped_${i}" onClick="pedidoVenta_1(${i})">
                 <td class="text-center">Ped-${e.id}</td>
                 <td class="text-center">${e.usu_nombre}</td>
                 <td class="text-center" style="font-size: 12px"><strong>
@@ -217,55 +217,59 @@ function pedidoVenta_1(i) {
         success: function (response) {
             data_pedidos_ver_2 = response;
             console.log(data_pedidos_ver_2);
-            html = response
-                .map(function (p, i) {
-                    console.log(response[i][0]["enStock"]);
-                    let signo = "--";
-                    let stock = response[i][0]["enStock"];
-                    let PrecioTotal = parseFloat(
-                        parseFloat(p.cant) *
-                            parseFloat(p.precio.replace(/,/g, "."))
-                    ).toFixed(2);
-
-                    if (stock >= p.cant) {
-                        signo =
-                            '<i style="color:green" class=" fa fa-check"></i>';
-                    } else {
-                        signo = '<i style="color:red" class=" fa fa-info"></i>';
-                    }
-                    return (h = `
-                        <tr>
-                            <td class="text-left"style="font-size: 14px"><p>NC.: ${verNull(
-                                p.pro.pdo_nomComer
-                            )}<br>NG.: ${verNull(p.pro.pdo_nomGen)}</p></td>
-                            <td class="text-center">${stock}</td>
-                            <td class="text-center">
-                            <input type="number" id='cant_2-${i}'
-                            onchange='calCant(this.value,${stock},"${
-                        p.precio
-                    }",${i})'
-                            onkeyup='calCant(this.value,${stock},"${
-                        p.precio
-                    }",${i})'
-                            min="0" max="${stock}"
-                            class=' form-control form-control-sm' value='${
-                                p.cant
-                            }'>
-                            </td>
-                            <td class="text-center" id="s-${i}">${signo}</td>
-                            <td id="p-${i}">Bs.- ${p.precio}</td>
-                            <td id="pt-${i}">Bs.- ${PrecioTotal}</td>
-                        </tr>
-                `);
-                })
-                .join(" ");
-            $("#tbody_PedComp_1").html(html);
+            maq_pedi_items()
         },
     });
     console.log(data_pedidos_1[i]);
 }
+function maq_pedi_items() {
+    html = data_pedidos_ver_2
+        .map(function (p, i) {
+            console.log(data_pedidos_ver_2[i][0]["enStock"]);
+            let signo = "--";
+            let stock = data_pedidos_ver_2[i][0]["enStock"];
+            let PrecioTotal = parseFloat(
+                parseFloat(p.cant) * parseFloat(p.precio.replace(/,/g, "."))
+            ).toFixed(2);
+
+            if (stock >= p.cant) {
+                signo = '<i style="color:green" class=" fa fa-check"></i>';
+            } else {
+                signo = '<i style="color:red" class=" fa fa-info"></i>';
+            }
+            return (h = `
+            <tr id="ped_item_${i}">
+                <td class="text-left"style="font-size: 14px"><p>NC.: ${verNull(
+                    p.pro.pdo_nomComer
+                )}<br>NG.: ${verNull(p.pro.pdo_nomGen)}</p></td>
+                <td class="text-center">${stock}</td>
+                <td class="text-center">
+                <input type="number" id='cant_2-${i}'
+                onchange='calCant(this.value,${stock},"${p.precio}",${i})'
+                onkeyup='calCant(this.value,${stock},"${p.precio}",${i})'
+                min="0" max="${stock}"
+                class=' form-control form-control-sm' value='${p.cant}'>
+                </td>
+                <td class="text-center" id="s-${i}">${signo}</td>
+                <td id="p-${i}">Bs.- ${p.precio}</td>
+                <td id="pt-${i}">Bs.- ${PrecioTotal}</td>
+                <td><button class="btn btn-danger btn-sm" onclick="quitarItemPedido(${i})"><i class=" fa fa-eraser"></i></button></td>
+            </tr>
+    `);
+        })
+        .join(" ");
+    $("#tbody_PedComp_1").html(html);
+}
+function quitarItemPedido(i) {
+    console.log(i);
+    data_pedidos_ver_2.splice(i, 1);
+    $("#ped_item_" + i).remove();
+    maq_pedi_items()
+    console.log(data_pedidos_ver_2);
+}
 function calCant(c, s, p, i) {
     if (s >= c) {
+        data_pedidos_ver_2[i]['cant']=c;
         signo = '<i style="color:green" class=" fa fa-check"></i>';
         $("#s-" + i).html(signo);
         $("#pt-" + i).html(
@@ -314,11 +318,16 @@ function registraVentPedido(tipo) {
                 data: data_pedidos_ver_2,
             },
             // dataType: "dataType",
-            success: function (response) {
-                console.log(response);
-                if (response == "success") {
+            success: function (r) {
+                console.log(r);
+                if (r == "success") {
+                    $('#ped_'+id_Pedido_select).remove();
                     $("#md_confirmar_PedVenta").modal("hide");
-                    notif(1, "Venta realizada");
+                    notif(2, "Venta realizada");
+                    list_pp1();
+                    $("#tbody_PedComp_1").html(" ");
+                } else if (r == "error_stock") {
+                    notif(3, "Error: Verificar Cantidades");
                 }
             },
         });

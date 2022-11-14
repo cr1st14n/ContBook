@@ -53,16 +53,20 @@ Route::group(['prefix' => 'inventario', 'middleware' => ['auth']], function () {
         Route::get('list_1', [ProductoController::class, 'list_1']);
         Route::post('store_1', [ProductoController::class, 'store_1']);
         Route::post('change_est', [ProductoController::class, 'change_est']);
+        Route::post('update_1', [ProductoController::class, 'update_1']);
         // * QUERY
         Route::get('query_list_proActivo', [ProductoController::class, 'list_proActivo']);
         Route::get('query_buscarPro', [ProductoController::class, 'query_buscarPro']);
         Route::get('query_buscarListPro', [ProductoController::class, 'query_buscarListPro']);
+        Route::get('query_buscarListPro_2', [ProductoController::class, 'query_buscarListPro_2']);
+        Route::get('query_buscarListPro_3', [ProductoController::class, 'query_buscarListPro_3']);
         Route::get('query_verf_cant_1', [ProductoController::class, 'query_verf_cant_1']);
     });
     Route::group(['prefix' => 'kardex',], function () {
         Route::get('home', [KardexController::class, 'index']);
         Route::get('query_list_1', [KardexController::class, 'query_list_1']);
         Route::get('query_list_2', [KardexController::class, 'query_list_2']);
+        Route::get('query_list_3', [KardexController::class, 'query_list_3']);
         Route::post('mov_E', [KardexController::class, 'mov_E']);
         Route::post('mov_S', [KardexController::class, 'mov_S']);
     });

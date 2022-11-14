@@ -11,11 +11,11 @@
         </div>
         <div class="block-content">
             <div class="row">
-                <div class="col-md-3 col-xs-12">
-                    <input type="text" class="form-control form-control-sm" placeholder="Buscar por código" onkeyup="load(1);">
+                <div class="col-md-2 col-xs-12">
+                    <input type="text" class="form-control form-control-sm" onkeyup="searchPro_1(this.value)" placeholder="Buscar por código" onkeyup="load(1);">
                 </div>
                 <div class="col-md-3 col-xs-12">
-                    <input type="text" class="form-control form-control-sm" placeholder="Buscar por Detalle" onkeyup="load(2);">
+                    <input type="text" class="form-control form-control-sm" onkeyup="searchPro_2(this.value)" placeholder="Buscar por Detalle" onkeyup="load(2);">
                 </div>
                 <div class="col-md-1 col-xs-12">
                     <select name="inp_prov" id="inp_prov" class="form-control form-control-sm" onchange="lista_est(this.value)">
@@ -153,6 +153,83 @@
                     <div class="block-content block-content-full text-right border-top">
                         <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">Cancelar</button>
                         <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-check mr-1"></i>Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="md_pro_edit_1" _editindex="-_edit1" role="dialog" aria-labelledby="modal-block-fadein" aria-hidden="true">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content">
+            <div class="block block-themed block-transparent mb-0">
+                <div class="block-header bg-primary-dark">
+                    <h3 class="block-title">Registrar Nuevo Producto</h3>
+                    <div class="block-options">
+                        <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                            <i class="fa fa-fw fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                <form id="form_edit_producto"  onsubmit=" event.preventDefault(); fun_update();">@csrf
+                    <div class="block-content font-size-sm">
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label" for="example-hf-email">Nombre Comercial</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control form-control-sm" id="pdo_nomComer_edit" name="pdo_nomComer_edit" placeholder="" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label" for="example-hf-email">Nombre Generico</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control form-control-sm" id="pdo_nomGen_edit" name="pdo_nomGen_edit" placeholder="" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label" for="example-hf-email">Concentración</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control form-control-sm" id="pdo_concentracion_edit" name="pdo_concentracion_edit" placeholder="" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label" for="example-hf-email">Unidad de Medida</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control form-control-sm" id="pdo_uMedida_edit" name="pdo_uMedida_edit" placeholder="" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label" for="example-hf-email">Forma Farmaceutica</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control form-control-sm" id="pdo_formFarm_edit" name="pdo_formFarm_edit" placeholder="" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label" for="example-hf-email">Registro Sanitario</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control form-control-sm" id="pdo_cod2_edit" name="pdo_cod2_edit" placeholder="">
+                            </div>
+                        </div>
+                        <br><p>Datos de Venta <br> utilizar coma (,) para decimales </p>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label" for="example-hf-email">Costo Region 1</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control form-control-sm" placeholder="###,##" id="pdo_preUniVenta1_edit" name="pdo_preUniVenta1_edit" placeholder="" required>
+                            </div>
+                        </div><div class="form-group row">
+                            <label class="col-sm-4 col-form-label" for="example-hf-email">Costo Region 2</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control form-control-sm" placeholder="###,##" id="pdo_preUniVenta2_edit" name="pdo_preUniVenta2_edit" placeholder="" required>
+                            </div>
+                        </div><div class="form-group row">
+                            <label class="col-sm-4 col-form-label" for="example-hf-email">Costo Region 3</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control form-control-sm" placeholder="###,##" id="pdo_preUniVenta3_edit" name="pdo_preUniVenta3_edit" placeholder="" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="block-content block-content-full text-right border-top">
+                        <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-check mr-1"></i>Actualizar datos</button>
                     </div>
                 </form>
             </div>

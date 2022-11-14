@@ -85,8 +85,8 @@ class PedidoController extends Controller
         foreach ($request->input('data') as $key => $value) {
             $cont = producto::where('id', $value['pro']['id'])->value('pdo_data');
             $cont = (unserialize($cont))['cantidad'];
-            if ($value['cant'] > $cont) {
-                return 'error_sin_Stock';
+            if ($value['cant'] > $cont || $value['cant']==0) {
+                return 'error_stock';
             }
         }
         foreach ($request->input('data') as $key => $value) {
@@ -130,8 +130,13 @@ class PedidoController extends Controller
             $p->pdo_data =  serialize($data);
             $res2 = $p->save();
 
-            
-            // return ($res1 == 1 && $res2 == 1) ? 'success' : 'error fatal';
+
         }
+        $up_p=pedido::find($request->input('id'));
+        $up_p->ca_estado=3;
+        $up_p->save();
+        return ($res1 == 1 && $res2 == 1) ? 'success' : 'error fatal';
     }
 }
+
+

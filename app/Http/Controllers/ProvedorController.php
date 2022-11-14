@@ -72,18 +72,18 @@ class ProvedorController extends Controller
         $up->prov_telfContacto =$request->input('prov_telfContacto_edit');
         $res=$up->save();
        return $retVal = (!$res) ? 0 : $up ;
-        
+
     }
 
     public function query_prov_search(Request $request)
     {
         return  provedor::select("*")
-                        ->where('prov_nombre', 'LIKE', '%'.$request->input('data').'%')
-                        ->orWhere('prov_nit', 'LIKE', '%'.$request->input('data').'%')
-                        ->orWhere('prov_telf', 'LIKE', '%'.$request->input('data').'%')
-                        ->orWhere('prov_contacto', 'LIKE', '%'.$request->input('data').'%')
-                        ->orWhere('prov_telfContacto', 'LIKE', '%'.$request->input('data').'%')
-                        ->orWhere('prov_mail', 'LIKE', '%'.$request->input('data').'%')
+                        ->where('prov_nombre', 'iLIKE', '%'.$request->input('data').'%')
+                        ->orWhere('prov_nit', 'iLIKE', '%'.$request->input('data').'%')
+                        ->orWhere('prov_telf', 'iLIKE', '%'.$request->input('data').'%')
+                        ->orWhere('prov_contacto', 'iLIKE', '%'.$request->input('data').'%')
+                        ->orWhere('prov_telfContacto', 'iLIKE', '%'.$request->input('data').'%')
+                        ->orWhere('prov_mail', 'iLIKE', '%'.$request->input('data').'%')
                         ->orderBy('created_at', 'desc')->get();
     }
 

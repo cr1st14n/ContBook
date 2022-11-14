@@ -13,19 +13,15 @@
             <div class="row">
                 <div class="col-md-3 col-xs-12">
                     <div class=" input-group">
-                        <input type="month" class=" form-control form-control-sm" id="" name="" placeholder="hola">
-                        <div class="input-group-prepend">
-                            <button type="button" class="btn btn-primary btn-sm">
-                                <i class="fa fa-search mr-1"></i> Buscar
-                            </button>
-                        </div>
+                        <input type="month" class=" form-control form-control-sm" id="" name=""
+                            placeholder="cod-##" onkeyup="searchIdProKard(this.value)">
                     </div>
                 </div>
                 <div class="col-md-3 col-xs-12">
                     <select name="bus_pro" id="bus_pro" class="form-control form-control-sm">
                         <option value="all">Ultimos 100 Movimientos</option>
-                        @foreach($productos as $pro)
-                        <option value="{{ $pro->id}}">{{ $pro->pdo_nomGen}}</option>
+                        @foreach ($productos as $pro)
+                            <option value="{{ $pro->id }}">{{ $pro->pdo_nomComer }}{{ $pro->pdo_nomGen }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -33,23 +29,30 @@
                 </div>
                 <div class="col-md-2 col-xs-12">
                     <div class="dropdown" style="align-items: center;">
-                        <button type="button" class="btn btn-outline-info dropdown-toggle btn-block btn-sm" id="dropdown-default-outline-info" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button type="button" class="btn btn-outline-info dropdown-toggle btn-block btn-sm"
+                            id="dropdown-default-outline-info" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
                             Registrar Movimiento
                         </button>
                         <div class="dropdown-menu font-size-sm" aria-labelledby="dropdown-default-outline-info">
-                            <a class="dropdown-item" href="#" onclick="showModalMovPro(1)"><i class="far fa-arrow-alt-circle-down"></i> Registrar - Entradas</a>
+                            <a class="dropdown-item" href="#" onclick="showModalMovPro(1)"><i
+                                    class="far fa-arrow-alt-circle-down"></i> Registrar - Entradas</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" onclick="showModalMovPro(2)"><i class="far fa-arrow-alt-circle-up"></i> Registrar - Salidas</a>
+                            <a class="dropdown-item" href="#" onclick="showModalMovPro(2)"><i
+                                    class="far fa-arrow-alt-circle-up"></i> Registrar - Salidas</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-2 col-xs-12">
                     <div class="dropdown" style="text-align: rigth;">
-                        <button type="button" class="btn  btn-outline-success dropdown-toggle btn-block btn-sm" id="dropdown-default-outline-info" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button type="button" class="btn  btn-outline-success dropdown-toggle btn-block btn-sm"
+                            id="dropdown-default-outline-info" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
                             Imprimir Movimiento
                         </button>
                         <div class="dropdown-menu font-size-sm" aria-labelledby="dropdown-default-outline-success">
-                            <a class="dropdown-item" href="#"><i class="fa fa-file-pdf"></i> Saldos y Movimientos</a>
+                            <a class="dropdown-item" href="#"><i class="fa fa-file-pdf"></i> Saldos y
+                                Movimientos</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#"><i class="fa fa-file-pdf"></i> Entradas del Mez</a>
                             <a class="dropdown-item" href="#"><i class="fa fa-file-pdf"></i> Salidas del Mez</a>
@@ -62,7 +65,7 @@
                 <table class="table table-bordered table-striped table-vcenter table-hover table-sm">
                     <thead>
                         <tr>
-                            <th class="text-center" colspan="4">Detalle</th>
+                            <th class="text-center" colspan="5">Detalle</th>
                             <th class="text-center" colspan="3" style="background-color: #5BD648;">Fisico</th>
                             <th class="text-center" rowspan="2" width="6%">Costo <br> Unitario </i> </th>
                             <th class="text-center" colspan="3" style="background-color:#DEF233;">Valorado</th>
@@ -103,7 +106,8 @@
         </div>
     </div>
 </div>
-<div class="modal fade" id="md_pro_entrada" tabindex="-1" role="dialog" aria-labelledby="modal-block-fadein" aria-hidden="true">
+<div class="modal fade" id="md_pro_entrada" tabindex="-1" role="dialog" aria-labelledby="modal-block-fadein"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="block block-themed block-transparent mb-0">
@@ -129,7 +133,8 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <label for="ent_pro">Producto (N.C. | N.G. | Cod.Lab)</label>
-                                <select class="js-select2 form-control form-control-sm" name="ent_pro" id="ent_pro">
+                                <select class="js-select2 form-control form-control-sm" name="ent_pro"
+                                    id="ent_pro">
                                     <option value=""></option>
                                 </select>
                             </div>
@@ -152,12 +157,14 @@
                             </div>
                             <div class="col-md-6">
                                 <label for="ent_respaldo">Doc. Respaldo</label>
-                                <input type="text" class="form-control form-control-sm" id="ent_respaldo" name="ent_respaldo" placeholder="# Factura / Recibo">
+                                <input type="text" class="form-control form-control-sm" id="ent_respaldo"
+                                    name="ent_respaldo" placeholder="# Factura / Recibo">
                             </div>
                             <div class="col-md-6"> <br>
                                 <div class="form-group ">
                                     <div class="input-group ">
-                                        <input type="number" class="form-control" id="ent_cost" name="ent_cost" min="1" required>
+                                        <input type="number" class="form-control" id="ent_cost" name="ent_cost"
+                                            min="1" required>
                                         <div class="input-group-append ">
                                             <span class="input-group-text">
                                                 * Costo
@@ -169,7 +176,8 @@
                             <div class="col-md-6"> <br>
                                 <div class="form-group ">
                                     <div class="input-group ">
-                                        <input type="number" class="form-control" id="ent_cant" name="ent_cant" min="1" required>
+                                        <input type="number" class="form-control" id="ent_cant" name="ent_cant"
+                                            min="1" required>
                                         <div class="input-group-append ">
                                             <span class="input-group-text">
                                                 * Cantidad
@@ -184,25 +192,29 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <label for="ent_respaldo">Lote</label>
-                                <input type="text" class="form-control form-control-sm" id="cad_lote" name="cad_lote" placeholder="Codigo...">
+                                <input type="text" class="form-control form-control-sm" id="cad_lote"
+                                    name="cad_lote" placeholder="Codigo...">
                             </div>
                             <div class="col-md-6">
                                 <label for="ent_respaldo">Fecha de Vencimiento</label>
-                                <input type="date" class="form-control" id="cad_fecha" name="cad_fecha" min="1" >
+                                <input type="date" class="form-control" id="cad_fecha" name="cad_fecha"
+                                    min="1">
                             </div>
                         </div>
 
                     </div>
                     <div class="block-content block-content-full text-right border-top">
                         <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-check mr-1"></i>Ok</button>
+                        <button type="submit" class="btn btn-sm btn-primary"><i
+                                class="fa fa-check mr-1"></i>Ok</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
-<div class="modal fade" id="md_pro_salida" tabindex="-1" role="dialog" aria-labelledby="modal-block-fadein" aria-hidden="true">
+<div class="modal fade" id="md_pro_salida" tabindex="-1" role="dialog" aria-labelledby="modal-block-fadein"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="block block-themed block-transparent mb-0">
@@ -242,14 +254,16 @@
                             </div>
                             <div class="col-md-6">
                                 <label for="ent_respaldo">Doc. Respaldo</label>
-                                <input type="text" class="form-control form-control-sm" id="sal_respaldo" name="sal_respaldo" placeholder="# Factura / Recibo">
+                                <input type="text" class="form-control form-control-sm" id="sal_respaldo"
+                                    name="sal_respaldo" placeholder="# Factura / Recibo">
                             </div>
                             <div class="col-md-6">
                             </div>
                             <div class="col-md-6"> <br>
                                 <div class="form-group ">
                                     <div class="input-group ">
-                                        <input type="number" class="form-control" id="sal_cant" name="sal_cant" min="1" required>
+                                        <input type="number" class="form-control" id="sal_cant" name="sal_cant"
+                                            min="1" required>
                                         <div class="input-group-append ">
                                             <span class="input-group-text">
                                                 * Cantidad
@@ -263,14 +277,16 @@
                     </div>
                     <div class="block-content block-content-full text-right border-top">
                         <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-check mr-1"></i>Ok</button>
+                        <button type="submit" class="btn btn-sm btn-primary"><i
+                                class="fa fa-check mr-1"></i>Ok</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
-<div class="modal fade" id="md_pro_add_1" tabindex="-1" role="dialog" aria-labelledby="modal-block-fadein" aria-hidden="true">
+<div class="modal fade" id="md_pro_add_1" tabindex="-1" role="dialog" aria-labelledby="modal-block-fadein"
+    aria-hidden="true">
     <div class="modal-dialog " role="document">
         <div class="modal-content">
             <div class="block block-themed block-transparent mb-0">
@@ -287,43 +303,50 @@
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label" for="example-hf-email">Codigo</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control form-control-sm" id="pdo_cod" name="pdo_cod" placeholder="" required>
+                                <input type="text" class="form-control form-control-sm" id="pdo_cod"
+                                    name="pdo_cod" placeholder="" required>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label" for="example-hf-email">Cod. Vademecum</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control form-control-sm" id="pdo_cod2" name="pdo_cod2" placeholder="">
+                                <input type="text" class="form-control form-control-sm" id="pdo_cod2"
+                                    name="pdo_cod2" placeholder="">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label" for="example-hf-email">Nombre Generico</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control form-control-sm" id="pdo_nomGen" name="pdo_nomGen" placeholder="" required>
+                                <input type="text" class="form-control form-control-sm" id="pdo_nomGen"
+                                    name="pdo_nomGen" placeholder="" required>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label" for="example-hf-email">Concentración</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control form-control-sm" id="pdo_concentracion" name="pdo_concentracion" placeholder="" required>
+                                <input type="text" class="form-control form-control-sm" id="pdo_concentracion"
+                                    name="pdo_concentracion" placeholder="" required>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label" for="example-hf-email">Unidad de Medida</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control form-control-sm" id="pdo_uMedica" name="pdo_uMedica" placeholder="" required>
+                                <input type="text" class="form-control form-control-sm" id="pdo_uMedica"
+                                    name="pdo_uMedica" placeholder="" required>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label" for="example-hf-email">Forma Farmaceutica</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control form-control-sm" id="pdo_formFarm" name="pdo_formFarm" placeholder="" required>
+                                <input type="text" class="form-control form-control-sm" id="pdo_formFarm"
+                                    name="pdo_formFarm" placeholder="" required>
                             </div>
                         </div>
                     </div>
                     <div class="block-content block-content-full text-right border-top">
                         <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-check mr-1"></i>Guardar</button>
+                        <button type="submit" class="btn btn-sm btn-primary"><i
+                                class="fa fa-check mr-1"></i>Guardar</button>
                     </div>
                 </form>
             </div>
@@ -331,5 +354,5 @@
     </div>
 </div>
 
-<script src="{{ asset('resources/js/inventario/producto.js')}}"></script>
-<script src="{{ asset('resources/js/inventario/kardex.js')}}"></script>
+<script src="{{ asset('resources/js/inventario/producto.js') }}"></script>
+<script src="{{ asset('resources/js/inventario/kardex.js') }}"></script>

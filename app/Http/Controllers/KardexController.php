@@ -10,33 +10,51 @@ use App\Models\producto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\homeController;
+use App\Models\provedor;
 
 class KardexController extends Controller
 {
     public function index()
     {
-        $producto= producto::where('ca_estado','1')->select('id','pdo_nomGen','ca_estado',)->orderBy('created_at','desc')->get();
-        return view('inventario.inv_kardex')->with('productos',$producto);
+        $producto = producto::where('ca_estado', '1')->select('id', 'pdo_nomGen', 'pdo_nomComer', 'ca_estado',)->orderBy('created_at', 'desc')->get();
+        return view('inventario.inv_kardex')->with('productos', $producto);
     }
     public function query_list_1()
     {
-        return kardex::join('productos','kardexes.id_pro','=','productos.id')
-        ->join('provedors','provedors.id','productos.pdo_id_provedor')
-        ->orderBy('kardexes.id', 'asc')
-        ->select('kardexes.*')
-        ->addSelect('productos.pdo_cod','productos.pdo_nomGen','productos.pdo_nomComer','provedors.prov_sigla')
-        ->get();
-
+        return kardex::join('productos', 'kardexes.id_pro', '=', 'productos.id')
+            ->join('provedors', 'provedors.id', 'productos.pdo_id_provedor')
+            ->orderBy('kardexes.id', 'asc')
+            ->select('kardexes.*')
+            ->addSelect('productos.pdo_cod', 'productos.pdo_nomGen', 'productos.pdo_nomComer', 'provedors.prov_sigla')
+            ->get();
     }
     public function query_list_2(Request $request)
     {
-        return kardex::join('productos','kardexes.id_pro','=','productos.id')
-        ->where('kardexes.id_pro',$request->input('id'))
-        ->orderBy('kardexes.id', 'desc')
-        ->select('kardexes.*')
-        ->addSelect('productos.pdo_nomGen')
-        ->get();
-
+        return kardex::join('productos', 'kardexes.id_pro', '=', 'productos.id')
+            ->where('kardexes.id_pro', $request->input('id'))
+            ->join('provedors', 'provedors.id', 'productos.pdo_id_provedor')
+            ->orderBy('kardexes.id', 'asc')
+            ->select('kardexes.*')
+            ->addSelect('productos.pdo_cod', 'productos.pdo_nomGen', 'productos.pdo_nomComer', 'provedors.prov_sigla')
+            ->get();
+    }
+    public function query_list_3(Request $request)
+    {
+        $lab = provedor::where('prov_sigla', 'iLike', $request->input('prov'))->value('id');
+        $producto = producto::where('pdo_id_provedor',$lab)->where('pdo_cod',$request->input('id'))->value('id');
+        if ($lab != null) {
+            $pro = kardex::join('productos', 'kardexes.id_pro', '=', 'productos.id')
+                ->where('kardexes.id_pro', $producto)
+                ->join('provedors', 'provedors.id', 'productos.pdo_id_provedor')
+                ->orderBy('kardexes.id', 'asc')
+                ->select('kardexes.*')
+                ->addSelect('productos.pdo_cod', 'productos.pdo_nomGen', 'productos.pdo_nomComer', 'provedors.prov_sigla')
+                ->get();
+           
+            return json_encode($pro);
+        } else {
+            return false;
+        }
     }
     public function mov_E(Request $request)
     {
@@ -86,22 +104,22 @@ class KardexController extends Controller
         // return $n;
         $res1 = $n->save();
 
-        $cad=new caducidad();
-        $cad->id_pro=$request->input('ent_pro');
+        $cad = new caducidad();
+        $cad->id_pro = $request->input('ent_pro');
         $cad->id_provedor = $request->input('ent_provedor');
-        $cad->cad_lote=$request->input('cad_lote');
-        $cad->cad_cantidad=$fis_entrado;
-        $cad->cad_fecha=$request->input('cad_fecha');
+        $cad->cad_lote = $request->input('cad_lote');
+        $cad->cad_cantidad = $fis_entrado;
+        $cad->cad_fecha = $request->input('cad_fecha');
         $cad->ca_usu_cod = Auth::user()->id;
         $cad->ca_tipo = 'create';
         $cad->ca_estado = 1;
         $cad->save();
 
         $p = producto::find($request->input('ent_pro'));
-            $data= unserialize( $p->pdo_data);
-            $data['cantidad']=$n->kd_sdo_fis;
-            $data['fechVenc']=$cad->cad_fecha;
-            $data['lote']=$cad->cad_lote;
+        $data = unserialize($p->pdo_data);
+        $data['cantidad'] = $n->kd_sdo_fis;
+        $data['fechVenc'] = $cad->cad_fecha;
+        $data['lote'] = $cad->cad_lote;
         $p->pdo_data =  serialize($data);
         $res2 = $p->save();
         return ($res1 == 1 && $res2 == 1) ? 'success' : 'error fatal';
@@ -132,10 +150,10 @@ class KardexController extends Controller
         $n->kd_ent = '-';
         $n->kd_sal = $fis_salida;
         $n->kd_sdo_fis = $fis_saldo;
-        $n->kd_costo =round( $costo,2);
+        $n->kd_costo = round($costo, 2);
         $n->kd_deb = '-';
-        $n->kd_hab = round($va_haber,2) ;
-        $n->kd_sdo_val =round( $va_saldo,2);
+        $n->kd_hab = round($va_haber, 2);
+        $n->kd_sdo_val = round($va_saldo, 2);
 
         $n->ca_usu_cod = Auth::user()->id;
         $n->ca_tipo = 'create';

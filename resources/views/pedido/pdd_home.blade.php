@@ -57,6 +57,20 @@
                                 <td> <a href=""></a> </td>
                             </tr>
                         </tbody>
+                        <style type="text/css">
+                            thead tr th {
+                                position: sticky;
+                                top: 0;
+                                z-index: 10;
+                                background-color: #ffffff;
+                                font-size: 9px;
+                            }
+
+                            .table-responsive {
+                                height: 600px;
+                                overflow: scroll;
+                            }
+                        </style>
                     </table>
                 </div>
             </div>
@@ -73,22 +87,23 @@
                     </div>
                 </div>
                 <div class=" block-content">
-                    <p style="font-size: 12px">
+                    {{-- <p style="font-size: 12px">
                         Datos Cliente: <br>
                         <strong>datos del cliente</strong><br>
                         Fecha Pedido: <strong>01-01-2022</strong><br>
                         Ejecutivo de ventas: <br> <strong>usuario </strong>
-                    </p>
+                    </p> --}}
                     <div>
                         <table class="table table-responsive table-responsive-lg table-striped" style="height: 100%">
                             <thead>
                                 <tr>
-                                    <th width="60%">Producto</th>
+                                    <th width="40%">Producto</th>
                                     <th width="5%" style="font-size: 12px">Stock</th>
                                     <th width="5%" style="font-size: 12px">Cantidad</th>
                                     <th width="5%" style="font-size: 12px"></th>
                                     <th width="15%" style="font-size: 11px">Precio U.</th>
                                     <th width="20%" style="font-size: 11px">Precio T.</th>
+                                    <th width="5%"></th>
                                 </tr>
                             </thead>
                             <tbody id="tbody_PedComp_1">
@@ -99,6 +114,7 @@
                                     <td></td>
                                     <td></td>
                         </table>
+
                     </div>
                 </div>
             </div>

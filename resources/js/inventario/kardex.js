@@ -11,6 +11,26 @@ function queryList() {
     $.get("inventario/kardex/query_list_1", function (data, textStatus, jqXHR) {
         const_tbody(data);
     });
+} q
+function searchIdProKard(val) {
+    val = val.split("-");
+    l_1 = val[0];
+    l_2 = val[1];
+    if (l_2 >= 1 && l_2.length <= 4) {
+        console.log("+++  Es un número");
+        $.ajax({
+            type: "get",
+            url: "inventario/kardex/query_list_3",
+            data: { prov: l_1, id: l_2 },
+            dataType: "json",
+            success: function (r) {
+                console.log(r);
+                const_tbody(r);
+            },
+        });
+    } else {
+        console.log("---  no es  número");
+    }
 }
 $("#bus_pro").change(function (e) {
     e.preventDefault();
@@ -29,6 +49,7 @@ $("#bus_pro").change(function (e) {
 });
 
 function const_tbody(data) {
+    console.log(data);
     html = data
         .map(function (param) {
             flecha =
@@ -41,7 +62,9 @@ function const_tbody(data) {
         <tr>
             <td class="text-center">${param.id}</td>
             <td class="text-center">${param.prov_sigla}-${param.pdo_cod}</td>
-            <td class="text-center"> ${verNull(param.pdo_nomComer)} | ${verNull(param.pdo_nomGen)}</td>
+            <td class="text-center"> ${verNull(param.pdo_nomComer)} | ${verNull(
+                param.pdo_nomGen
+            )}</td>
             <td class="text-center">${param.kd_detalle}</td>
             <td class="text-center">${param.kd_respaldo}</td>
             <td class="text-center">${param.kd_ent}</td>
@@ -62,11 +85,13 @@ function showModalMovPro(param) {
         "inventario/producto/query_list_proActivo",
         {},
         function (data, textStatus, jqXHR) {
-            console.log('data.producto');
+            console.log("data.producto");
             sel = data.producto
                 .map(function (p) {
                     return (h = `
-                <option value="${p.id}">${verNull(p.pdo_nomComer)} | ${verNull(p.pdo_nomGen)} | ${p.prov_sigla}-${p.pdo_cod}</option>
+                <option value="${p.id}">${verNull(p.pdo_nomComer)} | ${verNull(
+                        p.pdo_nomGen
+                    )} | ${p.prov_sigla}-${p.pdo_cod}</option>
                 `);
                 })
                 .join(" ");
@@ -100,16 +125,19 @@ $("#frm_pro_entrada").submit(function (e) {
             console.log(data);
             if (data == "erro_noInicial") {
                 console.log("no para carga inicial");
-                notif(3,'Aviso! Item no apto para carga inicial!.')
+                notif(3, "Aviso! Item no apto para carga inicial!.");
                 return;
             }
             if (data == "success") {
                 $("#md_pro_entrada").modal("hide");
                 queryList();
             }
-            if (data=='Error_iniciarStock') {
-                notif(3,'Aviso! El item requiere inserción por inv. inicial!.')
-                return
+            if (data == "Error_iniciarStock") {
+                notif(
+                    3,
+                    "Aviso! El item requiere inserción por inv. inicial!."
+                );
+                return;
             }
         }
     );

@@ -73,7 +73,7 @@ function listitem_1() {
     let total = 0;
     html = compra
         .map(function (e) {
-            total = total + parseFloat(e.cost);
+            total = total + parseFloat((e.cost*e.cant).toFixed(2));
             console.log(parseFloat(e.cost));
             return (h = `
             <tr>
@@ -82,6 +82,7 @@ function listitem_1() {
                 <td>${e.feve}</td>
                 <td>U. ${e.cant}</td>
                 <td>Bs.- ${e.cost}</td>
+                <td>Bs.- ${(e.cost*e.cant).toFixed(2)}</td>
             </tr>
         `);
         })
@@ -108,7 +109,7 @@ function finCompra(tipo) {
         success: function (response) {
             console.log(response);
             if (response == "success") {
-                notif(1, "Compra Registrada");
+                notif(2, "Compra Registrada");
                 resetVenta();
                 $("#md_confirmar").modal("hide");
             } else {
