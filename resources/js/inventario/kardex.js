@@ -11,7 +11,7 @@ function queryList() {
     $.get("inventario/kardex/query_list_1", function (data, textStatus, jqXHR) {
         const_tbody(data);
     });
-} q
+} 
 function searchIdProKard(val) {
     val = val.split("-");
     l_1 = val[0];
