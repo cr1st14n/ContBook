@@ -103,48 +103,8 @@ class ComprasController extends Controller
         return ($res1 == 1 && $res2 == 1 && $res3 == 1) ? 'success' : 'error fatal';
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\compras  $compras
-     * @return \Illuminate\Http\Response
-     */
-    public function show(compras $compras)
+    public function home_listCompras()
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\compras  $compras
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(compras $compras)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdatecomprasRequest  $request
-     * @param  \App\Models\compras  $compras
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdatecomprasRequest $request, compras $compras)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\compras  $compras
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(compras $compras)
-    {
-        //
+        return view('inventario.inv_home_regisCompras');
     }
 }

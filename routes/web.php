@@ -87,6 +87,8 @@ Route::group(['prefix' => 'inventario', 'middleware' => ['auth']], function () {
     Route::group(['prefix' => 'compras'], function () {
         Route::get('home', [ComprasController::class, 'index']);
         Route::post('store_1', [ComprasController::class, 'store_1']);
+        // *----REGISTRO DE COMPRAS
+        Route::get('home_listCompras',[ComprasController::class,'home_listCompras']);
     });
 });
 Route::group(['prefix' => 'cliente', 'middleware' => ['auth']], function () {

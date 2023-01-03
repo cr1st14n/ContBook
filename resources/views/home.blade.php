@@ -51,7 +51,8 @@
     <style>
         #map {
             width: 2000px;
-            height: 900px;;
+            height: 900px;
+            ;
         }
     </style>
 
@@ -985,7 +986,7 @@
 
 
     <script src="{{ asset('resources/js/inicio.js') }}"></script>
-    
+
 </body>
 
 </html>

@@ -102,7 +102,7 @@ function verNull(param) {
     if (param == null) {
         param = "***";
     }
-    return param
+    return param;
 }
 $("#btn_menu_users").click(function (e) {
     e.preventDefault();
@@ -152,6 +152,10 @@ $("#btn_home_invetario").click(function (e) {
             <a class="nav-main-link active" href="#" onclick="compras_home()">
                 <i class="nav-main-link-icon si si-users"></i>
                 <span class="nav-main-link-name">Compras</span>
+            </a>
+            <a class="nav-main-link active" href="#" onclick="view_RegisCompra()">
+                <i class="nav-main-link-icon si si-users"></i>
+                <span class="nav-main-link-name">Registro Compras</span>
             </a>
             <a class="nav-main-link active" href="#" onclick="provedor_home()">
                 <i class="nav-main-link-icon si si-users"></i>

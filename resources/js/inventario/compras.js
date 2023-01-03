@@ -73,7 +73,7 @@ function listitem_1() {
     let total = 0;
     html = compra
         .map(function (e) {
-            total = total + parseFloat((e.cost*e.cant).toFixed(2));
+            total = total + parseFloat((e.cost * e.cant).toFixed(2));
             console.log(parseFloat(e.cost));
             return (h = `
             <tr>
@@ -82,7 +82,7 @@ function listitem_1() {
                 <td>${e.feve}</td>
                 <td>U. ${e.cant}</td>
                 <td>Bs.- ${e.cost}</td>
-                <td>Bs.- ${(e.cost*e.cant).toFixed(2)}</td>
+                <td>Bs.- ${(e.cost * e.cant).toFixed(2)}</td>
             </tr>
         `);
         })
@@ -124,10 +124,19 @@ function resetVenta() {
     $("#sp_cost").val("");
     $("#sp_lot").val("");
     $("#sp_fev").val("");
-    $("#sp_rep").val('')
+    $("#sp_rep").val("");
     $("#datoProducto_1").html(`Producto:<br>-`);
     compra = [];
     item = Array;
-    $("#tbody_1").html('');
+    $("#tbody_1").html("");
     $("#costo_total").html("Bs.-");
 }
+
+// * ------- REGISTRO DE COMPRAS
+
+let view_RegisCompra = () => {
+    fetch("inventario/compras/home_listCompras")
+        .then((response) => response.text())
+        .catch((error) => console.error(error))
+        .then((data) =>  $("#main-container").html(data));
+};
