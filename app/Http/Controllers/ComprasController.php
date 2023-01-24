@@ -10,6 +10,8 @@ use App\Models\kardex;
 use App\Models\producto;
 use App\Models\promov;
 use App\Models\provedor;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
@@ -106,5 +108,16 @@ class ComprasController extends Controller
     public function home_listCompras()
     {
         return view('inventario.inv_home_regisCompras');
+    }
+    public function showListCompra_1()
+    {
+        $data=compras::get();
+        foreach ($data as $key => $value) {
+            $data[$key]->created_at=Carbon::parse($value->created_at)->format('d-m-Y');
+            $data[$key]->compra_data=unserialize($value->compra_data);
+            $data[$key]->user=User::where('id',$value->ca_usu_cod)->select('usu_nombre','usu_ci')->first();
+        
+        }
+        return  json_encode($data);
     }
 }

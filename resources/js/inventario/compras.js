@@ -133,10 +133,60 @@ function resetVenta() {
 }
 
 // * ------- REGISTRO DE COMPRAS
-
+let dataCompras;
 let view_RegisCompra = () => {
     fetch("inventario/compras/home_listCompras")
         .then((response) => response.text())
         .catch((error) => console.error(error))
-        .then((data) =>  $("#main-container").html(data));
+        .then((data) => $("#main-container").html(data));
 };
+// *--||| funciones manejo de tabla -----------
+let showCompra_1 = () => {
+    fetch("inventario/compras/showListCompra_1/")
+        .then((response) => response.json())
+        .catch((error) => notif(4, "ERROR !"))
+        .then((data) => printTablaCompra_1(data));
+};
+
+let printTablaCompra_1 = (data) => {
+    dataCompras = data;
+    html = data
+        .map((p, i) => {
+            return printFilaCompra_1(p, i);
+        })
+        .join(" ");
+    $("#tbodyTableCompras").html(html);
+};
+
+let printFilaCompra_1 = (p, i) => {
+    console.log(p);
+    return (fila = `
+    <tr id="fiCo_${p.id}">
+        <td>${p.id}</td>
+        <td>${p.created_at}</td>
+        <td></td>
+        <td>${p.user.usu_nombre} <br>${p.user.usu_ci}</td>
+        <td>${compraDetalle(p.compra_data)}</td>
+    </tr>
+    `);
+};
+
+let compraDetalle = (data) => {
+    let costo=0;
+    let item=0;
+    html = data
+        .map((e, i) => {
+            costo+= parseFloat(e.cost);
+            item+=1;
+            return (h = `
+            - ${e.cant}u. | Cod:${e.cod} | Costo:${e.cost}   <br>
+            `);
+        })
+        .join(" ");
+  return  html2 = ` <p style="font-size: 11px">
+                ${html}
+            </p>
+            Total Bs: ${costo} | Items: ${item} 
+            `;
+};
+// *--||| funciones manejo de tabla------------------
