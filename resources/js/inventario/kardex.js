@@ -8,12 +8,15 @@ function kardex_home(param) {
     modoApp();
 }
 function queryList() {
-    $.get("inventario/kardex/query_list_1", function (data, textStatus, jqXHR) {
-        const_tbody(data);
-    });
-} 
-function searchIdProKard(val) {
-    val = val.split("-");
+    fetch("inventario/kardex/query_list_1")
+        .catch((error) => console.error(error))
+        .then((response) => response.json())
+        .then((data) => const_tbody(data));
+}
+let val = '';
+function searchIdProKard() {
+    val2 = $('#inp_buscCod').val();
+    val = val2.split("-");
     l_1 = val[0];
     l_2 = val[1];
     if (l_2 >= 1 && l_2.length <= 4) {
@@ -29,6 +32,7 @@ function searchIdProKard(val) {
             },
         });
     } else {
+        notif(4,'Error!. Ingrese Codigo con Formato "CODLAB-##"')
         console.log("---  no es  número");
     }
 }
@@ -62,10 +66,15 @@ function const_tbody(data) {
         <tr>
             <td class="text-center">${param.id}</td>
             <td class="text-center">${param.prov_sigla}-${param.pdo_cod}</td>
+            <td class="text-left"> 
+                <p> ${param.detUsu.usu_cod} <br> <strong style="font-size: 11px;color:green">${param.detUsu.usu_nombre}</strong>
+            </p></td>
             <td class="text-center"> ${verNull(param.pdo_nomComer)} | ${verNull(
                 param.pdo_nomGen
             )}</td>
-            <td class="text-center">${param.kd_detalle}</td>
+            <td class="text-center">${param.kd_detalle} 
+                <br> <strong style="font-size: 11px;color:red">${param.created_at2}</strong>
+            </td>
             <td class="text-center">${param.kd_respaldo}</td>
             <td class="text-center">${param.kd_ent}</td>
             <td class="text-center">${param.kd_sal}</td>

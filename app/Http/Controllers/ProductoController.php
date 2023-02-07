@@ -6,6 +6,7 @@ use App\Models\producto;
 use App\Http\Requests\StoreproductoRequest;
 use App\Http\Requests\UpdateproductoRequest;
 use App\Models\provedor;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use PhpParser\Node\Stmt\Foreach_;
@@ -149,6 +150,23 @@ class ProductoController extends Controller
         }
         return json_encode($pro);
     }
+    public function query_buscarListPro_22(Request $request)
+    {
+        $lab = provedor::where('prov_sigla', 'iLike', $request->input('prov'))->value('id');
+        $pro = producto::where('productos.ca_estado', 1)->Where('pdo_id_provedor', $lab)->where('pdo_cod', $request->input('id'))
+            ->join('provedors as p', 'p.id', 'productos.pdo_id_provedor')
+            ->select('productos.*', 'p.prov_sigla')
+            ->get();
+        foreach ($pro as $key => $value) {
+            if ($value['pdo_nomComer'] == null) {
+                $pro[$key]['pdo_nomComer'] = '';
+            };
+            if ($value['pdo_nomGen'] == null) {
+                $pro[$key]['pdo_nomGen'] = '';
+            };
+        }
+        return json_encode($pro);
+    }
 
     public function query_verf_cant_1(Request $request)
     {
@@ -187,7 +205,7 @@ class ProductoController extends Controller
         $lab = provedor::where('prov_sigla', 'iLike', $request->input('prov'))->value('id');
         if ($lab != null) {
             $pro = producto::where('productos.ca_estado', 1)
-                ->Where('pdo_id_provedor',$lab)
+                ->Where('pdo_id_provedor', $lab)
                 ->Where('pdo_cod', $request->input('id'))
                 ->join('provedors as p', 'p.id', 'productos.pdo_id_provedor')
                 ->select('productos.*', 'p.prov_sigla')
@@ -199,7 +217,7 @@ class ProductoController extends Controller
                 if ($value['pdo_nomGen'] == null) {
                     $pro[$key]['pdo_nomGen'] = '';
                 };
-                $pro[$key]['pdo_data']=unserialize($value['pdo_data']);
+                $pro[$key]['pdo_data'] = unserialize($value['pdo_data']);
             }
             return json_encode($pro);
         } else {
@@ -209,21 +227,21 @@ class ProductoController extends Controller
     public function query_buscarListPro_3(Request $request)
     {
         $pro = producto::where('productos.ca_estado', 1)
-            ->Where('pdo_nomGen','iLIKE','%'.$request->input('val').'%')
-            ->Where('pdo_nomComer','iLIKE','%'.$request->input('val').'%')
+            ->Where('pdo_nomGen', 'iLIKE', '%' . $request->input('val') . '%')
+            ->Where('pdo_nomComer', 'iLIKE', '%' . $request->input('val') . '%')
             ->join('provedors as p', 'p.id', 'productos.pdo_id_provedor')
             ->select('productos.*', 'p.prov_sigla')
             ->limit('50')
             ->get();
-            foreach ($pro as $key => $value) {
-                if ($value['pdo_nomComer'] == null) {
-                    $pro[$key]['pdo_nomComer'] = '';
-                };
-                if ($value['pdo_nomGen'] == null) {
-                    $pro[$key]['pdo_nomGen'] = '';
-                };
-                $pro[$key]['pdo_data']=unserialize($value['pdo_data']);
-            }
-            return json_encode($pro);
+        foreach ($pro as $key => $value) {
+            if ($value['pdo_nomComer'] == null) {
+                $pro[$key]['pdo_nomComer'] = '';
+            };
+            if ($value['pdo_nomGen'] == null) {
+                $pro[$key]['pdo_nomGen'] = '';
+            };
+            $pro[$key]['pdo_data'] = unserialize($value['pdo_data']);
+        }
+        return json_encode($pro);
     }
 }

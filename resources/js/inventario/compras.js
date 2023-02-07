@@ -11,6 +11,38 @@ function compras_home() {
         },
     });
 }
+function searchPro() {
+    val2 = $('#inp_codPro_1').val();
+    val = val2.split("-");
+    l_1 = val[0];
+    l_2 = val[1];
+    if (l_2 >= 1 && l_2.length <= 4) {
+        console.log("+++  Es un número");
+        $.ajax({
+            type: "get",
+            url: "inventario/producto/query_buscarListPro_22",
+            data: { prov: l_1, id: l_2 },
+            dataType: "json",
+            success: function (response) {
+                data = response;
+                html = response
+                    .map(function (pro, i) {
+                        return (a = `
+                    <tr onClick="proSelect(${i})">
+                        <td style="font-size: 12px;">${pro.prov_sigla}- ${pro.pdo_cod}</td>
+                        <td style="font-size: 12px;">${pro.pdo_nomComer} <br> ${pro.pdo_nomGen}</td>
+                    </tr>
+                `);
+                    })
+                    .join(" ");
+                $("#listCompra_1").html(html);
+            },
+        });
+    } else {
+        notif(4, 'Error!. Ingrese Codigo con Formato "CODLAB-##"')
+        console.log("---  no es  número");
+    }
+}
 function listProv(value) {
     console.log(value);
     $.ajax({
@@ -163,27 +195,27 @@ let printFilaCompra_1 = (p, i) => {
     return (fila = `
     <tr id="fiCo_${p.id}">
         <td>${p.id}</td>
-        <td>${p.created_at}</td>
+        <td>${p.created_at2}</td>
         <td></td>
-        <td>${p.user.usu_nombre} <br>${p.user.usu_ci}</td>
+        <td>${p.user.usu_nombre} <br>${p.user.usu_cod}</td>
         <td>${compraDetalle(p.compra_data)}</td>
     </tr>
     `);
 };
 
 let compraDetalle = (data) => {
-    let costo=0;
-    let item=0;
+    let costo = 0;
+    let item = 0;
     html = data
         .map((e, i) => {
-            costo+= parseFloat(e.cost);
-            item+=1;
+            costo += parseFloat(e.cost);
+            item += 1;
             return (h = `
             - ${e.cant}u. | Cod:${e.cod} | Costo:${e.cost}   <br>
             `);
         })
         .join(" ");
-  return  html2 = ` <p style="font-size: 11px">
+    return html2 = ` <p style="font-size: 11px">
                 ${html}
             </p>
             Total Bs: ${costo} | Items: ${item} 

@@ -113,9 +113,9 @@ class ComprasController extends Controller
     {
         $data=compras::get();
         foreach ($data as $key => $value) {
-            $data[$key]->created_at=Carbon::parse($value->created_at)->format('d-m-Y');
+            $data[$key]['created_at2']=Carbon::parse($value->created_at)->format('d-m-Y');
             $data[$key]->compra_data=unserialize($value->compra_data);
-            $data[$key]->user=User::where('id',$value->ca_usu_cod)->select('usu_nombre','usu_ci')->first();
+            $data[$key]->user=User::where('id',$value->ca_usu_cod)->select('usu_nombre','usu_cod')->first();
         
         }
         return  json_encode($data);

@@ -13,8 +13,12 @@
             <div class="row">
                 <div class="col-md-3 col-xs-12">
                     <div class=" input-group">
-                        <input type="month" class=" form-control form-control-sm" id="" name=""
-                            placeholder="cod-##" onkeyup="searchIdProKard(this.value)">
+                        <input type="month" class=" form-control form-control-sm" id="inp_buscCod" name=""
+                            placeholder="cod-##" >
+                        <div class=" input-group-append">
+                            <button class="btn btn-sm btn-primary " onclick="searchIdProKard()"><i class="fa fa-search"></i> Buscar</button>
+                            <button class="btn btn-sm btn-info " onclick="queryList()"><i class="fa fa-table"></i> Listar Todo</button>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-3 col-xs-12">
@@ -65,7 +69,7 @@
                 <table class="table table-bordered table-striped table-vcenter table-hover table-sm">
                     <thead>
                         <tr>
-                            <th class="text-center" colspan="5">Detalle</th>
+                            <th class="text-center" colspan="6">Detalle</th>
                             <th class="text-center" colspan="3" style="background-color: #5BD648;">Fisico</th>
                             <th class="text-center" rowspan="2" width="6%">Costo <br> Unitario </i> </th>
                             <th class="text-center" colspan="3" style="background-color:#DEF233;">Valorado</th>
@@ -74,6 +78,7 @@
                         <tr>
                             <th class="text-center">No</th>
                             <th class="text-center">Cod.Pro.</th>
+                            <th class="text-center">Usuario</th>
                             <th class="text-center">Producto (N.C. | N.G.)</th>
                             <th class="text-center">Detalle</th>
                             <th class="text-center">Respaldo</th>

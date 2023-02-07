@@ -25,10 +25,10 @@
                         <div class=" col-lg-6">
                             <div class="form-group">
                                 <div class="input-group">
-                                    <input type="text" class=" form-control form-control-sm" id=""
+                                    <input type="text" class=" form-control form-control-sm" id="inp_codPro_1"
                                         placeholder="COD">
                                     <div class="input-group-prepend">
-                                        <button type="button" class="btn btn-primary btn-sm">
+                                        <button type="button" class="btn btn-primary btn-sm" onclick="searchPro()">
                                             <i class="fa fa-search mr-1"></i> Search
                                         </button>
                                     </div>

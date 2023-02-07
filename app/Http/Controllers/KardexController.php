@@ -11,6 +11,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\homeController;
 use App\Models\provedor;
+use App\Models\User;
+use Carbon\Carbon;
+use PhpParser\Node\Stmt\Foreach_;
 
 class KardexController extends Controller
 {
@@ -21,12 +24,17 @@ class KardexController extends Controller
     }
     public function query_list_1()
     {
-        return kardex::join('productos', 'kardexes.id_pro', '=', 'productos.id')
+        $pro= kardex::join('productos', 'kardexes.id_pro', '=', 'productos.id')
             ->join('provedors', 'provedors.id', 'productos.pdo_id_provedor')
             ->orderBy('kardexes.id', 'asc')
             ->select('kardexes.*')
             ->addSelect('productos.pdo_cod', 'productos.pdo_nomGen', 'productos.pdo_nomComer', 'provedors.prov_sigla')
             ->get();
+        foreach ($pro as $i => $data) {
+            $pro[$i]['detUsu'] = User::where('id', $data->ca_usu_cod)->select('usu_cod', 'usu_nombre')->first();
+            $pro[$i]['created_at2'] = Carbon::parse($data->created_at)->format('d-m-Y');
+        }
+        return json_encode($pro);
     }
     public function query_list_2(Request $request)
     {
@@ -41,7 +49,7 @@ class KardexController extends Controller
     public function query_list_3(Request $request)
     {
         $lab = provedor::where('prov_sigla', 'iLike', $request->input('prov'))->value('id');
-        $producto = producto::where('pdo_id_provedor',$lab)->where('pdo_cod',$request->input('id'))->value('id');
+        $producto = producto::where('pdo_id_provedor', $lab)->where('pdo_cod', $request->input('id'))->value('id');
         if ($lab != null) {
             $pro = kardex::join('productos', 'kardexes.id_pro', '=', 'productos.id')
                 ->where('kardexes.id_pro', $producto)
@@ -50,7 +58,12 @@ class KardexController extends Controller
                 ->select('kardexes.*')
                 ->addSelect('productos.pdo_cod', 'productos.pdo_nomGen', 'productos.pdo_nomComer', 'provedors.prov_sigla')
                 ->get();
-           
+
+            foreach ($pro as $i => $data) {
+                $pro[$i]['detUsu'] = User::where('id', $data->ca_usu_cod)->select('usu_cod', 'usu_nombre')->first();
+                $pro[$i]['created_at2'] = Carbon::parse($data->created_at)->format('d-m-Y');
+            }
+
             return json_encode($pro);
         } else {
             return false;
