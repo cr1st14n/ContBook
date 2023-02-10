@@ -228,10 +228,10 @@ class ProductoController extends Controller
     {
         $pro = producto::where('productos.ca_estado', 1)
             ->Where('pdo_nomGen', 'iLIKE', '%' . $request->input('val') . '%')
-            ->Where('pdo_nomComer', 'iLIKE', '%' . $request->input('val') . '%')
+            ->orWhere('pdo_nomComer', 'iLIKE', '%' . $request->input('val') . '%')
             ->join('provedors as p', 'p.id', 'productos.pdo_id_provedor')
             ->select('productos.*', 'p.prov_sigla')
-            ->limit('50')
+            ->limit('20')
             ->get();
         foreach ($pro as $key => $value) {
             if ($value['pdo_nomComer'] == null) {

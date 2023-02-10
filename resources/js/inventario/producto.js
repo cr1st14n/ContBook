@@ -1,11 +1,15 @@
-url = "inventario/producto/list_1";
-data = { lista: "a" };
-data_producto = [];
-function producto_home(param) {
+let url = "inventario/producto/list_1";
+let data = { lista: "a" };
+let data_producto = [];
+let producto_home = (param) => {
     $.get("inventario/producto/home", function (data, textStatus, jqXHR) {
         $("#main-container").html(data);
-        showList_producto();
     });
+}
+
+let listarProductos = () => {
+    data = { lista: $('#inp_prov').val() };
+    showList_producto();
 }
 function lista_est(param) {
     data = { lista: param };
@@ -32,9 +36,8 @@ function maq_tbody(data) {
             }
             return (h = `
             <tr id="tr-${i}">
-                <td class="font-w600 font-size-sm">${param.prov_sigla}-${
-                param.pdo_cod
-            }</td>
+                <td class="font-w600 font-size-sm">${param.prov_sigla}-${param.pdo_cod
+                }</td>
                 <td>${verNull(param.pdo_nomComer)}</td>
                 <td>${verNull(param.pdo_nomGen)}</td>
                 <td>${verNull(param.pdo_concentracion)}</td>
@@ -47,9 +50,8 @@ function maq_tbody(data) {
                         <button type="button" class="btn btn-sm btn-primary " onClick="fun_edit(${i})"  title="Edit">
                             <i class="fa fa-fw fa-pencil-alt"></i>
                         </button>
-                        <button type="button" class="btn btn-sm btn-danger " onClick="fun_proEstado(${
-                            param.id
-                        })" title="Inhabilitar">
+                        <button type="button" class="btn btn-sm btn-danger " onClick="fun_proEstado(${param.id
+                })" title="Inhabilitar">
                             <i class="fa fa-fw fa-times"></i>
                         </button>
                     </div>
@@ -60,28 +62,27 @@ function maq_tbody(data) {
         .join(" ");
     $("#tbody_producto").html(body_html);
 }
-$("#form_new_producto").submit(function (e) {
-    e.preventDefault();
+let form_new_producto = () => {
     $.ajax({
         type: "post",
         url: "inventario/producto/store_1",
-        data: $(this).serialize(),
+        data: $('#form_new_producto').serialize(),
         success: function (response) {
             console.log(response);
             if (response == "1") {
+                notif(2, "Producto Registrado Correctamente!.")
                 $("#md_pro_add_1").modal("hide");
                 $("#form_new_producto").trigger("reset");
-                showList_producto();
             }
             if (response == "err_cod1") {
-                console.log("error codigo 1");
+                notif(4, "Error en Codigo!.")
             }
             if (response == "err_cod2") {
-                console.log("error codigo 2");
+                notif(4,"error codigo 2" )
             }
         },
     });
-});
+}
 function fun_proEstado(id) {
     $.ajax({
         type: "post",
@@ -96,8 +97,8 @@ function fun_proEstado(id) {
         },
     });
 }
-itemEdit = ""; //*--- variable cache
-item_indice = "";
+let itemEdit = ""; //*--- variable cache
+let item_indice = "";
 function fun_edit(id) {
     item_indice = id;
     item_edit = data_producto[id];
@@ -134,9 +135,8 @@ function fun_update() {
             }
             up_fila = `
 
-                        <td class="font-w600 font-size-sm">${r.labSigla}-${
-                r.pdo_cod
-            }</td>
+                        <td class="font-w600 font-size-sm">${r.labSigla}-${r.pdo_cod
+                }</td>
                         <td>${verNull(r.pdo_nomComer)}</td>
                         <td>${verNull(r.pdo_nomGen)}</td>
                         <td>${verNull(r.pdo_concentracion)}</td>
@@ -149,9 +149,8 @@ function fun_update() {
                                 <button type="button" class="btn btn-sm btn-primary " onClick="fun_edit(${item_indice})"  title="Edit">
                                     <i class="fa fa-fw fa-pencil-alt"></i>
                                 </button>
-                                <button type="button" class="btn btn-sm btn-danger " onClick="fun_proEstado(${
-                                    r.id
-                                })" title="Inhabilitar">
+                                <button type="button" class="btn btn-sm btn-danger " onClick="fun_proEstado(${r.id
+                })" title="Inhabilitar">
                                     <i class="fa fa-fw fa-times"></i>
                                 </button>
                             </div>
@@ -164,13 +163,13 @@ function fun_update() {
     });
 }
 
-$("#btn_pro_add_1").click(function (e) {
-    e.preventDefault();
+let btn_pro_add_1 = () => {
     $("#form_new_producto").trigger("reset");
     $("#md_pro_add_1").modal("show");
-});
+}
 
 function searchPro_1(val) {
+    console.log(val);
     val = val.split("-");
     l_1 = val[0];
     l_2 = val[1];
